@@ -34,6 +34,8 @@
 #     60 ms
 
 
+# find the two number that sum up to target sum
+
 def twoSum(nums, target):
     # 96 ms
     """

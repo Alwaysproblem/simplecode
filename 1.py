@@ -1,3 +1,5 @@
+# calculate the Tax from the table
+
 def calculateTax(income):
     # Write your code here
     if income <= 18200:
