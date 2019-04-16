@@ -9,6 +9,10 @@ int main()
 {
     char sunrise[] = "06:00";
     char sunset[] = "18:12";
+    printf("please input sunrise time:\n");
+    scanf("%s", sunrise);
+    printf("please input sunset time:\n");
+    scanf("%s", sunset);
     char *a = halfday(sunrise, sunset);
     printf("%s", a);
     free(a);
