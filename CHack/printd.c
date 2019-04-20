@@ -11,6 +11,8 @@
 #define type(var, TYPE) (__builtin_types_compatible_p(typeof(var), TYPE))
 #define len(array, element) (sizeof(array) / sizeof(element))
 
+// we define the char *seg[N] like:
+// the seg[N-1] need to be set NULL.
 
 int Int(char *str)
 {
@@ -55,7 +57,10 @@ void join(char * sep, char * dest, char * str1, char * str2)
 }
 
 void strjoin(char * sep, char *dest, char ** string){
-    
+    int i = 0;
+    for(i = 1; string[i] != NULL; i++){
+        join(sep, dest, string[i - 1], string[i]);
+    }
 }
 
 void input(char *InputBuffer)
