@@ -11,18 +11,71 @@
 #define type(var, TYPE) (__builtin_types_compatible_p(typeof(var), TYPE))
 #define len(array, element) (sizeof(array) / sizeof(element))
 
+typedef char *  string;
+
 // we define the char *seg[N] like:
 // the seg[N-1] need to be set NULL.
 
-int Int(char *str)
+void printChar(char c, const string end)
+{
+    fflush(stdout);
+    putchar(c);
+    printf("%s", end);
+}
+
+void printStr(string var, const string end)
+{
+    fflush(stdout);
+    printf("%s", var);
+    printf("%s", end);
+}
+
+void printInt(int num, const string end)
+{
+    fflush(stdout);
+    printf("%d", num);
+    printf("%s", end);
+}
+
+void printF(double num, const string end)
+{
+    fflush(stdout);
+    printf("%.*f", DEFAULT_DIGITS, num);
+    printf("%s", end);
+}
+
+#define print(X, sep) do{                   \
+    _Generic((X),                           \
+    char: printChar,                        \
+    int: printInt,                          \
+    float: printF,                          \
+    string : printStr)(X, sep);             \
+    }while(0)
+
+int Int(string str)
 {
     return strtol(str, NULL, 10);
 }
 
-double Float(char *str)
+double Float(string str)
 {
     return strtof(str, NULL);
 }
+
+void float2str(string dest, double number){
+    sprintf(dest, "%*f", DEFAULT_DIGITS, number);
+}
+
+void Int2str(string dest, int number){
+    sprintf(dest, "%d", number);
+}
+
+#define str(dest, number) do{               \
+    _Generic((number),                      \
+    int: Int2str,                           \
+    float: float2str)(dest, number);        \
+    }while(0)
+
 
 double roundF(double number, int ndigits){
     double pow10 = pow(10, (double) ndigits);
@@ -31,14 +84,14 @@ double roundF(double number, int ndigits){
     return tmp / pow10;
 }
 
-void split(char *str, char **strtoken, const char *sep)
+void split(string str, string *strtoken, const string sep)
 {
     // automatic ignore the space
     // int init_size = strlen(str);
-    char *ptr = strtok(str, sep);
-    char **tmp = strtoken;
+    string ptr = strtok(str, sep);
+    string *tmp = strtoken;
 
-    char len = 0;
+    int len = 0;
     while (ptr != NULL)
     {
         *tmp = ptr;
@@ -46,109 +99,60 @@ void split(char *str, char **strtoken, const char *sep)
         tmp += 1;
         len += 1;
     }
-    *tmp = NULL;
-    **(tmp + 1) = len;
+    *tmp = ptr;
 }
 
-void join(char * sep, char * dest, char * str1, char * str2)
+void join(string  sep, string  dest, string  str1, string  str2)
 {
     sprintf(dest, "%s%s", str1, sep);
     sprintf(dest, "%s%s", dest, str2);
 }
 
-void strjoin(char * sep, char *dest, char ** string){
+void strjoin(string  sep, string dest, string * s){
     int i = 0;
-    for(i = 1; string[i] != NULL; i++){
-        join(sep, dest, string[i - 1], string[i]);
+    strcpy(dest, s[0]);
+    for(i = 1; s[i] != NULL; i++){
+        join(sep, dest, dest, s[i]);
     }
 }
 
-void input(char *InputBuffer)
+void input(string InputBuffer)
 {
     scanf("%[^\n]%*c", InputBuffer);
 }
 
-void printChar(char c, const char *end)
-{
-    fflush(stdout);
-    putchar(c);
-    printf("%s", end);
-}
 
-void printStr(char *var, const char *end)
-{
-    fflush(stdout);
-    printf("%s", var);
-    printf("%s", end);
-}
-
-void printInt(int num, const char *end)
-{
-    fflush(stdout);
-    printf("%d", num);
-    printf("%s", end);
-}
-
-// void printF(double num, int ndigits, const char *end)
+// void printF(double num, int ndigits, const string end)
 // {
 //     fflush(stdout);
 //     printf("%.*f", ndigits, num);
 //     printf("%s", end);
 // }
-void printF(double num, const char *end)
-{
-    fflush(stdout);
-    printf("%.*f", DEFAULT_DIGITS, num);
-    printf("%s", end);
-}
 
-#define print(X, sep) _Generic((X),         \
-    char: printChar,                        \
-    int: printInt,                          \
-    float: printF,                          \
-    char *: printStr)(X, sep)
 
 
 
 int main()
 {
+    int a = 0;
+    int b = 0;
+    float x = 0.0;
+    float y = 0.0;
+    char InputBuffer[INPUTBUFFER];
+    string Seg[SEGM];
+    input(InputBuffer);
+    split(InputBuffer, Seg, " ");
+    a = Int(Seg[0]);
+    b = Int(Seg[1]);
+    input(InputBuffer);
+    split(InputBuffer, Seg, " ");
+    x = Float(Seg[0]);
+    y = Float(Seg[1]);
 
-    // char Input[INPUTBUFFER];
-    // char* Seg[SEGM];
-    // char output[INPUTBUFFER];
-    // // double array[SEGM];
+    print(a + b, " ");
+    print(a - b, "\n");
+    print(x + y, " ");
+    print(x - y, " ");
 
-    // // int i = 0;
-    // // int tmp;
-    // input(Input);
-    // // // printStr(str, "");
-    // split(Input, Seg, " ");
-
-    // // join("-", output, Seg[0], Seg[1]);
-
-    // // printStr(output, "\n");
-    // int i = len(Seg, char *);
-    // printInt(i, "\n");
-    // // for (i = 0; Seg[i] != NULL; i++)
-    // // {
-    // //     // double(Seg[i]);
-    // //     array[i] = Float(Seg[i]);
-    // // }
-
-    // // int len = *Seg[i + 1];
-    // // printInt(len, "\n");
-
-    // // for (i = 0; i < len; i++)
-    // // {
-    // //     printF(roundF(array[i], 2), 2, "\n");
-    // // }
-
-    // char seg[SEGM] = stradd(23, 3);
-    // printStr(seg, "\n");
-    // typeof(i) k = 3;
-    // printInt(k, "\n");
-    // if(type("123", char *)) {
-    //     printf("doubleVar is of type double!");
-    // }
-    print(234, "\n");
+    return 0;
 }
