@@ -5,7 +5,7 @@
 
 #define INPUTBUFFER 256
 #define MAXSEG 255
-#define SEGM (MAXSEG - 2)
+#define SEGM (MAXSEG - 1)
 #define DEFAULT_DIGITS 2
 
 #define type(var, TYPE) (__builtin_types_compatible_p(typeof(var), TYPE))
@@ -128,8 +128,6 @@ void input(string InputBuffer)
 //     printf("%.*f", ndigits, num);
 //     printf("%s", end);
 // }
-
-
 
 
 int main()
