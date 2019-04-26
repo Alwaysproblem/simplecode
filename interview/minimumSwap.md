@@ -30,3 +30,9 @@ Hence,
 - $ans = \sum_{i = 1}^{k} (CycleSize - 1)$ 
 
 where $k$ is the number of cycles
+
+**Time Complexity**: $O(n log n)$
+
+**Auxiliary Space**: $O(n)$
+
+[**Reference**](https://stackoverflow.com/questions/20990127/sorting-a-sequence-by-swapping-adjacent-elements-using-minimum-swaps)
