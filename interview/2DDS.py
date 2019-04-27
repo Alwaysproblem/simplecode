@@ -6,6 +6,8 @@ import random
 import re
 import sys
 
+# https://www.hackerrank.com/challenges/2d-array/problem?h_l=interview&playlist_slugs%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D=arrays
+
 # Complete the hourglassSum function below.
 def hourglassSum(arr):
     # conv_window = [[1] * 3, [0, 1, 0], [1] * 3]
