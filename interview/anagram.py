@@ -11,18 +11,18 @@ import sys
 # from functools import reduce
 
 #%%
-from collections import Counter
-from itertools import combinations
+# from collections import Counter
+# from itertools import combinations
 
-def sherlockAndAnagrams(s):
-    count = []
-    for i in range(1,len(s)+1):
-        a = ["".join(sorted(s[j:j+i])) for j in range(len(s)-i+1)]
-        b = Counter(a)
-        for j in b:
-            tmp = list(combinations(['a']*b[j], 2))
-            count.append(sum([len(tmp)]))
-    return sum(count)
+# def sherlockAndAnagrams(s):
+#     count = []
+#     for i in range(1,len(s)+1):
+#         a = ["".join(sorted(s[j:j+i])) for j in range(len(s)-i+1)]
+#         b = Counter(a)
+#         for j in b:
+#             tmp = list(combinations(['a']*b[j], 2))
+#             count.append(sum([len(tmp)]))
+#     return sum(count)
 
 
 
@@ -78,6 +78,27 @@ def sherlockAndAnagrams(s):
 
 #     dd = sum(map(lambda x: x*(x - 1) / 2, [i for i in a.values() if i > 1]))
 #     return int(dd)
+
+from collections import Counter
+# Complete the sherlockAndAnagrams function below.
+def sherlockAndAnagrams(s):
+    Count = 0
+    def findallsubstring(s):
+        sub = []
+        for ind in range(len(s)):
+            for indc in range(ind, len(s)):
+                if s != s[ind: indc + 1]:
+                    sub.append(''.join(sorted(s[ind: indc + 1])))
+        # print(set(sub))
+        return sub
+    sub = findallsubstring(s)
+    b = Counter(sub)
+    for i in b:
+        Count += b[i] * (b[i] - 1) / 2
+
+    return int(Count)
+
+
 
 if __name__ == '__main__':
 
