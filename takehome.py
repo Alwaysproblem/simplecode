@@ -96,23 +96,24 @@ def boundary_cropping(a, m):
 # #          [1, 2]]]])
 # ```
 # 
-
+#%%
 import numpy as np
 
 def shape_as_blocks(a, r, c):
     """
     >>> arr = np.array([[1,2,3,4], [5,6,7,8], [9,0,1,2]])
-    >>> print(shape_as_blocks(arr, 2, 2))
+    >>> shape_as_blocks(arr, 2, 2)
     array([[[[1, 2],
-            [7, 8]],
-
+             [7, 8]],
+    <BLANKLINE>
             [[3, 4],
-            [9, 0]],
-
+             [9, 0]],
+    <BLANKLINE>
             [[5, 6],
-            [1, 2]]]])
+             [1, 2]]]])
     """
-    pass
+    return a.reshape((-1, len(a.flat) // (r * c), r, c))
+
 
 #%%[markdown]
 # ## Population Variance from Subpopulation Variance
@@ -206,13 +207,6 @@ def coordinates_from_steps(a, s, dtype=int):
 
 
 
-
-
-
-
-
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
-
-    # print(create_array_from_function(lambda i,j: (i - j)**2, [4, 4]))
