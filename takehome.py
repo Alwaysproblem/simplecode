@@ -26,8 +26,18 @@
 # #  [9. 4. 1. 0.]]
 # ```
 #
+#%%
+import numpy as np
 
-
+def create_array_from_function(f, d, dtype=None):
+    """
+    >>> print(create_array_from_function(lambda i,j: (i - j)**2, [4, 4]))
+    [[0. 1. 4. 9.]
+     [1. 0. 1. 4.]
+     [4. 1. 0. 1.]
+     [9. 4. 1. 0.]]
+    """
+    return np.fromfunction(f, d, dtype=dtype)
 
 #%%[markdown]
 # ## Removing Boundaries
@@ -49,6 +59,18 @@
 # # [[[1] [1]] [[1] [0]] [[1] [0]]]
 # ```
 # 
+
+import numpy as np
+
+def boundary_cropping(a, m):
+    """
+    >>> a1 = np.array([[0,0,0,0,0], [0,0,0,0,0], [0,1,0,1,1], [0,0,0,0,0]])
+    >>> a2 = np.array([[ [0,0,0], [0,1,0], [0,1,0] ], [ [0,0,0], [0,1,0], [0,0,0] ], [ [0,0,0], [0,1,0], [0,0,0] ]])
+    >>> print(boundary_cropping(a1, a1 != 0))
+    [[1 0 1 1]]
+    >>> print(boundary_cropping(a2, a2 != 0))
+    [[[1] [1]] [[1] [0]] [[1] [0]]]
+    """
 
 
 #%%[markdown]
@@ -75,6 +97,22 @@
 # ```
 # 
 
+import numpy as np
+
+def shape_as_blocks(a, r, c):
+    """
+    >>> arr = np.array([[1,2,3,4], [5,6,7,8], [9,0,1,2]])
+    >>> print(shape_as_blocks(arr, 2, 2))
+    array([[[[1, 2],
+            [7, 8]],
+
+            [[3, 4],
+            [9, 0]],
+
+            [[5, 6],
+            [1, 2]]]])
+    """
+    pass
 
 #%%[markdown]
 # ## Population Variance from Subpopulation Variance
@@ -93,6 +131,15 @@
 # ```
 # 
 
+import numpy as np
+
+def pop_var_from_subpop_var(groups):
+    """
+    >>> groups = [np.array([1,2,3,4]), np.array([5,6])]
+    >>> print(pop_var_from_subpop_var(groups))
+    2.9166666666666665
+    """
+    pass
 
 #%%[markdown]
 # ## Shuffle a Large List
@@ -107,7 +154,14 @@
 # def shuffle_list_inplace_constant_memory(l):
 #     pass
 # ```
-# 
+#
+
+import random
+
+l = [1,2,3,4,5]
+
+def shuffle_list_inplace_constant_memory(l):
+    pass
 
 #%%[markdown]
 # ## Acquiring Coordinates
@@ -132,3 +186,33 @@
 # #  [1 0]]
 # ```
 # 
+
+import itertools
+import numpy as np
+
+def coordinates_from_steps(a, s, dtype=int):
+    """
+    >>> print(coordinates_from_steps(np.array([[1,2],[3,4]]), (1,1)))
+    [[0 0]
+     [0 1]
+     [1 0]
+     [1 1]]
+
+    >>> print(coordinates_from_steps(np.array([[1,2],[3,4]]), (1,2)))
+    [[0 0]
+     [1 0]]
+    """
+    pass
+
+
+
+
+
+
+
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
+
+    # print(create_array_from_function(lambda i,j: (i - j)**2, [4, 4]))
