@@ -60,6 +60,7 @@ def create_array_from_function(f, d, dtype=None):
 # ```
 # 
 
+#%%
 import numpy as np
 
 def boundary_cropping(a, m):
@@ -71,6 +72,14 @@ def boundary_cropping(a, m):
     >>> print(boundary_cropping(a2, a2 != 0))
     [[[1] [1]] [[1] [0]] [[1] [0]]]
     """
+    res = None
+
+
+    #processing output format
+    if "\n" in str(res):
+        " ".join(str(res).split())
+    else:
+        return str(res)
 
 
 #%%[markdown]
@@ -112,8 +121,16 @@ def shape_as_blocks(a, r, c):
             [[5, 6],
              [1, 2]]]])
     """
-    return a.reshape((-1, len(a.flat) // (r * c), r, c))
+    # chech if the number is divisible by r * c
+    # assert(round(len(a.flat) // (r * c)) * r * c == len(a.flat))
+    # return a.reshape((1, len(a.flat) // (r * c), r, c))
+    a = a.reshape(-1, c)
+    a = np.hstack(np.vsplit(a, r))
+    # print(a)
+    return a.reshape((1, len(a.flat) // (r * c), r, c))
 
+# arr = np.array([[1,2,3,4], [5,6,7,8], [9,0,1,2]])
+# shape_as_blocks(arr, 1, 1)
 
 #%%[markdown]
 # ## Population Variance from Subpopulation Variance
@@ -140,7 +157,7 @@ def pop_var_from_subpop_var(groups):
     >>> print(pop_var_from_subpop_var(groups))
     2.9166666666666665
     """
-    pass
+    return np.hstack(groups).var()
 
 #%%[markdown]
 # ## Shuffle a Large List
@@ -157,12 +174,18 @@ def pop_var_from_subpop_var(groups):
 # ```
 #
 
+#%%
 import random
 
 l = [1,2,3,4,5]
 
 def shuffle_list_inplace_constant_memory(l):
-    pass
+    for i in range(1, len(l)):
+        ind = random.randint(0, i)
+        l[ind], l[i] = l[i], l[ind]
+
+# shuffle_list_inplace_constant_memory(l)
+# l
 
 #%%[markdown]
 # ## Acquiring Coordinates
@@ -188,24 +211,28 @@ def shuffle_list_inplace_constant_memory(l):
 # ```
 # 
 
+#%%
 import itertools
 import numpy as np
 
 def coordinates_from_steps(a, s, dtype=int):
     """
+    this function can be seen as Converlutional layer.
+
     >>> print(coordinates_from_steps(np.array([[1,2],[3,4]]), (1,1)))
     [[0 0]
      [0 1]
      [1 0]
      [1 1]]
-
     >>> print(coordinates_from_steps(np.array([[1,2],[3,4]]), (1,2)))
     [[0 0]
      [1 0]]
     """
-    pass
+    Shape = np.array(s) - 1
+    step_cord = np.array(a.shape) - Shape
+    all_cord = [*itertools.product(*[range(i) for i in step_cord])]
 
-
+    return np.array(all_cord)
 
 if __name__ == "__main__":
     import doctest
