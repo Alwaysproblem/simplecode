@@ -80,7 +80,7 @@ def boundary_cropping(a, m):
         " ".join(str(res).split())
     else:
         return str(res)
-
+    
 
 #%%[markdown]
 # ## Block Reshaping
