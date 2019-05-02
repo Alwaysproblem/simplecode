@@ -72,15 +72,18 @@ def boundary_cropping(a, m):
     >>> print(boundary_cropping(a2, a2 != 0))
     [[[1] [1]] [[1] [0]] [[1] [0]]]
     """
-    res = None
+    # res = None
+    ind = np.argwhere(m)
+    min_ind = ind.min(axis = 0)
+    max_ind = ind.max(axis = 0) + 1
 
-
+    sliced = [slice(i, j) for i, j in zip(min_ind, max_ind)]
+    res = a[tuple(sliced)]
     #processing output format
     if "\n" in str(res):
-        " ".join(str(res).split())
+        return " ".join(str(res).split())
     else:
         return str(res)
-    
 
 #%%[markdown]
 # ## Block Reshaping
@@ -124,9 +127,13 @@ def shape_as_blocks(a, r, c):
     # chech if the number is divisible by r * c
     # assert(round(len(a.flat) // (r * c)) * r * c == len(a.flat))
     # return a.reshape((1, len(a.flat) // (r * c), r, c))
+
+    # adjust the order to fit the answer.
     a = a.reshape(-1, c)
     a = np.hstack(np.vsplit(a, r))
-    # print(a)
+
+    # chech if the number is divisible by r * c
+    assert(round(len(a.flat) // (r * c)) * r * c == len(a.flat))
     return a.reshape((1, len(a.flat) // (r * c), r, c))
 
 # arr = np.array([[1,2,3,4], [5,6,7,8], [9,0,1,2]])
@@ -179,13 +186,12 @@ import random
 
 l = [1,2,3,4,5]
 
+#complement with the Fisher–Yates shuffle.
 def shuffle_list_inplace_constant_memory(l):
     for i in range(1, len(l)):
         ind = random.randint(0, i)
         l[ind], l[i] = l[i], l[ind]
 
-# shuffle_list_inplace_constant_memory(l)
-# l
 
 #%%[markdown]
 # ## Acquiring Coordinates
@@ -228,12 +234,16 @@ def coordinates_from_steps(a, s, dtype=int):
     [[0 0]
      [1 0]]
     """
+    # compute the range of window slide
     Shape = np.array(s) - 1
     step_cord = np.array(a.shape) - Shape
+    
+    # product all the 
     all_cord = [*itertools.product(*[range(i) for i in step_cord])]
 
     return np.array(all_cord)
 
+#%%
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
