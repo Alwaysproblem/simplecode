@@ -6,6 +6,8 @@ import random
 import re
 import sys
 
+# https://www.hackerrank.com/challenges/alternating-characters/problem?h_l=interview&playlist_slugs%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D=strings
+
 from itertools import groupby
 # Complete the alternatingCharacters function below.
 def alternatingCharacters(s):
