@@ -29,7 +29,8 @@ import sys
 
 #     return res
 
-#O(n)
+# O(n)
+# see the minmaxriddle.png in the img folder.
 def riddle(arr):
     n=len(arr)
     res=[0]*n
