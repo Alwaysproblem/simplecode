@@ -21,7 +21,7 @@ def citeration(src, dest):
     else:
         return abs(xs - xd) + abs(ys - yd)
 
-def Astar(srcpos, destpos, op, ScoreFun = citeration):
+def GreedySearch(srcpos, destpos, op, ScoreFun = citeration):
     srctup = ("", 0, "", srcpos, "") # cost, id, previous id, pos, opration_name
     visited_set = set()
     order_extend = [srctup]
@@ -92,7 +92,7 @@ def displayPathtoPrincess(n, grid):
 
     
     startPos, targetPos = find(grid)
-    path = Astar(startPos, targetPos, opdic)
+    path = GreedySearch(startPos, targetPos, opdic)
 
     print(*path, sep='\n')
 
