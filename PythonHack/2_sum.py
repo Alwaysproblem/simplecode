@@ -35,6 +35,7 @@
 
 
 # find the two number that sum up to target sum
+# hash tabel solve the problem
 
 def twoSum(nums, target):
     # 96 ms
