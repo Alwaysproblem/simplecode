@@ -48,7 +48,7 @@ def FindTwoProducts(a: list, mode = 'max')-> tuple:
         if mode == 'max':
             maxProd = max([Ptop1 * Ptop2, Ntop1 * Ntop2])
         elif mode == 'min':
-            maxProd = min([Ptop1 * Ptop2, Ntop1 * Ntop2])
+            maxProd = min([Ptop1 * Ntop2, Ntop1 * Ptop2])
         
         if maxProd == Ptop1 * Ptop2:
             twoNum = (Ptop1, Ptop2)
@@ -60,23 +60,32 @@ def FindTwoProducts(a: list, mode = 'max')-> tuple:
 
 def NmaxMultiply(a, n = 3):
     res = [0] * (n + 1)
-    delete_elem = [0] # occupy position to convert index starting with 1
+    rest_elem = [0] # occupy position to convert index starting with 1
 
     for i in range(1, n + 1):
         if i == 1:
+            b = a.copy()
             res[i] = max(a)
-            delete_elem.append((res[i],))
+            b.remove(res[i])
+            rest_elem.append(tuple(b))
         elif i == 2:
+            b = a.copy()
             res[i], T = FindTwoProducts(a, 'max')
-            delete_elem.append(T)
+            for t in T:
+                b.remove(t)
+            rest_elem.append(tuple(b))
         elif i > 2:
-            b = [k for k in a if k not in delete_elem[i - 2]]
-            if res[i - 2] > 0:
-                mult, T = FindTwoProducts(b, 'max')
-            else:
-                mult, T = FindTwoProducts(b, 'min')
-            
-            res[i] = res[i - 2] * mult
+            b = list(rest_elem[i - 2])
+
+            multmin, Tmin = FindTwoProducts(b, 'min')
+            multmax, Tmax = FindTwoProducts(b, 'max')
+
+            T = Tmin if res[i - 2] * multmin > multmax * res[i - 2] else Tmax
+            res[i] = max(res[i - 2] * multmin, multmax * res[i - 2])
+
+            for t in T:
+                b.remove(t)
+            rest_elem.append(tuple(b))
 
     return res[-1]
 
