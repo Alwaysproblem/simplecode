@@ -1,9 +1,17 @@
+
+
+#%%[markdown]
+# $A = \{a_i\}_{1}^{N}$
+# ### let $f(k)$ is the best selection of k number that maximize the products.
+# ### we considered the $f(k+2)$:
+# ### $f(k + 2) = max\{f(k) \times max(b{i} \times b_{i+1}), f(k) \times min(b{i} \times b_{i+1})\}$
+# ### where the $b_i$ is selected from $A$ \ $\{b_j\}_1^k$.
+
+#%%
 from functools import reduce
 
 n = int(input())
 a = list(map(int, input().split()))
-
-
 
 def Top2Number(b, mode):
     b = b.copy()
@@ -101,3 +109,66 @@ def NmaxMultiply(a, n = 3, debug = False):
     return res[-1]
 
 print(NmaxMultiply(a, n, True))
+
+
+#%%[markdown]
+# # This is untest thoughts.
+# ### the second answer: $O(kn)$ k is the number of collection
+# ### $f(k+1) = max\{f{k} \times b_i\}$
+# ### $= max\{max\{f(k)\} \times max(a_i), max\{f(k)\} \times min(a_i), min\{f(k)\} \times max(a_i), min\{f(k)\} \times min(a_i) \}$
+#%%
+# n = int(input())
+# a = list(map(int, input().split()))
+
+# def Remove(a:list, l:int):
+#     b = a.copy()
+#     b.remove(l)
+#     return b
+
+
+# def NmaxMultiply2(a, n = 3):
+#     min_l = [None] * (n + 1)
+#     max_l = [None] * (n + 1)
+
+#     rest_elem = [None] * (n + 1)
+#     del_elem = [None] * (n + 1)
+
+#     for i in range(n + 1):
+#         if i == 1:
+#             b = a.copy()
+#             max_l[i] = max(a)
+#             min_l[i] = min(a)
+#             rest_elem[i] = {"min": tuple(Remove(b, min_l[i])),
+#                             "max": tuple(Remove(b, max_l[i]))}
+#             del_elem[i] = {"min": (min_l[i],),
+#                             "max": (max_l[i],)}
+#         elif i > 1:
+#             max_set = list(rest_elem[i - 1]["max"])
+#             min_set = list(rest_elem[i - 1]["min"])
+#             t = [
+#                 max_l[i - 1] * max(max_set),
+#                 max_l[i - 1] * min(max_set),
+#                 min_l[i - 1] * max(min_set),
+#                 min_l[i - 1] * min(min_set)
+#             ]
+#             opt = [max(max_set), min(max_set), max(min_set), min(min_set)]
+#             max_l[i] = max(t)
+#             min_l[i] = min(t)
+
+#             # memorize the rest element set where the next selection sample.
+#             rest_elem[i] = {"min": tuple(Remove(min_set if t.index(min_l[i]) > 1 else max_set, opt[t.index(min_l[i])])),
+#                             "max": tuple(Remove(min_set if t.index(max_l[i]) > 1 else max_set, opt[t.index(max_l[i])]))}
+            
+#             # cache selection items.
+#             max_del = del_elem[i-1]["max"]
+#             min_del = del_elem[i-1]["min"]
+#             del_elem[i] = {"min": (min_del if t.index(min_l[i]) > 1 else max_del) + (opt[t.index(min_l[i])],),
+#                             "max": (min_del if t.index(max_l[i]) > 1 else max_del) + (opt[t.index(max_l[i])],)}
+
+#     print(del_elem[-1]["max"])
+#     # print(rest_elem[-1]["max"])
+
+#     return max_l[-1]
+
+
+# print(NmaxMultiply2(a, n))
