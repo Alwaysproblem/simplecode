@@ -1,6 +1,9 @@
 from functools import reduce
 
+n = int(input())
 a = list(map(int, input().split()))
+
+
 
 def Top2Number(b, mode):
     b = b.copy()
@@ -58,9 +61,10 @@ def FindTwoProducts(a: list, mode = 'max')-> tuple:
     return maxProd, twoNum
 
 
-def NmaxMultiply(a, n = 3):
+def NmaxMultiply(a, n = 3, debug = False):
     res = [0] * (n + 1)
     rest_elem = [0] # occupy position to convert index starting with 1
+    del_elem = [0]
 
     for i in range(1, n + 1):
         if i == 1:
@@ -68,9 +72,11 @@ def NmaxMultiply(a, n = 3):
             res[i] = max(a)
             b.remove(res[i])
             rest_elem.append(tuple(b))
+            del_elem.append((res[i],))
         elif i == 2:
             b = a.copy()
             res[i], T = FindTwoProducts(a, 'max')
+            del_elem.append(T)
             for t in T:
                 b.remove(t)
             rest_elem.append(tuple(b))
@@ -83,10 +89,15 @@ def NmaxMultiply(a, n = 3):
             T = Tmin if res[i - 2] * multmin > multmax * res[i - 2] else Tmax
             res[i] = max(res[i - 2] * multmin, multmax * res[i - 2])
 
+            del_elem.append(del_elem[i - 2] + T)
+
             for t in T:
                 b.remove(t)
             rest_elem.append(tuple(b))
 
+    if debug == True:
+        print(del_elem[-1])
+
     return res[-1]
 
-print(NmaxMultiply(a))
+print(NmaxMultiply(a, n, True))
