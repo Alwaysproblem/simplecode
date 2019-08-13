@@ -6,6 +6,8 @@ import random
 import re
 import sys
 
+# https://www.hackerrank.com/challenges/ctci-merge-sort/problem
+
 def Merge(arr, l, m, r):
     cnt = 0
     s = []

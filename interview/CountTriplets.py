@@ -18,17 +18,24 @@ def countTriplets(arr, r):
     count = 0
     
     for v in arr:
+        # the new value is the third position of the triples:
+        # optimal + $r^3[v]$ is Count number.
         if v in r3:
             try:
                 count += r3[v]
             except KeyError:
                 count = r3[v]
         
+        # the new value is the second position of the triples:
+        # the possible way increase by r^2[v] which is already found the count number when this value is in second position
         if v in r2:
             try:
                 r3[v*r] += r2[v]
             except KeyError:
                 r3[v*r] = r2[v]
+
+        # the new value is the first position of the triples
+        # the possible way increase by 1, which means that it is start by 1 path.
         try:
             r2[v*r] += 1
         except KeyError:

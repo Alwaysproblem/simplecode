@@ -6,6 +6,8 @@ import random
 import re
 import sys
 
+# https://www.hackerrank.com/challenges/common-child/problem
+
 def printarr(s):
     m, n = len(s), len(s[0])
     for i in range(m):
