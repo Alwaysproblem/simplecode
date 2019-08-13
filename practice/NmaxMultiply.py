@@ -1,6 +1,7 @@
 
 
 #%%[markdown]
+# 给定一个无序数组，包含正数、负数和0，要求从中找出k个数的乘积，使得乘积最大，要求时间复杂度：O(n)，空间复杂度：O(1)
 # $A = \{a_i\}_{1}^{N}$
 # ### let $f(k)$ is the best selection of k number that maximize the products.
 # ### we considered the $f(k+2)$:
