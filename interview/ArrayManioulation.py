@@ -12,13 +12,13 @@ from itertools import accumulate
 
 # Complete the arrayManipulation function below.
 def arrayManipulation(n, queries):
-    lista = [0] * n
+    arr = [0] * n
     for a, b, k in queries:
-        lista[a - 1] += k
-        if b < len(lista):
-            lista[b] -= k
-    res = accumulate(lista, lambda x, y: x + y)
-    return max(res)
+        arr[a-1] += k
+        if b < n:
+            arr[b] -= k
+
+    return max(accumulate(arr, lambda x,y: x+y))
 
 
 if __name__ == '__main__':

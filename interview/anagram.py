@@ -6,6 +6,8 @@ import random
 import re
 import sys
 
+# https://www.hackerrank.com/challenges/anagram/problem
+
 # Complete the anagram function below.
 # hanming distance
 from collections import Counter
