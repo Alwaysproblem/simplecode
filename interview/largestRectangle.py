@@ -6,24 +6,50 @@ import random
 import re
 import sys
 
+# https://www.hackerrank.com/challenges/largest-rectangle/problem
+class Stack(object):
+    def __init__(self, data = None):
+        if data == None:
+            self.data = []
+        else:
+            self.data = data
+    
+    def push(self, data):
+        self.data.append(data)
 
+    def pop(self):
+        return self.data.pop()
+
+    @property
+    def top(self):
+        return self.data[-1]
+
+    def isEmpty(self):
+        return len(self.data) == 0
+
+    def __repr__(self):
+        return "Stack(" + ','.join(map(str, self.data)) + ")"
+
+
+# Complete the largestRectangle function below.
 def largestRectangle(h):
-    stack = []
+    s = Stack()
     max_area = 0
     ind = 0
+
     while ind < len(h):
-        if (len(stack) == 0) or h[stack[-1]] <= h[ind]:
-            stack.append(ind)
+        if s.isEmpty() or h[s.top] <= h[ind]:
+            s.push(ind)
             ind += 1
         else:
-            top = stack.pop()
-            left = 0 if len(stack) == 0 else stack[-1] + 1
-            max_area = max(max_area, h[top] * (ind - left))
+            top = s.pop()
+            left = 0 if s.isEmpty() else s.top + 1
+            max_area = max(max_area, (ind - left) * h[top])
 
-    while len(stack) != 0:
-        top = stack.pop()
-        left = 0 if len(stack) == 0 else stack[-1] + 1
-        max_area = max(max_area, h[top] * (ind - left))
+    while not s.isEmpty():
+        top = s.pop()
+        left = 0 if s.isEmpty() else s.top + 1
+        max_area = max(max_area, (ind - left) * h[top])
 
     return max_area
 

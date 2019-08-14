@@ -6,11 +6,12 @@ import random
 import re
 import sys
 
+# https://www.hackerrank.com/challenges/ctci-ice-cream-parlor/problem
 # Complete the whatFlavors function below.
 def whatFlavors(cost, money):
     hashDic = {}
     for i, c in enumerate(cost, 1):
-        if c in hashDic.keys():
+        if c in hashDic:
             hashDic[c].append(i)
         else:
             hashDic[c] = [i]
@@ -19,7 +20,7 @@ def whatFlavors(cost, money):
         if 2 * c == money and len(hashDic[c]) == 2:
                 print(" ".join(map(str, hashDic[c])))
                 return
-        elif money - c in hashDic.keys():
+        elif money - c in hashDic:
             if len(hashDic[money - c]) == 1 and ind != hashDic[money - c][0]:
                 print(ind, hashDic[money - c][0], sep=" ")
                 return
