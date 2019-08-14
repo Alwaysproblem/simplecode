@@ -6,6 +6,7 @@ import random
 import re
 import sys
 
+# https://www.hackerrank.com/challenges/luck-balance/problem
 # Complete the luckBalance function below.
 def luckBalance(k, contests):
     L = [i for i, _ in contests]

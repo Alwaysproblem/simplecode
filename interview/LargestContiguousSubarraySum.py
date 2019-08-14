@@ -1,5 +1,4 @@
 # Python program to find maximum contiguous subarray 
-
 # Function to find the maximum contiguous subarray 
 from math import inf 
 def maxSubArraySum(a, size): 
@@ -14,10 +13,11 @@ def maxSubArraySum(a, size):
   
         if max_ending_here < 0: 
             max_ending_here = 0   
-    return max_so_far 
-   
+    return max_so_far
+
 # Driver function to check the above function  
-a = [-13, -3, -25, -20, -3, -16, -23, -12, -5, -22, -15, -4, -7] 
+# a = [-13, -3, -25, -20, -3, -16, -23, -12, -5, -22, -15, -4, -7] 
+a = list(map(int, input().split()))
 print("Maximum contiguous sum is", maxSubArraySum(a, len(a))) 
    
 #This code is contributed by _Devesh Agrawal_ 

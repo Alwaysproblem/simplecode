@@ -12,9 +12,10 @@ import sys
 # def CycleMove(lst, k):
 #     return lst[k:] + lst[:k]
 
+# https://www.hackerrank.com/challenges/maximum-subarray-sum/problem
 
 import bisect
-def maximumSum(a, m):
+def maximumSumWithMode(a, m):
     mm,pr=0,0
     a1=[]
     for i in a:
@@ -55,6 +56,6 @@ if __name__ == '__main__':
 
         a = list(map(int, input().rstrip().split()))
 
-        result = maximumSum(a, m)
+        result = maximumSumWithMode(a, m)
 
         print(result)
