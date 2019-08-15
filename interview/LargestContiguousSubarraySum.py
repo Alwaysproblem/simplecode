@@ -12,7 +12,7 @@ def maxSubArraySum(a, size):
             max_so_far = max_ending_here
   
         if max_ending_here < 0: 
-            max_ending_here = 0   
+            max_ending_here = 0 
     return max_so_far
 
 # Driver function to check the above function  

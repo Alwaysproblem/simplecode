@@ -6,6 +6,7 @@ import random
 import re
 import sys
 
+# https://www.hackerrank.com/challenges/min-max-riddle/problem
 
 # O(n^2)
 # from collections import deque

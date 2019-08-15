@@ -18,13 +18,13 @@ This can be easily done by visualizing the problem as a graph. We will have $n$ 
 
 Graph for {4, 3, 2, 1}
 
-![img](img/a1.png)
+![img](../img/a1.png)
 
 The graph will now contain many non-intersecting cycles. Now a cycle with 2 nodes will only require 1 swap to reach the correct ordering, similarly a cycle with 3 nodes will only require 2 swap to do so.
 
 Graph for {4, 5, 2, 1, 5}
 
-![img](img/b1.png)
+![img](../img/b1.png)
 
 Hence,
 - $ans = \sum_{i = 1}^{k} (CycleSize - 1)$ 

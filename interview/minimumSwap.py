@@ -27,6 +27,26 @@ def minimumSwaps(arr):
             ans += cycle_size - 1
     return ans
 
+#my own code
+# def minimumSwaps(arr):
+#     b = arr.copy()
+#     b.sort()
+#     cnt = 0
+#     s = []
+
+#     g = dict(zip(b, arr))
+
+#     unvisit = set(arr)
+
+#     while len(unvisit) != 0:
+#         t = unvisit.pop()
+#         s = [t]
+#         while len(s) != 0 and g[s[-1]] != s[0]:
+#             unvisit.remove(g[s[-1]])
+#             s.append(g[s[-1]])
+#             cnt += 1
+            
+#     return cnt
 
 
 if __name__ == '__main__':
