@@ -8,6 +8,48 @@ import sys
 
 # https://www.hackerrank.com/challenges/new-year-chaos/problem?h_l=interview&playlist_slugs%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D=arrays
 
+
+# O(n^2)
+# # Complete the minimumBribes function below.
+# def minimumBribes(q):
+#     bribe = 0
+    
+#     for i, v in enumerate(q):
+#         bri = len([j for j in q[i:] if j > v])
+#         if bri > 2:
+#             print("Too chaotic")
+#         else:
+#             bribe += bri
+
+#     print(bribe)
+
+
+
+#%%
+# 1 2 3 4 5
+# 2 1 5 3 4
+
+# 0 1 2 3 4 -- index
+# we count the number of one person brided.
+# Anyone who bribed P cannot get to higher than one position in front of P's original position.
+
+
+#%%
+
+# O(n)
+# # Complete the minimumBribes function below.
+# def minimumBribes(q):
+#     bribe = 0
+
+#     for i, v in enumerate(q):
+#         if v - i > 3:
+#             print("Too chaotic")
+#             return
+#         else:
+#             bribe += len([j for j in q[max(v-2, 0):i] if j >= v])
+            
+#     print(bribe)
+
 # Complete the minimumBribes function below.
 def minimumBribes(Q):
     #

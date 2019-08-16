@@ -6,6 +6,7 @@ import random
 import re
 import sys
 
+# https://www.hackerrank.com/challenges/pairs/problem
 # Complete the pairs function below.
 def pairs(k, arr):
     hashT = set(arr)

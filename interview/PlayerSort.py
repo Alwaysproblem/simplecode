@@ -9,8 +9,9 @@ class Player:
 
     def __repr__(self):
         pass
-    
-    def comparator(a, b):
+
+    @classmethod
+    def comparator(self, a, b):
         if a.score > b.score:
             return -1
         elif a.score < b.score:
