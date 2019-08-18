@@ -8,3 +8,5 @@ b = a.stdout.readlines()
 a.communicate()
 
 print(''.join(b))
+
+asdvasdnvas = b

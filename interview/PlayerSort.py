@@ -13,9 +13,9 @@ class Player:
     @classmethod
     def comparator(self, a, b):
         if a.score > b.score:
-            return -1
+            return -1   # a should be in front of b
         elif a.score < b.score:
-            return 1
+            return 1    # a should be after b
         elif a.score == b.score:
             if a.name < b.name:
                 return -1
@@ -31,8 +31,13 @@ for i in range(n):
     score = int(score)
     player = Player(name, score)
     data.append(player)
-    
-data = sorted(data, key=cmp_to_key(Player.comparator))
+
+
+data1 = sorted(data, key=cmp_to_key(Player.comparator))
+data.sort(key=cmp_to_key(player.comparator))
+
+assert(data1 == data)
+
 print()
 for i in data:
     print(i.name, i.score)

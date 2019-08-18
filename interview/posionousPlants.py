@@ -6,6 +6,8 @@ import random
 import re
 import sys
 
+# https://www.hackerrank.com/challenges/poisonous-plants/problem
+
 #%%
 """this is the answer."""
 from IPython.display import Image
@@ -13,35 +15,53 @@ Image("img/posion_plants_1.png")
 #%%
 Image("img/posion_plants_2.png")
 
-#%%
-# Complete the poisonousPlants function below.
-def poisonousPlants(p):
-    max_days = 0
-    stack = []
-    cur_date = 0
-    for v in p:
-        if len(stack) == 0:
-            stack.append((v, 0))
+class Stack(object):
+    def __init__(self, data = None):
+        if data == None:
+            self.data = []
         else:
-            # posn, cur_date = stack.pop()
-            if v > stack[-1][0]:
-                stack.append((v, 1))
-                max_days = max(max_days, 1)
-            else:
-                cur_date = stack[-1][1]
-                while len(stack) != 0 and stack[-1][0] >= v:
-                    _, cur_date_t = stack.pop()
-                    if len(stack) == 0:
-                        break
-                    cur_date = max(cur_date, cur_date_t)
+            self.data = data
+    
+    def push(self, data):
+        self.data.append(data)
 
-                if len(stack) == 0:
-                    stack.append((v, 0))
+    def pop(self):
+        return self.data.pop()
+
+    @property
+    def top(self):
+        return self.data[-1]
+
+    def isEmpty(self):
+        return len(self.data) == 0
+
+    def __repr__(self):
+        return "Stack(" + ','.join(map(str, self.data)) + ")"
+
+# Complete the poisonousPlants function below.
+def poisonousPlants(plants):
+    s = Stack()
+    mDay = 0
+
+    for p in plants:
+        if s.isEmpty():
+            s.push((p, 0))
+        elif s.top[0] < p:
+            s.push((p, 1))
+            mDay = max(mDay, 1)
+        else:
+            cur_day = s.top[1]
+            while not s.isEmpty() and s.top[0] >= p:
+                _, n_day = s.pop()
+                cur_day = max(cur_day, n_day)
+            else:
+                if s.isEmpty():
+                    s.push((p, 0))
                 else:
-                    stack.append((v, cur_date + 1))
-                    max_days = max(max_days, cur_date + 1)
-                
-    return max_days
+                    s.push((p, cur_day + 1))
+                    mDay = max(mDay, cur_day + 1)
+
+    return mDay
 
 if __name__ == '__main__':
     # fptr = open(os.environ['OUTPUT_PATH'], 'w')
