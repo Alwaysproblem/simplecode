@@ -8,6 +8,8 @@ import sys
 
 # https://www.hackerrank.com/challenges/ctci-array-left-rotation/problem?h_l=interview&playlist_slugs%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D=arrays
 
+# it can be applied with deque
+
 # Complete the rotLeft function below.
 def rotLeft(a, d):
     tmp = [0] * len(a)

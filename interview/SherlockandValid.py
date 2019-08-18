@@ -29,17 +29,6 @@ def isValid(s):
     else:
         return "YES"
 
-# Complete the isValid function below.
-# def isValid(s):
-#     hash_c = [0] * 26
-#     for i in s:
-#         hash_c[ord(i) - ord("a")] += 1
-#     for i,j in zip(hash_c, hash_c[1:]):
-#         if abs(i - j) > 1:
-#             return "NO"
-#         elif 
-
-
 
 if __name__ == '__main__':
     # fptr = open(os.environ['OUTPUT_PATH'], 'w')
