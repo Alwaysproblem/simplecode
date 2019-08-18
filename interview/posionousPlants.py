@@ -10,11 +10,12 @@ import sys
 
 #%%
 """this is the answer."""
-from IPython.display import Image
-Image("img/posion_plants_1.png")
-#%%
-Image("img/posion_plants_2.png")
+from IPython.display import Image, display
 
+for img in ["img/posion_plants_1.png", "img/posion_plants_2.png"]:
+    display(Image(filename=img))
+
+#%%
 class Stack(object):
     def __init__(self, data = None):
         if data == None:
