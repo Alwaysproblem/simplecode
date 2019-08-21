@@ -12,7 +12,7 @@
 #!/usr/bin/python
 from queue import PriorityQueue
 
-def citeration(src, dest):
+def criterion(src, dest):
     # TODO manhattan distance
     xs, ys = src
     xd, yd = dest
@@ -21,7 +21,7 @@ def citeration(src, dest):
     else:
         return abs(xs - xd) + abs(ys - yd)
 
-def GreedySearch(srcpos, destpos, op, ScoreFun = citeration):
+def GreedySearch(srcpos, destpos, op, ScoreFun = criterion):
     srctup = ("", 0, "", srcpos, "") # cost, id, previous id, pos, opration_name
     visited_set = set()
     order_extend = [srctup]
