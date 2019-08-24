@@ -6,39 +6,33 @@ import random
 import re
 import sys
 
-import math
-def maxNcandies(m, w, p, total):
-    c = math.floor((m * w  + total)/ p)
-    axes = (w + c - m) / 2
 
-    if axes <= 0:
-        a = 0
-    elif axes >= c :
-        a = c
-    else:
-        a = round(axes)
-    
-    b = c - a
+def minimumPasses(machine, worker, p, n): 
+    if n <= p: 
+        return math.ceil(n / (machine * worker))
+    curr = candy = 0 
+    ans = float('inf')
+    while candy < n:
+        if candy < p:
+            i = math.ceil((p - candy) / (machine * worker))
+            curr += i
+            candy += machine * worker * i
+            continue
+        buy,candy = divmod(candy , p) 
+        total = machine + worker + buy 
+        half = total // 2
+        if machine > worker : 
+            machine = max(machine, half) 
+            worker = total - machine
+        else:
+            worker = max(worker, half) 
+            machine = total - worker
+        curr += 1 
+        candy += machine * worker 
+        ans = min(ans, curr + math.ceil((n - candy) / (machine * worker)))
+       
+    return min(ans, curr)
 
-    rest = m*w + total - p*c
-    return a, b, rest
-
-
-# Complete the minimumPasses function below.
-def minimumPasses(m, w, p, n):
-    if m * w >= n:
-        return 1
-    rest = 0
-    day = 1
-    while True:
-        a, b, rest = maxNcandies(m, w, p, rest)
-        m += a
-        w += b
-        if m * w + rest >= n:
-            return day
-        day += 1
-    
-    return day
 
 if __name__ == '__main__':
 
