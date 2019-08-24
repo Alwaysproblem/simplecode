@@ -106,10 +106,10 @@ class PriorityQueue(object):
         return len(self.data)
 
     def __repr__(self):
-        return "PriorityQueue(" + ', '.join(map(str, sorted(self.data, key=self.key))) + ")"
+        return "PriorityQueue(" + ', '.join(map(str, [i[1] for i in self.data])) + ")"
 
-    def __str__(self):
-        return "PriorityQueue(" + ', '.join(map(str, sorted(self.data, key=self.key))) + ")"
+    # def __str__(self):
+    #     return "PriorityQueue(" + ', '.join(map(str, sorted(self.data, key=self.key))) + ")"
 
     def __iter__(self):
         return self
