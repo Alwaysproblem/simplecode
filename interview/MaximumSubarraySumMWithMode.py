@@ -7,6 +7,16 @@ import random
 import re
 import sys
 
+# O(n)
+# def WindowSlider(seq, n=2):
+#     it = iter(seq)
+#     win = list((next(it, None) for _ in range(n)))
+#     yield win.copy()
+#     for e in it:
+#         win.pop(0)
+#         win.append(e)
+#         yield win.copy()
+
 # slideing windows can be treated as CycleMove and take top n number
 
 # def CycleMove(lst, k):

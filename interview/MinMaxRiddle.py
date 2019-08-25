@@ -8,17 +8,16 @@ import sys
 
 # https://www.hackerrank.com/challenges/min-max-riddle/problem
 
-# O(n^2)
-# from collections import deque
-
-# def window(seq, n=2):
+# O(n)
+# def WindowSlider(seq, n=2):
 #     it = iter(seq)
-#     win = deque((next(it, None) for _ in range(n)), maxlen=n)
-#     yield win
-#     append = win.append
+#     win = list((next(it, None) for _ in range(n)))
+#     yield win.copy()
 #     for e in it:
-#         append(e)
-#         yield win
+#         win.pop(0)
+#         win.append(e)
+#         yield win.copy()
+
 
 # # Complete the riddle function below.
 # def riddle(arr):
