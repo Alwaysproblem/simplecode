@@ -15,11 +15,10 @@ def printarr(s):
             print(s[i][j], end = '    ')
         print()
 
-# Complete the commonChild function below.
-def commonChild(s1, s2, debug = False):
+def commonChild(s1, s2, show = False):
     m, n = len(s1), len(s2)
-    c = [[0 for i in range(m + 1)] for j in range(n + 1)]
-    d = [['0' for i in range(m + 1)] for j in range(n + 1)]
+    c = [[0 for i in range(n + 1)] for j in range(m + 1)]
+    d = [['0' for i in range(n + 1)] for j in range(m + 1)]
     setl = []
 
     for i, c1 in enumerate(s1, 1):
@@ -34,7 +33,7 @@ def commonChild(s1, s2, debug = False):
                 else:
                     d[i][j] = "←"
 
-    if debug == True:
+    if show == True:
         printarr(c)
         print()
         printarr(d)
@@ -52,6 +51,7 @@ def commonChild(s1, s2, debug = False):
                 b -= 1
         setl.reverse()
         print(''.join(setl))
+        return ''.join(setl)
 
     return c[-1][-1]
 
