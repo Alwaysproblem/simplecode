@@ -6,6 +6,7 @@ import random
 import re
 import sys
 
+# https://www.hackerrank.com/challenges/abbr/problem?h_l=interview&playlist_slugs%5B%5D=interview-preparation-kit&playlist_slugs%5B%5D=dynamic-programming
 
 # Complete the abbreviation function below.
 def abbreviation(a:str, b:str):
