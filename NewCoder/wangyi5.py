@@ -25,9 +25,9 @@ def minM(n):
         m = (l + r) // 2
         score = splitShell(n, m)
         if score >= n // 2:
-            l = m
-        else:
             r = m
+        else:
+            l = m + 1
     else:
         if l == r:
             return l
