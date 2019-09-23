@@ -4,7 +4,7 @@ import random
 import re
 import sys
 
-debug = True
+# debug = True
 
 def Solution(s, k):
     return "None"
@@ -21,11 +21,11 @@ def main():
     print(result)
 
 if __name__ == "__main__":
-    if not debug:
-        try:
-            while True:
-                main()
-        except EOFError:
-            exit()
-    else:
+    # if not debug:
+    #     try:
+    #         while True:
+    #             main()
+    #     except EOFError:
+    #         exit()
+    # else:
         main()

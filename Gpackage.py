@@ -499,4 +499,16 @@ def WindowSlider(seq, n=2):
         win.append(e)
         yield win.copy()
 ##################################################################
-
+# O(n)
+# window slider generator sum
+def WindowSlider(seq, n=2):
+    it = iter(seq)
+    win = list((next(it, None) for _ in range(n)))
+    mm = sum(win)
+    yield mm
+    for e in it:
+        tmp = win.pop(0)
+        win.append(e)
+        mm = mm - tmp + e
+        yield mm
+##################################################################
