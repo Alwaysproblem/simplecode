@@ -26,7 +26,7 @@ def FindDuplication(W):
 # Second thought
 from operator import xor
 from functools import reduce
-def FindDuplication(W):
+def FindDuplication2(W):
     if len(W) == 0:
         return -1
     a = reduce(xor, W) ^ reduce(xor, [k for k in set(W)])
