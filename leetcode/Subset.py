@@ -12,11 +12,10 @@ def Subset(nums: list):
         co.add(k)
         res_.append(co)
     
-    # res_.append(set([k]))
-    # res_.append(set())
     res_ += res
 
     return res_
 
 
-Subset([1,2,3])
+print(Subset([1,2,3]))
+
