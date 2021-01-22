@@ -133,12 +133,10 @@ class PriorityQueue(object):
             if item == key:
                 self.data.pop(i)
 
-
 # %%
-class Vertex():
-    def __init__(self, state):
+class Vertex(object):
+    def __init__(self, state = None):
         self.state = state
-
 
 class Node(Vertex):
     # just for the search
@@ -200,8 +198,28 @@ class Graph():
 
             return graph
 
-    def isCycle(self):
-        pass
+    def isCycle(self, start):
+        # if self.mode == "Alist":
+        color = {v: "white" for v in self.mapVertices}
+
+        def backtrack(u, color):
+
+            if color[u] == "gray":
+                return True
+
+            color[u] = "gray"
+
+            for v in self.g[u]:
+                if color[v] == "gray":
+                    return True
+                elif color[v] == "white" and backtrack(v, color) == True:
+                    return True
+            
+            color[u] == "black"
+            return False
+
+        return backtrack(start, color)
+
 
     def isadjacent(self, v1, v2):
         if self.mode == "Amatrix":
@@ -528,9 +546,5 @@ if __name__ == "__main__":
     Djik.search()
     Djik.findPath()
     Djik.displayPath()
-
-
-
-
 
 #%%
