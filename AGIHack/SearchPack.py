@@ -87,13 +87,15 @@ class Queue(object):
 #%%
 import bisect
 class PriorityQueue(object):
-    def __init__(self, key = lambda x: x):
+    def __init__(self, key = lambda x: x, reverses=False):
         self.key = key
         self.data = []
+        self.reverses = reverses
     
     def Enqueue(self, item):
         # heappush(self.data, (self.key(item), item))
-        bisect.insort(self.data, (self.key(item), item))
+        bisect.insort(self.data, (self.key(item) 
+                        if not self.reverses else -1 * self.key(item), item))
 
     def Dequeue(self):
         # return heappop(self.data)[1]
