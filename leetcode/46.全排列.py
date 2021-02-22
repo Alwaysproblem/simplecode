@@ -17,3 +17,5 @@ class Solution:
         backtrack(nums, [])
         return res
 # @lc code=end
+if __name__ == "__main__":
+    print(Solution().permute(nums=[1,2,3]))

@@ -1,5 +1,6 @@
 from math import factorial
 from math import ceil
+
 def getPermutation(n: int, k: int):
     cans = [ str(i) for i in range(1, n + 1)]
 
