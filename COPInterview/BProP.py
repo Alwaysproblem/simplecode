@@ -52,9 +52,9 @@ class OpConv2D:
         #enter you code here
         for h in range(height):
             for w in range(width):
-                for c in range(channel):
+                for c in range(self.output_channels):
                     for i in range(self.weights.shape[-1]):
-                        dA_prev[h:h + ks, w:w + ks, i] = W[c, :, :, i] * dZ[h, w, c]
+                        dA_prev[h:h + ks, w:w + ks, i] += W[c, :, :, i] * dZ[h, w, c]
                         dW += X[h:h + ks, w:w + ks, i] * dZ[h, w, c]
         
         return (dW, dA_prev)
