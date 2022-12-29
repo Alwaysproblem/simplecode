@@ -24,4 +24,4 @@ class Solution:
         return area_max
 # @lc code=end
 if __name__ == "__main__":
-    print(Solution().maxArea([4,3,2,1,4]))
+    print(Solution().maxArea([10, 9, 8, 7, 6, 5, 4, 3, 2, 1]))
