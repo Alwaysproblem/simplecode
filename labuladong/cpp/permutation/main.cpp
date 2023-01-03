@@ -19,7 +19,7 @@ public:
             return;
         }
         for (int c : nums){
-            if (std::find(solution.begin(), solution.end(), c) != solution.end()) continue;
+            if (find(solution.begin(), solution.end(), c) != solution.end()) continue;
             solution.push_back(c);
             backtrack(nums, solution);
             solution.pop_back();
