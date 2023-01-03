@@ -14,6 +14,7 @@ include(CPack)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
+add_subdirectory(temp)
 add_subdirectory(2_sum)
 add_subdirectory(LL)
 add_subdirectory(BinaryTree)
