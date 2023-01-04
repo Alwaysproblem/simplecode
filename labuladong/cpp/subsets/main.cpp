@@ -1,5 +1,5 @@
 #include <iostream>
-#include <map>
+#include <unordered_map>
 #include <vector>
 #include <algorithm>
 #include <fmt/ranges.h>
@@ -9,7 +9,7 @@ using namespace std;
 class Solution {
 public:
     vector<vector<int>> res{};
-    map<int, int> visited{};
+    unordered_map<int, int> visited{};
     vector<vector<int>> subsets(vector<int>& nums) {
       vector<int> s{};
       for (int i: nums) visited[i] = 0;
@@ -18,7 +18,7 @@ public:
       return res;
     }
 
-    void backtrack(vector<int>& nums, vector<int>& solution, map<int, int> visited, int empty_set) {
+    void backtrack(vector<int>& nums, vector<int>& solution, unordered_map<int, int> visited, int empty_set) {
       if (!solution.empty() && solution.back() == empty_set) {
         solution.pop_back();
         if (solution.size() <= visited.size()) res.push_back(solution);

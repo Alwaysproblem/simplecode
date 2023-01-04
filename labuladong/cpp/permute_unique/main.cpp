@@ -1,5 +1,5 @@
 #include <iostream>
-#include <map>
+#include <unordered_map>
 #include <vector>
 
 using namespace std;
@@ -7,7 +7,7 @@ using namespace std;
 class Solution {
 public:
     vector<vector<int>> res={};
-    map<int, int> visited;
+    unordered_map<int, int> visited;
 
     vector<vector<int>> permuteUnique(vector<int>& nums) {
         vector<int> s{};
@@ -17,7 +17,7 @@ public:
         return res;
     }
 
-    void backtrack(vector<int>& nums, vector<int> solution, map<int, int> visited) {
+    void backtrack(vector<int>& nums, vector<int> solution, unordered_map<int, int> visited) {
         if (solution.size() == nums.size()) {
             res.push_back(solution);
             return;

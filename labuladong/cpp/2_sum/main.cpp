@@ -1,5 +1,5 @@
 #include <iostream>
-#include <map>
+#include <unordered_map>
 #include <vector>
 
 using namespace std;
@@ -9,7 +9,7 @@ class Solution
 public:
   vector<int> twoSum(vector<int> &nums, int target)
   {
-    map<int, int> m;
+    unordered_map<int, int> m;
     vector<int> v;
     int n = nums.size();
     for (int i = 0; i < n; i++)
