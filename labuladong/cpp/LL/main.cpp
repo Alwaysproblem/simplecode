@@ -5,12 +5,7 @@
 
 using namespace std;
 
-template<typename T>
-void printLL(LinkedListNode<T> *head){
-  if (nullptr == head) return;
-  printLL<T>(head->next);
-  cout << head->val << " ";
-}
+
 
 int main()
 {
@@ -23,5 +18,5 @@ int main()
   n3.next = &n4;
   LinkedListNode<int> *head = &n1;
   cout << n1.next << endl;
-  printLL<int>(head);
+  showLinkedList<int>(head);
 }
