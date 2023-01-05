@@ -5,9 +5,9 @@ template <typename T>
 class LinkedListNode{
 public:
   LinkedListNode() = delete;
-  explicit LinkedListNode(T item): data(item), next(nullptr){};
+  explicit LinkedListNode(T item): val(item), next(nullptr){};
   ~LinkedListNode() = default;
-  T data;
+  T val;
   LinkedListNode *next;
 };
 

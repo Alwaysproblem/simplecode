@@ -9,7 +9,7 @@ template<typename T>
 void printLL(LinkedListNode<T> *head){
   if (nullptr == head) return;
   printLL<T>(head->next);
-  cout << head->data << " ";
+  cout << head->val << " ";
 }
 
 int main()

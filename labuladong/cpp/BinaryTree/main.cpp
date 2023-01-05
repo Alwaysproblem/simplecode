@@ -9,7 +9,7 @@ template<typename T>
 void printTree(BinaryTreeNode<T> *head){
   if (nullptr == head) return;
   printTree<T>(head->left);
-  cout << head->data << " ";
+  cout << head->val << " ";
   printTree<T>(head->right);
 }
 
