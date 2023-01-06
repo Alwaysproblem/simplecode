@@ -83,6 +83,12 @@ namespace BinaryTree
   }
 
   template <typename T>
+  BinaryTreeNode<T> *BuildBinaryTree(vector<T> &&data, const T null = BinaryTree::null<T>()){
+    vector<T> tmp = std::move(data);
+    return BuildBinaryTree<T>(tmp, null);
+  }
+
+  template <typename T>
   class BinTree
   {
   public:
