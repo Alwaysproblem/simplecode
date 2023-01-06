@@ -88,7 +88,7 @@ LinkedListNode<T> *DetectCycle(LinkedListNode<T> *head) {
   if (head == nullptr) return nullptr;
   LinkedListNode<T> *slow = head, *fast = head;
   while (slow->next != nullptr && fast->next != nullptr &&
-          fast->next->next != nullptr) {
+         fast->next->next != nullptr) {
     slow = slow->next;
     fast = fast->next->next;
     if (slow == fast) {
