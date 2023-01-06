@@ -1,14 +1,12 @@
 #include <iostream>
 #include <unordered_map>
 #include <vector>
+
 #include "common_types/LinkedList/LinkedList.h"
 
 using namespace std;
 
-
-
-int main()
-{
+int main() {
   LinkedListNode<int> n1(1);
   LinkedListNode<int> n2(2);
   LinkedListNode<int> n3(3);

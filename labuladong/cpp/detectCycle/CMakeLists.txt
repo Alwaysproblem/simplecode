@@ -1,3 +1,3 @@
-set(TARGET BinaryTreeTemp)
+set(TARGET detectCycle)
 add_executable(${TARGET} main.cpp)
 target_link_libraries(${TARGET} PRIVATE fmt::fmt)

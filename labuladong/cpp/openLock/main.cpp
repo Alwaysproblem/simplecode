@@ -1,18 +1,17 @@
-#include <iostream>
-#include <unordered_map>
-#include <vector>
 #include <fmt/format.h>
 #include <fmt/ranges.h>
+
+#include <iostream>
 #include <queue>
+#include <unordered_map>
 #include <unordered_set>
+#include <vector>
 
 using namespace std;
 
-class Solution
-{
-public:
-  string plusOne(string current, int j)
-  {
+class Solution {
+ public:
+  string plusOne(string current, int j) {
     if (current[j] == '9')
       current[j] = '0';
     else
@@ -20,8 +19,7 @@ public:
     return current;
   }
 
-  string minusOne(string current, int j)
-  {
+  string minusOne(string current, int j) {
     if (current[j] == '0')
       current[j] = '9';
     else
@@ -29,8 +27,7 @@ public:
     return current;
   }
 
-  int BFS(string start, string target, unordered_set<string> visited)
-  {
+  int BFS(string start, string target, unordered_set<string> visited) {
     queue<string> q;
     visited.insert(start);
     q.push(start);
@@ -39,27 +36,23 @@ public:
     string cur = "";
     string p = "";
     string m = "";
-    while (!q.empty())
-    {
+    while (!q.empty()) {
       int sz = q.size();
-      for (int i = 0; i < sz; ++i)
-      {
+      for (int i = 0; i < sz; ++i) {
         cur = q.front();
         q.pop();
 
-        if (cur == target)
-        {
+        if (cur == target) {
           return step;
         }
-        for (int i = 0; i <= 3; i++)
-        {
+        for (int i = 0; i <= 3; i++) {
           p = plusOne(cur, i);
-          if (visited.count(p) == 0){
+          if (visited.count(p) == 0) {
             q.push(p);
             visited.insert(p);
           }
           m = minusOne(cur, i);
-          if (visited.count(m) == 0){
+          if (visited.count(m) == 0) {
             q.push(m);
             visited.insert(m);
           }
@@ -70,23 +63,19 @@ public:
     return -1;
   }
 
-  int openLock(vector<string> &deadends, string target)
-  {
+  int openLock(vector<string> &deadends, string target) {
     unordered_set<string> deadends_set(deadends.begin(), deadends.end());
-    if ("0000" == target)
-        return 0;
+    if ("0000" == target) return 0;
 
-    if (deadends_set.count("0000"))
-      return -1;
+    if (deadends_set.count("0000")) return -1;
 
     return BFS("0000", target, deadends_set);
   }
 };
 
-int main()
-{
+int main() {
   Solution s;
-  vector<string> deadends{"0201","0101","0102","1212","2002"};
+  vector<string> deadends{"0201", "0101", "0102", "1212", "2002"};
   int t = s.openLock(deadends, "0202");
   fmt::print("You need to try at least {} times to open the lock.\n", t);
   return 0;

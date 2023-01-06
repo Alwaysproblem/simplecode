@@ -1,17 +1,19 @@
-#include <iostream>
-#include <unordered_set>
-#include <vector>
-#include <queue>
-#include <string>
 #include <fmt/format.h>
 #include <fmt/ranges.h>
+
+#include <iostream>
+#include <queue>
+#include <string>
+#include <unordered_set>
+#include <vector>
+
 #include "common_types/TreeNode/BinaryTreeNode.h"
 
 using namespace std;
 // using TreeNode = BinaryTree::BinTree<int>::BinaryTreeNode ;
 using TreeNode = BinaryTree::BinaryTreeNode<int>;
-using BinaryTree::showBinaryTree;
 using BinaryTree::BuildBinaryTree;
+using BinaryTree::showBinaryTree;
 
 /**
  * Definition for a binary tree node.
@@ -33,78 +35,75 @@ vector<string> split(string str, string delimiter = " ") {
   return tokens;
 }
 
-
 class Codec {
-public:
+ public:
+  // Encodes a tree to a single string.
+  string serialize(TreeNode *root) {
+    queue<TreeNode *> q;
 
-    // Encodes a tree to a single string.
-    string serialize(TreeNode* root) {
-        queue<TreeNode*> q;
-        
-        q.push(root);
-        TreeNode *cur = nullptr;
-        string serialize_str = "";
+    q.push(root);
+    TreeNode *cur = nullptr;
+    string serialize_str = "";
 
-        while (!q.empty())
-        {
-          int sz = q.size();
-          for (int i = 0; i < sz; i++)
-          {
-            cur = q.front();
-            q.pop();
-            if (cur == nullptr)
-            {
-              serialize_str += "null, ";
-              continue;
-            }
-            serialize_str += to_string(cur->val);
-            serialize_str += ", ";
-            q.push(cur->left);
-            q.push(cur->right);
-          }
+    while (!q.empty()) {
+      int sz = q.size();
+      for (int i = 0; i < sz; i++) {
+        cur = q.front();
+        q.pop();
+        if (cur == nullptr) {
+          serialize_str += "null, ";
+          continue;
         }
-      return serialize_str;
+        serialize_str += to_string(cur->val);
+        serialize_str += ", ";
+        q.push(cur->left);
+        q.push(cur->right);
+      }
     }
+    return serialize_str;
+  }
 
-    // Decodes your encoded data to tree.
-    TreeNode* deserialize(string data) {
-        if (data == "") return 	nullptr;
-        vector<string> tokens = split(data, string(", "));
-        queue<TreeNode*> q;
-        int idx = 0;
-        if (tokens[idx] == "null") return nullptr;
-        TreeNode *root = new TreeNode(stoi(tokens[idx]));
-        q.push(root);
-        TreeNode *cur = nullptr;
+  // Decodes your encoded data to tree.
+  TreeNode *deserialize(string data) {
+    if (data == "") return nullptr;
+    vector<string> tokens = split(data, string(", "));
+    queue<TreeNode *> q;
+    int idx = 0;
+    if (tokens[idx] == "null") return nullptr;
+    TreeNode *root = new TreeNode(stoi(tokens[idx]));
+    q.push(root);
+    TreeNode *cur = nullptr;
 
-        while (!q.empty() && idx < tokens.size()){
+    while (!q.empty() && idx < tokens.size()) {
+      cur = q.front();
+      q.pop();
 
-            cur = q.front();
-            q.pop();
+      if (cur == nullptr) {
+        continue;
+      }
 
-            if (cur == nullptr){
-              continue;
-            }
-
-            idx ++;
-            if (tokens[idx] == "null") cur->left = nullptr;
-            else cur->left = new TreeNode(stoi(tokens[idx]));
-            q.push(cur->left);
-            idx ++;
-            if (tokens[idx] == "null") cur->right = nullptr;
-            else cur->right = new TreeNode(stoi(tokens[idx]));
-            q.push(cur->right);
-        }
-        return root;
+      idx++;
+      if (tokens[idx] == "null")
+        cur->left = nullptr;
+      else
+        cur->left = new TreeNode(stoi(tokens[idx]));
+      q.push(cur->left);
+      idx++;
+      if (tokens[idx] == "null")
+        cur->right = nullptr;
+      else
+        cur->right = new TreeNode(stoi(tokens[idx]));
+      q.push(cur->right);
     }
+    return root;
+  }
 };
 
 // Your Codec object will be instantiated and called as such:
 // Codec ser, deser;
 // TreeNode* ans = deser.deserialize(ser.serialize(root));
 
-int main()
-{
+int main() {
   TreeNode *root = new TreeNode(3);
   root->left = new TreeNode(9);
   root->right = new TreeNode(20);

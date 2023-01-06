@@ -1,27 +1,23 @@
+#include <fmt/format.h>
+#include <fmt/ranges.h>
+
 #include <iostream>
-#include <unordered_map>
+#include <queue>
+#include <string>
+#include <unordered_set>
 #include <vector>
+
 #include "common_types/TreeNode/BinaryTreeNode.h"
 
 using namespace std;
+using TreeNode = BinaryTree::BinaryTreeNode<int>;
+using BinaryTree::BuildBinaryTree;
+using BinaryTree::showBinaryTree;
 
-template<typename T>
-void printTree(BinaryTreeNode<T> *head){
-  if (nullptr == head) return;
-  printTree<T>(head->left);
-  cout << head->val << " ";
-  printTree<T>(head->right);
-}
-
-int main()
-{
-  BinaryTreeNode<int> n1(1);
-  BinaryTreeNode<int> n2(2);
-  BinaryTreeNode<int> n3(3);
-  BinaryTreeNode<int> n4(4);
-  n1.left = &n2;
-  n1.right = &n3;
-  n2.left = &n4;
-  BinaryTreeNode<int> *head = &n1;
-  printTree<int>(head);
+int main() {
+  const int null = BinaryTree::null<int>();
+  vector<int> a{3, 9, 20, null, null, 15, 7};
+  TreeNode *root = BuildBinaryTree<int>(a);
+  showBinaryTree<int>(root);
+  return 0;
 }

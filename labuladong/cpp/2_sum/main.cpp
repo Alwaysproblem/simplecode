@@ -4,19 +4,15 @@
 
 using namespace std;
 
-class Solution
-{
-public:
-  vector<int> twoSum(vector<int> &nums, int target)
-  {
+class Solution {
+ public:
+  vector<int> twoSum(vector<int> &nums, int target) {
     unordered_map<int, int> m;
     vector<int> v;
     int n = nums.size();
-    for (int i = 0; i < n; i++)
-    {
+    for (int i = 0; i < n; i++) {
       int diff = target - nums[i];
-      if (m.find(diff) != m.end())
-      {
+      if (m.find(diff) != m.end()) {
         auto p = m.find(diff);
         v.push_back(p->second);
         v.push_back(i);
@@ -28,13 +24,11 @@ public:
   }
 };
 
-int main()
-{
+int main() {
   Solution s;
   vector<int> v{1, 6, 3, 2, 5};
   vector<int> result = s.twoSum(v, 11);
-  for (int i : result)
-  {
+  for (int i : result) {
     cout << i << endl;
   }
   return 0;

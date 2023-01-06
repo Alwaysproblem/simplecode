@@ -1,1 +1,3 @@
-add_executable(BinaryTree main.cpp)
+set(TARGET BinaryTreeTemp)
+add_executable(${TARGET} main.cpp)
+target_link_libraries(${TARGET} PRIVATE fmt::fmt)
