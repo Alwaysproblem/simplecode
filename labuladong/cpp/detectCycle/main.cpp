@@ -13,15 +13,21 @@ using ListNode = LinkedListNode<int>;
 class Solution {
  public:
   ListNode *detectCycle(ListNode *head) {
+    if (head == nullptr) return nullptr;
     ListNode *slow = head, *fast = head;
-    while (slow->next != nullptr && slow->next->next != nullptr) {
+    while (slow->next != nullptr && fast->next != nullptr &&
+           fast->next->next != nullptr) {
       slow = slow->next;
       fast = fast->next->next;
       if (slow == fast) {
         break;
       }
     }
+
     if (slow->next == nullptr) return nullptr;
+    if (fast->next == nullptr) return nullptr;
+    if (fast->next->next == nullptr) return nullptr;
+
     ListNode *res = head;
     while (res != slow) {
       res = res->next;
@@ -32,11 +38,13 @@ class Solution {
 };
 
 int main() {
+  Solution sol;
   vector<int> v = {1, 2, 3, 4, 5};
-  ListNode *head = BuildLinkedlist<int>(v);
-  // ListNode *head = BuildCycleLinkedlist<int>(v, 1);
-  showLinkedList<int>(head);
-  DestroyLinkedlist<int>(head);
+  ListNode *head = BuildCycleLinkedlist<int>(v, 1);
+  // showLinkedList<int>(head);
+  fmt::print("the head of cycle is {}\n",
+             sol.detectCycle(head) == nullptr ? -1 : head->val);
+  DestroyCycleLinkedlist<int>(head);
   showLinkedList<int>(head);
   return 0;
 }

@@ -41,7 +41,7 @@ LinkedListNode<T> *BuildLinkedlist(std::vector<T> &array) {
 
 template <typename T>
 LinkedListNode<T> *BuildLinkedlist(std::vector<T> &&array) {
-  vector<T> tmp = array;
+  std::vector<T> tmp = array;
   return BuildLinkedlist<T>(tmp);
 }
 
@@ -61,7 +61,7 @@ LinkedListNode<T> *BuildCycleLinkedlist(std::vector<T> &array, int pos) {
   LinkedListNode<T> *cycle_pos = nullptr;
   for (T ival : array) {
     cur->next = new LinkedListNode<T>(ival);
-    if (idx == pos + 1) {
+    if (pos >= 0 && idx == pos + 1) {
       cycle_pos = cur;
     }
     cur = cur->next;
@@ -79,8 +79,41 @@ LinkedListNode<T> *BuildCycleLinkedlist(std::vector<T> &array, int pos) {
 
 template <typename T>
 LinkedListNode<T> *BuildCycleLinkedlist(std::vector<T> &&array, int pos) {
-  vector<T> tmp = array;
+  std::vector<T> tmp = array;
   return BuildCycleLinkedlist(tmp, pos);
+}
+
+template <typename T>
+LinkedListNode<T> *DetectCycle(LinkedListNode<T> *head) {
+  if (head == nullptr) return nullptr;
+  LinkedListNode<T> *slow = head, *fast = head;
+  while (slow->next != nullptr && fast->next != nullptr &&
+          fast->next->next != nullptr) {
+    slow = slow->next;
+    fast = fast->next->next;
+    if (slow == fast) {
+      break;
+    }
+  }
+
+  if (slow->next == nullptr) return nullptr;
+  if (fast->next == nullptr) return nullptr;
+  if (fast->next->next == nullptr) return nullptr;
+
+  LinkedListNode<T> *res = head;
+  while (res != slow) {
+    res = res->next;
+    slow = slow->next;
+  }
+  return res;
+}
+
+template <typename T>
+void DestroyCycleLinkedlist(LinkedListNode<T> *head) {
+  if (head == nullptr) return;
+  LinkedListNode<T> *cycle_start = DetectCycle<T>(head);
+  if (cycle_start != nullptr) cycle_start->next = nullptr;
+  return DestroyLinkedlist<T>(head);
 }
 
 #endif
