@@ -87,8 +87,9 @@ BinaryTreeNode<T> *BuildBinaryTree(vector<T> &&data,
 template <typename T>
 class BinTree {
  public:
-  using BinaryTreeNode = BinaryTreeNode<T>;
-  BinaryTreeNode *root;
+  using BinTreeNode = BinaryTreeNode<T>;
+
+  BinTreeNode *root;
 
   BinTree() : root(nullptr) {}
   ~BinTree() { delete root; }
@@ -102,14 +103,14 @@ class BinTree {
   template <typename... Args>
   void insert(const T &value, Args... more) {
     if (!root) {
-      root = new BinaryTreeNode(value);
+      root = new BinTreeNode(value);
     } else {
-      BinaryTreeNode *p = root;
+      BinTreeNode *p = root;
       for (;;) {
         if (value == p->val) return;
-        BinaryTreeNode *&pchild = value < p->val ? p->left : p->right;
+        BinTreeNode *&pchild = value < p->val ? p->left : p->right;
         if (!pchild) {
-          pchild = new BinaryTreeNode(value);
+          pchild = new BinTreeNode(value);
           break;
         }
         p = pchild;
@@ -135,17 +136,17 @@ class BinTree {
   // root
   display_rows get_row_display() const {
     // start off by traversing the tree to
-    // build a vector of vectors of BinaryTreeNode pointers
-    vector<BinaryTreeNode *> traversal_stack;
-    vector<std::vector<BinaryTreeNode *>> rows;
+    // build a vector of vectors of BinTreeNode pointers
+    vector<BinTreeNode *> traversal_stack;
+    vector<std::vector<BinTreeNode *>> rows;
     if (!root) return display_rows();
 
-    BinaryTreeNode *p = root;
+    BinTreeNode *p = root;
     const int max_depth = root->max_depth();
     rows.resize(max_depth);
     int depth = 0;
     for (;;) {
-      // Max-depth BinaryTreeNodes are always a leaf or null
+      // Max-depth BinTreeNodes are always a leaf or null
       // This special case blocks deeper traversal
       if (depth == max_depth - 1) {
         rows[depth].push_back(p);
@@ -154,7 +155,7 @@ class BinTree {
         continue;
       }
 
-      // First visit to BinaryTreeNode?  Go to left child.
+      // First visit to BinTreeNode?  Go to left child.
       if (traversal_stack.size() == depth) {
         rows[depth].push_back(p);
         traversal_stack.push_back(p);
@@ -181,17 +182,17 @@ class BinTree {
       --depth;
     }
 
-    // Use rows of BinaryTreeNode pointers to populate rows of cell_display
+    // Use rows of BinTreeNode pointers to populate rows of cell_display
     // structs. All possible slots in the tree get a cell_display struct, so if
-    // there is no actual BinaryTreeNode at a struct's location, its boolean
+    // there is no actual BinTreeNode at a struct's location, its boolean
     // "present" field is set to false. The struct also contains a string
-    // representation of its BinaryTreeNode's value, created using a
+    // representation of its BinTreeNode's value, created using a
     // std::stringstream object.
     display_rows rows_disp;
     std::stringstream ss;
     for (const auto &row : rows) {
       rows_disp.emplace_back();
-      for (BinaryTreeNode *pn : row) {
+      for (BinTreeNode *pn : row) {
         if (pn) {
           ss << pn->val;
           rows_disp.back().push_back(cell_display(ss.str()));
@@ -223,7 +224,7 @@ class BinTree {
     // make sure the cell_width is an odd number
     if (cell_width % 2 == 0) ++cell_width;
 
-    // allows leaf BinaryTreeNodes to be connected when they are
+    // allows leaf BinTreeNodes to be connected when they are
     // all with size of a single character
     if (cell_width < 3) cell_width = 3;
 
@@ -257,7 +258,7 @@ class BinTree {
         // add padding, more when this is not the leftmost element
         row += string(c ? left_pad * 2 + 1 : left_pad, ' ');
         if (cd_row[c].present) {
-          // This position corresponds to an existing BinaryTreeNode
+          // This position corresponds to an existing BinTreeNode
           const string &valstr = cd_row[c].valstr;
           // Try to pad the left and right sides of the value string
           // with the same number of spaces.  If padding requires an
@@ -271,7 +272,7 @@ class BinTree {
           row += valstr;
           row += string(c % 2 ? long_padding : short_padding, ' ');
         } else {
-          // This position is empty, BinaryTreeNodeless...
+          // This position is empty, BinTreeNodeless...
           row += string(cell_width, ' ');
         }
       }
@@ -283,7 +284,7 @@ class BinTree {
       if (row_elem_count == 1) break;
 
       // Add rows of forward- and back- slash characters, spaced apart
-      // to "connect" two rows' BinaryTreeNode value strings.
+      // to "connect" two rows' BinTreeNode value strings.
       // The "space" variable counts the number of rows needed here.
       s_t left_space = space + 1;
       s_t right_space = space - 1;
@@ -307,7 +308,7 @@ class BinTree {
       row_elem_count /= 2;
     }
 
-    // Reverse the result, placing the root BinaryTreeNode at the beginning
+    // Reverse the result, placing the root BinTreeNode at the beginning
     // (top)
     std::reverse(formatted_rows.begin(), formatted_rows.end());
 
@@ -342,7 +343,7 @@ class BinTree {
       return;
     }
 
-    // This tree is not empty, so get a list of BinaryTreeNode values...
+    // This tree is not empty, so get a list of BinTreeNode values...
     const auto rows_disp = get_row_display();
     // then format these into a text representation...
     auto formatted_rows = row_formatter(rows_disp);
