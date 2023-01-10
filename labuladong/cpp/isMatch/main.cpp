@@ -9,7 +9,7 @@ using namespace std;
 
 class Solution {
  public:
-  bool match(string s, string p, int i, int j) {
+  bool match(const string &s, const string &p, int i, int j) {
     if (i == 0) {
       return false;
     }
