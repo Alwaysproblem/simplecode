@@ -22,9 +22,11 @@ class Solution {
     if (!root->left && !root->right) return root->val;
     if (mem.count(root)) return mem[root];
 
-    // if not choost root
+    // if not choose root
     int max_val = 0;
     max_val = max(max_val, backtrack(root->left) + backtrack(root->right));
+    
+    // if choose root;
     int sums = 0;
     if (root->left) {
       sums += backtrack(root->left->left) + backtrack(root->left->right);
@@ -33,8 +35,9 @@ class Solution {
       sums += backtrack(root->right->left) + backtrack(root->right->right);
     }
     sums += root->val;
-    max_val = max(max_val, sums);
 
+    // find max value
+    max_val = max(max_val, sums);
     mem[root] = max_val;
     return max_val;
   }
