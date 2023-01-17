@@ -2,6 +2,7 @@
 
 _target="all"
 _build_dir="manual_build"
+_debug=""
 
 function print_popconda_helper_msg(){
 cat <<"EOF"
@@ -25,6 +26,9 @@ function parse_args_from_console() {
             -t | --target)          shift
                                     _target=$1
                                     ;;
+            -g | --debug)           shift
+                                    _debug="True"
+                                    ;;
             -h | --help)            print_popconda_helper_msg
                                     exit 0
                                     ;;
@@ -43,7 +47,12 @@ parse_args_from_console $@
 rm -rf ${_build_dir}
 mkdir -p ${_build_dir}
 
-cmake -S `pwd` -B ${_build_dir}
+if [[ ${_debug} == "True" ]];then
+  cmake -S `pwd` -B ${_build_dir} -DCMAKE_BUILD_TYPE=Debug
+else
+  cmake -S `pwd` -B ${_build_dir}
+fi
+
 cmake --build ${_build_dir} --target ${_target} || exit 1
 
 if [[ $_target != "all" ]]; then
