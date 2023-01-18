@@ -18,7 +18,8 @@ class Solution {
         r[i] = s[j];
         i++;
       } else if (s[j] >= 'A' && s[j] <= 'Z') {
-        r[i] = s[j] + ('a' - 'A');
+        r[i] = s[j] | ' '; // note 'A' | ' ' = 'a'
+        // r[i] = s[j] + ('a' - 'A');
         i++;
       } else if (s[j] >= '0' && s[j] <= '9') {
         r[i] = s[j];
