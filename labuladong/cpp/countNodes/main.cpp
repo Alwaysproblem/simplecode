@@ -8,20 +8,12 @@
 #include <vector>
 
 #include "common_types/TreeNode/BinaryTreeNode.h"
+#include "utils/debug_recursive.hpp"
 
 using namespace std;
 using TreeNode = BinaryTree::BinaryTreeNode<int>;
 using BinaryTree::BuildBinaryTree;
 using BinaryTree::showBinaryTree;
-
-template <typename... T>
-void debug_recursive(string format, int level, T&&... args) {
-  string indent = "    ";
-  for (int i = 0; i <= level; i++) {
-    fmt::print("{}", indent);
-  }
-  fmt::print(format, args...);
-}
 
 class Solution {
  public:
