@@ -23,13 +23,13 @@ class Solution {
         left = mid + 1;
       }
     }
-    return nums.at(left) == target? -1: left;
+    return nums.at(left) == target ? -1 : left;
   }
 };
 
 int main() {
   Solution s;
-  vector<int> v{-1,0,3,5,9,12};
+  vector<int> v{-1, 0, 3, 5, 9, 12};
   int idx = s.search(v, 2);
   fmt::print("The index should be {}\n", idx);
   return 0;
