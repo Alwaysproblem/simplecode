@@ -25,8 +25,8 @@ class Solution {
       f[i−1][j−1]    matches(s[i],p[j])
       false          otherwise
     else
-      f[i−1][j] (match many times) or f[i][j−2] (match 0 times)
-  matches(s[i],p[j−1]) f[i][j−2] otherwise
+      f[i−1][j] (match many times) or f[i][j−2] (match 0 times)   matches(s[i],p[j−1])
+      f[i][j−2]                                                   otherwise
   */
 
   bool isMatch(string s, string p) {
