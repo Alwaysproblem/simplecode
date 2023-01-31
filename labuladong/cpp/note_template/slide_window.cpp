@@ -1,37 +1,30 @@
-class Solution {
- public:
-  bool checkInclusion(string s1, string s2) {
-    if (!s2.size()) return false;
-    if (!s1.size()) return false;
-    if (s1.size() > s2.size()) return false;
-    unordered_map<char, int> need{}, window{};
-    for (char i: s1) need[i] ++;
+/* 滑动窗口算法框架 */
+void slidingWindow(string s) {
+    unordered_map<char, int> window;
+    
     int left = 0, right = 0;
-    char c = 0, d = 0;
-    bool res = false;
-    int valid = 0;
-    while (right < s2.size()){
-      c = s2[right];
-      right ++;
+    while (right < s.size()) {
+        // c 是将移入窗口的字符
+        char c = s[right];
+        // 增大窗口
+        right++;
+        // 进行窗口内数据的一系列更新
+        ...
 
-      if (need.count(c)){
-        window[c] ++;
-        if (need[c] == window[c]) valid ++;
-      }
-
-      fmt::print("({}, {})", left, right);
-
-      while (right - left >= s1.size()){
-        if (valid == need.size()) return true;
-        d = s2[left];
-        left ++;
-        if (need.count(d)){
-          window[d] --;
-          if (need[d] == window[d]) valid --;
+        /*** debug 输出的位置 ***/
+        // 注意在最终的解法代码中不要 print
+        // 因为 IO 操作很耗时，可能导致超时
+        printf("window: [%d, %d)\n", left, right);
+        /********************/
+        
+        // 判断左侧窗口是否要收缩
+        while (window needs shrink) {
+            // d 是将移出窗口的字符
+            char d = s[left];
+            // 缩小窗口
+            left++;
+            // 进行窗口内数据的一系列更新
+            ...
         }
-      }
     }
-
-    return false;
-  }
-};
+}
