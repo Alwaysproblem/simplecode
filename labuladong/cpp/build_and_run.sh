@@ -14,6 +14,8 @@ usage:
 
     -t, --target: choose build target and run target
 
+    -g, --debug: add debug info to programme.
+
 EOF
 }
 
