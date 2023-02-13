@@ -30,7 +30,7 @@ class Solution {
 
 int main() {
   const int null = BinaryTree::null<int>();
-  vector<int> a{5,4,6,null,null,3,7};
+  vector<int> a{5, 4, 6, null, null, 3, 7};
   // vector<int> a{3, 7, 15, null, null, 9, 20};
   TreeNode *root = BuildBinaryTree<int>(a);
   showBinaryTree<int>(root);
