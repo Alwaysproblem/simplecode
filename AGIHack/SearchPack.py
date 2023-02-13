@@ -433,7 +433,6 @@ class Dijkstra(Search):
             self.pathTable[child].prev = self.pathTable[parent]
 
     def extend(self, nodeIdx: int):
-        next_nodes = []
         if self.graph.mode == 'Alist':
             return self.graph.g[nodeIdx]
 
@@ -441,7 +440,6 @@ class Dijkstra(Search):
             return [(v, self.graph.g[nodeIdx][v]) for v in range(self.graph.numV) if self.graph.isadjacent(nodeIdx, v)]
         else:
             raise NotImplementedError()
-        return next_nodes
 
 
     def search(self):
