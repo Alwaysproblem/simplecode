@@ -11,21 +11,22 @@ class Solution {
  public:
   vector<bool> visited{};
   vector<vector<int>> paths = {};
-  vector<int> neighbour(vector<vector<int>>& graph, int node){
+  vector<int> neighbour(vector<vector<int>>& graph, int node) {
     return graph[node];
   }
 
-  void DFS(vector<vector<int>>& graph, int node, vector<int>& path){
+  void DFS(vector<vector<int>>& graph, int node, vector<int>& path) {
     if (node >= graph.size() || node < 0) return;
     if (visited[node]) return;
-    if (0 == neighbour(graph, node).size()){
+    if (0 == neighbour(graph, node).size() || node == graph.size() - 1) {
+      if (node != graph.size() - 1) return;
       path.push_back(node);
       paths.push_back(vector<int>(path));
       path.pop_back();
       return;
     }
     path.push_back(node);
-    for (int child: neighbour(graph, node)){
+    for (int child : neighbour(graph, node)) {
       DFS(graph, child, path);
     }
     path.pop_back();
@@ -43,7 +44,9 @@ class Solution {
 
 int main() {
   Solution s;
-  vector<vector<int>> graph = {{4, 3, 1}, {3, 2, 4}, {3}, {4}, {}};
+  // vector<vector<int>> graph = {{2}, {}, {1}};
+  vector<vector<int>> graph = {{4, 3, 1}, {3, 2, 4}, {}, {4}, {}};
+  // vector<vector<int>> graph = {{4, 3, 1}, {3, 2, 4}, {3}, {4}, {}};
   vector<vector<int>> res = s.allPathsSourceTarget(graph);
   fmt::print("{}\n", res);
   return 0;
