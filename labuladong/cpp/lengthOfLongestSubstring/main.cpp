@@ -11,11 +11,11 @@ class Solution {
  public:
   int lengthOfLongestSubstring(string s) {
     if (!s.size()) return 0;
-    const int INT_MIN = 0;
+    const int _INT_MIN_ = 0;
     unordered_map<char, int> window{};
     int left = 0, right = 0;
     char c = 0, d = 0;
-    int start = 0, len = INT_MIN;
+    int start = 0, len = _INT_MIN_;
     while (right < s.size()) {
       char c = s[right];
       right++;
