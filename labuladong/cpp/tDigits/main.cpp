@@ -65,10 +65,10 @@ class TDigest {
   TDigest& operator+=(const TDigest& other) {
     // auto merged_bins = merge_bins(bins, other.bins);
     this->merge_to_bins(other.bins);
-    printBins(this->bins);
+    // printBins(this->bins);
     // bins = compress(merged_bins);
     this->self_compress();
-    printBins(this->bins);
+    // printBins(this->bins);
     return *this;
   }
 
@@ -224,16 +224,19 @@ class TDigest {
 
 int main() {
   // Create a random number generator engine
-  // std::random_device rd;
-  std::mt19937 gen(0);
+  std::random_device rd;
+  std::mt19937 gen(rd());
 
   // Define a distribution for the generator
-  std::uniform_int_distribution<> dis(1, 6);
+  // std::uniform_int_distribution<> dis(1, 0.01);
+  std::normal_distribution<> dis(0, 1);
 
   // Generate a random number
-  int random_number = dis(gen);
-  const long long iters = 10;
-  // const long long iters = 100000;
+  // int random_number = dis(gen);
+  float random_number = dis(gen);
+//   const long long iters = 10;
+  const long long iters = 100000;
+  const float p = 0.99;
 
   std::vector<double> data;
   data.reserve(iters);
@@ -250,11 +253,17 @@ int main() {
   auto end_time = std::chrono::high_resolution_clock::now();
 
   // Print the result
-  std::cout << "P90 number: " << tdigest.get_quantile(0.90) << std::endl;
+  fmt::print("P90 number: {}\n", tdigest.get_quantile(p));
 
   // Calculate the elapsed time
   auto elapsed_time = std::chrono::duration_cast<std::chrono::microseconds>(
       end_time - start_time);
+
+  std::sort(data.begin(), data.end());
+  int idx = int(iters * p);
+  fmt::print("correct P90 number: {}\n", data[idx]);
+
+  fmt::print("the related absolute error: {}% \n", std::abs(data[idx] - tdigest.get_quantile(p)) * 100 / data[idx] );
 
   // Print the result
   fmt::print("Elapsed time: {} microseconds\n", elapsed_time.count());
