@@ -27,7 +27,7 @@ public:
 void printBins(std::vector<Bin>& bins) {
     fmt::print("bins: [");
     for (auto bin : bins) {
-        fmt::format("avg: {}, ", bin.avg, bin.size);
+        fmt::print("avg: {}, ", bin.avg, bin.size);
     }
     fmt::print("]\n");
 };
