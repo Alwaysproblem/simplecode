@@ -4,6 +4,7 @@
 #include <iostream>
 #include <unordered_map>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -16,7 +17,7 @@ class Solution {
       dp[i] = max(dp[i - 1] + nums[i], nums[i]);
     }
 
-    return *max_element(dp.begin(), dp.end());
+    return *std::max_element(dp.begin(), dp.end());
   }
 };
 

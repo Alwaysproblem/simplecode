@@ -50,9 +50,9 @@ rm -rf ${_build_dir}
 mkdir -p ${_build_dir}
 
 if [[ ${_debug} == "True" ]];then
-  cmake -S `pwd` -B ${_build_dir} -DCMAKE_BUILD_TYPE=Debug
+  cmake -GNinja -S `pwd` -B ${_build_dir} -DCMAKE_BUILD_TYPE=Debug
 else
-  cmake -S `pwd` -B ${_build_dir}
+  cmake -GNinja -S `pwd` -B ${_build_dir}
 fi
 
 cmake --build ${_build_dir} --target ${_target} || exit 1
