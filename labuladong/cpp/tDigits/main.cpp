@@ -23,6 +23,7 @@ class Bin {
     int size = this->size + other.size;
     return Bin(weight / size, size);
   }
+
 };
 
 void printBins(std::vector<Bin>& bins) {
@@ -41,7 +42,9 @@ class TDigest {
   TDigest(std::vector<Bin> _bins = {}, int _delta = 10)
       : bins(_bins), delta(_delta) {
     if (!_bins.empty()) {
-      bins = compress(_bins);
+      // bins = compress(_bins);
+      merge_to_bins(_bins);
+      self_compress();
     }
     bins.reserve(delta);
   }
@@ -163,31 +166,32 @@ class TDigest {
   }
 
   void merge_to_bins(const std::vector<Bin>& ys) {
-    std::vector<Bin> xs(bins);
+    // std::vector<Bin> xs(bins);
 
-    // std::vector<Bin> merged;
-    bins.clear();
+    std::vector<Bin> merged;
+    merged.reserve(bins.size() + ys.size());
+    // bins.clear();
     int i = 0, j = 0;
-    while (i < xs.size() && j < ys.size()) {
-      if (xs[i].avg <= ys[j].avg) {
-        bins.push_back(xs[i]);
+    while (i < bins.size() && j < ys.size()) {
+      if (bins[i].avg <= ys[j].avg) {
+        merged.push_back(bins[i]);
         ++i;
       } else {
-        bins.push_back(ys[j]);
+        merged.push_back(ys[j]);
         ++j;
       }
     }
 
-    while (i < xs.size()) {
-      bins.push_back(xs[i]);
+    while (i < bins.size()) {
+      merged.push_back(bins[i]);
       ++i;
     }
 
     while (j < ys.size()) {
-      bins.push_back(ys[j]);
+      merged.push_back(ys[j]);
       ++j;
     }
-
+    bins.swap(merged);
     return;
   }
 
@@ -195,41 +199,44 @@ class TDigest {
     if (bins.empty()) {
       return;
     }
-    std::vector<Bin> xs(bins);
+    // std::vector<Bin> xs(bins);
     int n = 0;
-    for (const auto& x : xs) {
+    for (const auto& x : bins) {
       n += x.size;
     }
 
-    // std::vector<Bin> ys{xs[0]};
-    bins.clear();
-    bins.push_back(xs[0]);
+    std::vector<Bin> ys{bins[0]};
+    ys.reserve(delta);
+    // bins.clear();
+    // bins.push_back(xs[0]);
     auto min_potential = get_potential(0);
-    auto total = xs[0].size;
+    auto total = bins[0].size;
 
-    for (int i = 1; i < xs.size(); ++i) {
-      const auto& x = xs[i];
+    for (int i = 1; i < bins.size(); ++i) {
+      const auto& x = bins[i];
       auto next_qid = 1.0 * (total + x.size) / n;
 
       if (get_potential(next_qid) - min_potential <= 1) {
-        bins.back() = bins.back() + x;
+        ys.back() = ys.back() + x;
       } else {
-        bins.push_back(x);
+        ys.push_back(x);
         min_potential = get_potential(1.0 * total / n);
       }
 
       total += x.size;
     }
+    bins.swap(ys);
   }
 };
 
 int main() {
   // Create a random number generator engine
   std::random_device rd;
+  // std::mt19937 gen(0);
   std::mt19937 gen(rd());
 
   // Define a distribution for the generator
-  // std::uniform_int_distribution<> dis(1, 0.01);
+  // std::uniform_int_distribution<> dis(1, 10);
   std::normal_distribution<> dis(0, 1);
 
   // Generate a random number
