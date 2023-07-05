@@ -24,6 +24,14 @@ class Bin {
     return Bin(weight / size, size);
   }
 
+  // Override the '+=' operator to implement merging two bins
+  Bin& operator+=(const Bin& other) {
+    double weight = avg * size + other.avg * other.size;
+    this->size += other.size;
+    this->avg = weight / this->size;
+    return *this;
+  }
+
 };
 
 void printBins(std::vector<Bin>& bins) {
@@ -153,10 +161,9 @@ class TDigest {
   }
 
   void merge_to_bins(const std::vector<Bin>& ys) {
-    // std::vector<Bin> xs(bins);
 
     std::vector<Bin> merged;
-    merged.reserve(bins.size() + ys.size() + delta);
+    merged.reserve(delta);
     int i = 0, j = 0;
     while (i < bins.size() && j < ys.size()) {
       if (bins[i].avg <= ys[j].avg) {
@@ -199,7 +206,7 @@ class TDigest {
     for (int i = 1; i < bins.size(); ++i) {
       auto next_qid = 1.0 * (total + bins[i].size) / n;
       if (get_potential(next_qid) - min_potential <= 1) {
-        ys.back() = ys.back() + bins[i];
+        ys.back() += bins[i];
       } else {
         ys.push_back(std::move(bins[i]));
         min_potential = get_potential(1.0 * total / n);
@@ -225,7 +232,7 @@ int main() {
   // int random_number = dis(gen);
   float random_number = dis(gen);
 //   const long long iters = 10;
-  const long long iters = 100000000;
+  const long long iters = 10000;
   const float p = 0.99;
 
   std::vector<double> data;
