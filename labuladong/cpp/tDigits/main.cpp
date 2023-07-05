@@ -42,7 +42,6 @@ class TDigest {
   TDigest(std::vector<Bin> _bins = {}, int _delta = 10)
       : bins(_bins), delta(_delta) {
     if (!_bins.empty()) {
-      // bins = compress(_bins);
       merge_to_bins(_bins);
       self_compress();
     }
@@ -60,20 +59,8 @@ class TDigest {
   // Add one element by converting it to a single-element t-digest then
   // concatenating with this one.
   void append(double value) {
-    TDigest tdigest_to_add({Bin(value)});
-    *this += tdigest_to_add;
-  }
-
-  // Override the '+=' operator to implement merging a t-digests onto
-  // the current one
-  TDigest& operator+=(const TDigest& other) {
-    // auto merged_bins = merge_bins(bins, other.bins);
-    this->merge_to_bins(other.bins);
-    // printBins(this->bins);
-    // bins = compress(merged_bins);
-    this->self_compress();
-    // printBins(this->bins);
-    return *this;
+    merge_to_bins({Bin(value)});
+    self_compress();
   }
 
   double get_quantile(double qid) const {
@@ -169,26 +156,25 @@ class TDigest {
     // std::vector<Bin> xs(bins);
 
     std::vector<Bin> merged;
-    merged.reserve(bins.size() + ys.size());
-    // bins.clear();
+    merged.reserve(bins.size() + ys.size() + delta);
     int i = 0, j = 0;
     while (i < bins.size() && j < ys.size()) {
       if (bins[i].avg <= ys[j].avg) {
-        merged.push_back(bins[i]);
+        merged.push_back(std::move(bins[i]));
         ++i;
       } else {
-        merged.push_back(ys[j]);
+        merged.push_back(std::move(ys[j]));
         ++j;
       }
     }
 
     while (i < bins.size()) {
-      merged.push_back(bins[i]);
+      merged.push_back(std::move(bins[i]));
       ++i;
     }
 
     while (j < ys.size()) {
-      merged.push_back(ys[j]);
+      merged.push_back(std::move(ys[j]));
       ++j;
     }
     bins.swap(merged);
@@ -199,7 +185,7 @@ class TDigest {
     if (bins.empty()) {
       return;
     }
-    // std::vector<Bin> xs(bins);
+
     int n = 0;
     for (const auto& x : bins) {
       n += x.size;
@@ -207,24 +193,20 @@ class TDigest {
 
     std::vector<Bin> ys{bins[0]};
     ys.reserve(delta);
-    // bins.clear();
-    // bins.push_back(xs[0]);
     auto min_potential = get_potential(0);
     auto total = bins[0].size;
 
     for (int i = 1; i < bins.size(); ++i) {
-      const auto& x = bins[i];
-      auto next_qid = 1.0 * (total + x.size) / n;
-
+      auto next_qid = 1.0 * (total + bins[i].size) / n;
       if (get_potential(next_qid) - min_potential <= 1) {
-        ys.back() = ys.back() + x;
+        ys.back() = ys.back() + bins[i];
       } else {
-        ys.push_back(x);
+        ys.push_back(std::move(bins[i]));
         min_potential = get_potential(1.0 * total / n);
       }
-
-      total += x.size;
+      total += bins[i].size;
     }
+
     bins.swap(ys);
   }
 };
@@ -243,7 +225,7 @@ int main() {
   // int random_number = dis(gen);
   float random_number = dis(gen);
 //   const long long iters = 10;
-  const long long iters = 100000;
+  const long long iters = 100000000;
   const float p = 0.99;
 
   std::vector<double> data;
