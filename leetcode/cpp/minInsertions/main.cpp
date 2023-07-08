@@ -1,3 +1,8 @@
+/*
+ * @lc app=leetcode.cn id=1312 lang=cpp
+ *
+ * [1312] 让字符串成为回文串的最少插入次数
+ */
 #include <fmt/format.h>
 #include <fmt/ranges.h>
 
@@ -7,6 +12,7 @@
 
 using namespace std;
 
+// @lc code=start
 class Solution {
  public:
   int minInsertions(string s) {
@@ -24,10 +30,11 @@ class Solution {
           dp[start][end] = min(dp[start + 1][end], dp[start][end - 1]) + 1;
       }
     }
-    fmt::print("{}\n", fmt::join(dp.begin(), dp.end(), "\n"));
+    // fmt::print("{}\n", fmt::join(dp.begin(), dp.end(), "\n"));
     return dp.front().back();
   }
 };
+// @lc code=end
 
 int main() {
   string s = "leetcode";
