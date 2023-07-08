@@ -1,3 +1,8 @@
+/*
+ * @lc app=leetcode.cn id=354 lang=cpp
+ *
+ * [354] 俄罗斯套娃信封问题
+ */
 #include <fmt/format.h>
 #include <fmt/ranges.h>
 
@@ -8,6 +13,7 @@
 
 using namespace std;
 
+// @lc code=start
 class Solution {
  public:
   int lengthOfLIS(vector<int>& nums) {
@@ -29,7 +35,7 @@ class Solution {
 
       if (left == piles) piles++;
       top[left] = poker;
-      fmt::print("{}\n", top);
+      // fmt::print("{}\n", top);
     }
     return piles;
   }
@@ -49,6 +55,7 @@ class Solution {
     return lengthOfLIS(lis);
   }
 };
+// @lc code=end
 
 int main() {
   Solution sol;
