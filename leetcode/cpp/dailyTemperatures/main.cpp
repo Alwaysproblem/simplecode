@@ -1,3 +1,8 @@
+/*
+ * @lc app=leetcode.cn id=739 lang=cpp
+ *
+ * [739] 每日温度
+ */
 #include <fmt/format.h>
 #include <fmt/ranges.h>
 
@@ -8,6 +13,7 @@
 
 using namespace std;
 
+// @lc code=start
 class Solution {
  public:
   vector<int> dailyTemperatures(vector<int>& temperatures) {
@@ -28,6 +34,7 @@ class Solution {
     return ans;
   }
 };
+// @lc code=end
 
 int main() {
   vector<int> temperatures = {73, 74, 75, 71, 69, 72, 76, 73};
