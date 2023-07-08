@@ -1,3 +1,9 @@
+/*
+ * @lc app=leetcode.cn id=* lang=cpp
+ *
+ * [*] ******
+ */
+
 #include <fmt/format.h>
 #include <fmt/ranges.h>
 
@@ -9,6 +15,10 @@
 
 using namespace std;
 using ListNode = LinkedListNode<int>;
+
+// @lc code=start
+
+// @lc code=end
 
 int main() {
   vector<int> v = {1, 2, 3, 4, 5};

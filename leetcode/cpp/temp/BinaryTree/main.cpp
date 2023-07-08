@@ -1,3 +1,9 @@
+/*
+ * @lc app=leetcode.cn id=* lang=cpp
+ *
+ * [*] ******
+ */
+
 #include <fmt/format.h>
 #include <fmt/ranges.h>
 
@@ -13,6 +19,10 @@ using namespace std;
 using TreeNode = BinaryTree::BinaryTreeNode<int>;
 using BinaryTree::BuildBinaryTree;
 using BinaryTree::showBinaryTree;
+
+// @lc code=start
+
+// @lc code=end
 
 int main() {
   const int null = BinaryTree::null<int>();
