@@ -1,3 +1,8 @@
+/*
+ * @lc app=leetcode.cn id=300 lang=cpp
+ *
+ * [300] 最长递增子序列
+ */
 #include <fmt/format.h>
 #include <fmt/ranges.h>
 
@@ -7,7 +12,7 @@
 #include <vector>
 
 using namespace std;
-
+// @lc code=start
 class Solution {
  public:
   int lengthOfLIS(vector<int>& nums) {
@@ -26,30 +31,32 @@ class Solution {
     vector<vector<int>> top(nums.size(), vector<int>(nums.size(), 123456));
     // top.reserve(nums.size());
     int piles = 0;
-    for (int i=0;i<nums.size();i++){
+    for (int i = 0; i < nums.size(); i++) {
       int poker = nums[i];
 
       int left = 0, right = piles;
-      while (right > 0 && left < right){
+      while (right > 0 && left < right) {
         int mid = left + (right - left) / 2;
-        if (top[mid][0] == poker){
+        if (top[mid][0] == poker) {
           right = mid;
-        }else if (top[mid][0] > poker){
+        } else if (top[mid][0] > poker) {
           right = mid;
-        }else if (top[mid][0] < poker){
+        } else if (top[mid][0] < poker) {
           left = mid + 1;
         }
       }
 
-      if (left == piles) piles ++;
+      if (left == piles) piles++;
       // top[left] = poker;
       top[left].push_back(poker);
-      push_heap(top[left].begin(), top[left].end(), [](int x, int y){ return x > y; });
+      push_heap(top[left].begin(), top[left].end(),
+                [](int x, int y) { return x > y; });
     }
-    fmt::print("{}", top);
+    // fmt::print("{}", top);
     return piles;
   }
 };
+// @lc code=end
 
 int main() {
   Solution sol;
