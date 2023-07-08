@@ -1,3 +1,8 @@
+/*
+ * @lc app=leetcode.cn id=47 lang=cpp
+ *
+ * [47] 全排列 II
+ */
 #include <iostream>
 #include <unordered_map>
 #include <vector>
@@ -5,6 +10,7 @@
 
 using namespace std;
 
+// @lc code=start
 class Solution {
  public:
   vector<vector<int>> res = {};
@@ -35,6 +41,7 @@ class Solution {
     }
   }
 };
+// @lc code=end
 
 int main() {
   Solution s;
