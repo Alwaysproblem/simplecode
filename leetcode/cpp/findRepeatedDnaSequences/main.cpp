@@ -1,3 +1,8 @@
+/*
+ * @lc app=leetcode.cn id=187 lang=cpp
+ *
+ * [187] 重复的DNA序列
+ */
 #include <fmt/format.h>
 #include <fmt/ranges.h>
 
@@ -7,6 +12,7 @@
 
 using namespace std;
 
+// @lc code=start
 class Solution {
  public:
   int StoN(char c) {
@@ -45,7 +51,7 @@ class Solution {
     unordered_map<string, int> res_hash;
     string temp{};
     for (char c : s) arr.push_back(StoN(c));
-    fmt::print("{}\n", arr);
+    // fmt::print("{}\n", arr);
     unordered_map<int, int> seen{}, window{};
     int left = 0, right = 0, windowHash = 0, R = 4, L = 10;
     while (right < s.size()) {
@@ -53,13 +59,13 @@ class Solution {
       windowHash = addChar(arr, windowHash, right, R);
       right++;
 
-      fmt::print("({}, {})\n", left, right);
+      // fmt::print("({}, {})\n", left, right);
       while (right - left == L) {
         // window.remove
         if (seen.count(windowHash)) {
-          fmt::print("already seen {}\n", windowHash);
+          // fmt::print("already seen {}\n", windowHash);
           temp = s.substr(left, L);
-          if (!res_hash.count(temp)){
+          if (!res_hash.count(temp)) {
             res_hash[temp] = 1;
             res.push_back(temp);
           }
@@ -70,10 +76,11 @@ class Solution {
         left++;
       }
     }
-    fmt::print("{}\n", res);
+    // fmt::print("{}\n", res);
     return res;
   }
 };
+// @lc code=end
 
 int main() {
   string s = "AAAAAAAAAAAAA";
