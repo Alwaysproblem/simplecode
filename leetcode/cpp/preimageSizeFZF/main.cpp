@@ -1,3 +1,8 @@
+/*
+ * @lc app=leetcode.cn id=793 lang=cpp
+ *
+ * [793] 阶乘函数后 K 个零
+ */
 #include <fmt/format.h>
 #include <fmt/ranges.h>
 
@@ -8,6 +13,7 @@
 
 using namespace std;
 
+// @lc code=start
 class Solution {
  public:
   long trailingZeroes(long n) {
@@ -49,11 +55,12 @@ class Solution {
   }
 
   int preimageSizeFZF(int K) {
-    fmt::print("{}\n", right_bound(K));
-    fmt::print("{}\n", left_bound(K));
+    // fmt::print("{}\n", right_bound(K));
+    // fmt::print("{}\n", left_bound(K));
     return (int)(right_bound(K) - left_bound(K) + 1);
   }
 };
+// @lc code=end
 
 int main() {
   int k = 0;
