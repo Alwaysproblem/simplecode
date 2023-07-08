@@ -1,3 +1,8 @@
+/*
+ * @lc app=leetcode.cn id=337 lang=cpp
+ *
+ * [337] 打家劫舍 III
+ */
 #include <fmt/format.h>
 #include <fmt/ranges.h>
 
@@ -15,6 +20,7 @@ using TreeNode = BinaryTree::BinaryTreeNode<int>;
 using BinaryTree::BuildBinaryTree;
 using BinaryTree::showBinaryTree;
 
+// @lc code=start
 class Solution {
  public:
   unordered_map<TreeNode*, int> mem{};
@@ -44,6 +50,7 @@ class Solution {
   }
   int rob(TreeNode* root) { return backtrack(root); }
 };
+// @lc code=end
 
 int main() {
   const int null = BinaryTree::null<int>();
