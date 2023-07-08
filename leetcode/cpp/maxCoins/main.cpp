@@ -1,3 +1,8 @@
+/*
+ * @lc app=leetcode.cn id=312 lang=cpp
+ *
+ * [312] 你可以获得的最大硬币数目
+ */
 #include <fmt/format.h>
 #include <fmt/ranges.h>
 
@@ -7,6 +12,7 @@
 
 using namespace std;
 
+// @lc code=start
 class Solution {
  public:
   int maxCoins(vector<int>& nums) {
@@ -25,10 +31,11 @@ class Solution {
         }
       }
     }
-    fmt::print("{}\n", fmt::join(dp.begin(), dp.end(), "\n"));
-    return 0;
+    // fmt::print("{}\n", fmt::join(dp.begin(), dp.end(), "\n"));
+    return dp.front().back();
   }
 };
+// @lc code=end
 
 int main() {
   vector<int> nums = {3, 1, 5, 8};
