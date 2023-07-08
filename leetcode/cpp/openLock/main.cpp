@@ -1,3 +1,8 @@
+/*
+ * @lc app=leetcode.cn id=752 lang=cpp
+ *
+ * [752] 打开转盘锁
+ */
 #include <fmt/format.h>
 #include <fmt/ranges.h>
 
@@ -9,6 +14,7 @@
 
 using namespace std;
 
+// @lc code=start
 class Solution {
  public:
   string plusOne(string current, int j) {
@@ -72,6 +78,7 @@ class Solution {
     return BFS("0000", target, deadends_set);
   }
 };
+// @lc code=end
 
 int main() {
   Solution s;
