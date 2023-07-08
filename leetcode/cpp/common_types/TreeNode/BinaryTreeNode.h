@@ -8,6 +8,7 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <queue>
 
 using std::cout;
 using std::queue;
