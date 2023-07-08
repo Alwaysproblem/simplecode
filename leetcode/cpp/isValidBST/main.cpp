@@ -1,3 +1,8 @@
+/*
+ * @lc app=leetcode.cn id=98 lang=cpp
+ *
+ * [98] 验证二叉搜索树
+ */
 #include <fmt/format.h>
 #include <fmt/ranges.h>
 
@@ -14,6 +19,7 @@ using TreeNode = BinaryTree::BinaryTreeNode<int>;
 using BinaryTree::BuildBinaryTree;
 using BinaryTree::showBinaryTree;
 
+// @lc code=start
 class Solution {
  public:
   bool isValidBST_helper(TreeNode *root, TreeNode *min, TreeNode *max) {
@@ -27,6 +33,7 @@ class Solution {
     return isValidBST_helper(root, nullptr, nullptr);
   }
 };
+// @lc code=end
 
 int main() {
   const int null = BinaryTree::null<int>();
