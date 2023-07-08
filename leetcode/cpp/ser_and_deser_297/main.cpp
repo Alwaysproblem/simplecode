@@ -1,3 +1,8 @@
+/*
+ * @lc app=leetcode.cn id=297 lang=cpp
+ *
+ * [297] 二叉树的序列化与反序列化
+ */
 #include <fmt/format.h>
 #include <fmt/ranges.h>
 
@@ -10,21 +15,11 @@
 #include "common_types/TreeNode/BinaryTreeNode.h"
 
 using namespace std;
-// using TreeNode = BinaryTree::BinTree<int>::BinaryTreeNode ;
 using TreeNode = BinaryTree::BinaryTreeNode<int>;
 using BinaryTree::BuildBinaryTree;
 using BinaryTree::showBinaryTree;
 
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
-
+// @lc code=start
 vector<string> split(string str, string delimiter = " ") {
   vector<string> tokens;
   size_t start = 0, end = 0;
@@ -98,6 +93,7 @@ class Codec {
     return root;
   }
 };
+// @lc code=end
 
 // Your Codec object will be instantiated and called as such:
 // Codec ser, deser;
