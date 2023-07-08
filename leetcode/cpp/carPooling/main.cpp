@@ -1,3 +1,8 @@
+/*
+ * @lc app=leetcode.cn id=1094 lang=cpp
+ *
+ * [1094] 拼车
+ */
 #include <fmt/format.h>
 #include <fmt/ranges.h>
 
@@ -7,6 +12,7 @@
 
 using namespace std;
 
+// @lc code=start
 class Solution {
  public:
   bool carPooling(vector<vector<int>>& trips, int capacity) {
@@ -19,7 +25,7 @@ class Solution {
       diff[from_] += nums_pass;
       diff[to_] += -nums_pass;
     }
-    fmt::print("{}\n", diff);
+    // fmt::print("{}\n", diff);
     int total_sum = 0;
     for (int& x : diff) {
       total_sum += x;
@@ -28,6 +34,7 @@ class Solution {
     return true;
   }
 };
+// @lc code=end
 
 int main() {
   vector<vector<int>> trips = {{2, 1, 5}, {3, 5, 7}};
