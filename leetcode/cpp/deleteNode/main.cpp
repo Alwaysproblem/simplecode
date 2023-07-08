@@ -1,3 +1,8 @@
+/*
+ * @lc app=leetcode.cn id=450 lang=cpp
+ *
+ * [450] 删除二叉搜索树中的节点
+ */
 #include <fmt/format.h>
 #include <fmt/ranges.h>
 
@@ -14,6 +19,7 @@ using TreeNode = BinaryTree::BinaryTreeNode<int>;
 using BinaryTree::BuildBinaryTree;
 using BinaryTree::showBinaryTree;
 
+// @lc code=start
 class Solution {
  public:
   TreeNode* deleteNode(TreeNode* root, int key) {
@@ -34,6 +40,7 @@ class Solution {
     return root;
   }
 };
+// @lc code=end
 
 int main() {
   const int null = BinaryTree::null<int>();
