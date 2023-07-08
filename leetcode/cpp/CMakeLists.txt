@@ -20,6 +20,7 @@ add_subdirectory(permutation)
 add_subdirectory(permute_unique)
 add_subdirectory(subsets)
 add_subdirectory(coinChange)
+add_subdirectory(binsearch)
 add_subdirectory(change)
 add_subdirectory(openLock)
 add_subdirectory(minDepth)
@@ -72,5 +73,3 @@ add_subdirectory(allPathsSourceTarget)
 add_subdirectory(networkDelayTime)
 add_subdirectory(strStr)
 add_subdirectory(maximalSquare)
-
-
