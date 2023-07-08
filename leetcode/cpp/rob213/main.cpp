@@ -1,3 +1,8 @@
+/*
+ * @lc app=leetcode.cn id=213 lang=cpp
+ *
+ * [213] 打家劫舍 II
+ */
 #include <fmt/format.h>
 #include <fmt/ranges.h>
 
@@ -7,6 +12,7 @@
 
 using namespace std;
 
+// @lc code=start
 class Solution {
  public:
   int robRange(vector<int>& nums, int start, int end) {
@@ -18,7 +24,7 @@ class Solution {
       else
         dp[i] = max(dp[i - 1], dp[0] + nums[i - 1]);
     }
-    fmt::print("{}\n", dp);
+    // fmt::print("{}\n", dp);
     return dp[end];
   }
 
@@ -28,10 +34,11 @@ class Solution {
     int s1 = robRange(nums, 1, n - 1);
     int s2 = robRange(nums, 1, n - 2) + nums[n - 1];
     int s3 = robRange(nums, 2, n - 1) + nums[0];
-    fmt::print("{}, {}, {}\n", s1, s2, s3);
+    // fmt::print("{}, {}, {}\n", s1, s2, s3);
     return max(max(s1, s2), s3);
   }
 };
+// @lc code=end
 
 int main() {
   vector<int> nums = {1, 2, 3, 1};
