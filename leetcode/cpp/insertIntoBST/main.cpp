@@ -1,3 +1,8 @@
+/*
+ * @lc app=leetcode.cn id=701 lang=cpp
+ *
+ * [701] 二叉搜索树中的插入操作
+ */
 #include <fmt/format.h>
 #include <fmt/ranges.h>
 
@@ -14,6 +19,7 @@ using TreeNode = BinaryTree::BinaryTreeNode<int>;
 using BinaryTree::BuildBinaryTree;
 using BinaryTree::showBinaryTree;
 
+// @lc code=start
 class Solution {
  public:
   TreeNode* insertIntoBST(TreeNode* root, int val) {
@@ -26,6 +32,7 @@ class Solution {
     return root;
   }
 };
+// @lc code=end
 
 int main() {
   const int null = BinaryTree::null<int>();
@@ -34,7 +41,7 @@ int main() {
   showBinaryTree<int>(root);
   int val = 6;
   Solution sol;
-  TreeNode *r = sol.insertIntoBST(root, val);
+  TreeNode* r = sol.insertIntoBST(root, val);
   showBinaryTree<int>(root);
   return 0;
 }
