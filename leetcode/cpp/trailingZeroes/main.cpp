@@ -1,3 +1,8 @@
+/*
+ * @lc app=leetcode.cn id=172 lang=cpp
+ *
+ * [172] 完全二叉树的节点个数
+ */
 #include <fmt/format.h>
 #include <fmt/ranges.h>
 
@@ -7,6 +12,7 @@
 
 using namespace std;
 
+// @lc code=start
 class Solution {
  public:
   int trailingZeroes(int n) {
@@ -17,6 +23,7 @@ class Solution {
     return res;
   }
 };
+// @lc code=end
 
 int main() {
   int n = 5;
