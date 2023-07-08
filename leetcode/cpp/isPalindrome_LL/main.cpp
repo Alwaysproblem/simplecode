@@ -1,3 +1,8 @@
+/*
+ * @lc app=leetcode.cn id=234 lang=cpp
+ *
+ * [234] 回文链表
+ */
 #include <fmt/format.h>
 #include <fmt/ranges.h>
 
@@ -10,6 +15,7 @@
 using namespace std;
 using ListNode = LinkedListNode<int>;
 
+// @lc code=start
 class Solution {
  public:
   ListNode *comp = nullptr;
@@ -33,6 +39,7 @@ class Solution {
     return true;
   }
 };
+// @lc code=end
 
 int main() {
   vector<int> v = {1, 2, 4, 3, 2, 1};
