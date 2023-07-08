@@ -1,3 +1,8 @@
+/*
+ * @lc app=leetcode.cn id=72 lang=cpp
+ *
+ * [72] 编辑距离
+ */
 #include <fmt/format.h>
 #include <fmt/ranges.h>
 
@@ -9,6 +14,10 @@
 
 using namespace std;
 
+void print_solution(const string word1, const string word2,
+                    vector<vector<int>>& action);
+
+// @lc code=start
 class Solution {
  public:
   enum Choice { INSERT = 0, REPLACE, DELETE, SKIP };
@@ -22,55 +31,6 @@ class Solution {
       c = Choice::REPLACE;
     }
     return c;
-  }
-
-  void print_solution(const string word1, const string word2,
-                      vector<vector<int>>& action) {
-    unordered_map<int, string> action_print_table{{Choice::INSERT, "INSERT"},
-                                                  {Choice::REPLACE, "REPLACE"},
-                                                  {Choice::DELETE, "DELETE"},
-                                                  {Choice::SKIP, "SKIP"}};
-    int row = word2.size();
-    int col = word1.size();
-    vector<pair<string, char>> action_order{};
-    string a = "";
-    while (row > 0 && col > 0) {
-      if (action[row][col] == Choice::SKIP) {
-        // fmt::print("{} ", action_print_table[action[row][col]]);
-        row--;
-        col--;
-      } else if (action[row][col] == Choice::REPLACE) {
-        // fmt::print("{} ", action_print_table[action[row][col]]);
-        action_order.push_back(make_pair("replace", word1[col - 1]));
-        row--;
-        col--;
-      } else if (action[row][col] == Choice::DELETE) {
-        // fmt::print("{} ", action_print_table[action[row][col]]);
-        action_order.push_back(make_pair("delete", word1[col - 1]));
-        col--;
-      } else if (action[row][col] == Choice::INSERT) {
-        // fmt::print("{} ", action_print_table[action[row][col]]);
-        action_order.push_back(make_pair("insert", word1[col - 1]));
-        row--;
-      }
-      // fmt::print("{}\n", word1[col]);
-    }
-    if (row == 0 && col != 0) {
-      while (col > 0) {
-        action_order.push_back(make_pair("delete", word1[col - 1]));
-        col--;
-      }
-    } else if (row != 0 && col == 0) {
-      while (row > 0) {
-        action_order.push_back(make_pair("insert", word2[row - 1]));
-        row--;
-      }
-    }
-
-    reverse(action_order.begin(), action_order.end());
-    for (auto& p : action_order) {
-      fmt::print("action: {}, target: {}\n", p.first, p.second);
-    }
   }
 
   int minDistance(string word1, string word2) {
@@ -103,15 +63,61 @@ class Solution {
         }
       }
     }
-    // fmt::print("{}\n", fmt::join(dp.begin(), dp.end(), "\n"));
-    // cout << "the action mapping is 0 -> insertion, 2 -> deletion, 1 -> "
-    //         "replacement, 3 -> skip."
-    //      << endl;
-    // fmt::print("{}\n", fmt::join(actions.begin(), actions.end(), "\n"));
-    print_solution(word1, word2, actions);
+    // print_solution(word1, word2, actions);
     return dp.back().back();
   }
 };
+// @lc code=end
+
+void print_solution(const string word1, const string word2,
+                    vector<vector<int>>& action) {
+  unordered_map<int, string> action_print_table{{Solution::Choice::INSERT, "INSERT"},
+                                                {Solution::Choice::REPLACE, "REPLACE"},
+                                                {Solution::Choice::DELETE, "DELETE"},
+                                                {Solution::Choice::SKIP, "SKIP"}};
+  fmt::print("from {} to {}: \n", word1, word2);
+  int row = word2.size();
+  int col = word1.size();
+  vector<pair<string, char>> action_order{};
+  string a = "";
+  while (row > 0 && col > 0) {
+    if (action[row][col] == Solution::Choice::SKIP) {
+      // fmt::print("{} ", action_print_table[action[row][col]]);
+      row--;
+      col--;
+    } else if (action[row][col] == Solution::Choice::REPLACE) {
+      // fmt::print("{} ", action_print_table[action[row][col]]);
+      action_order.push_back(make_pair("replace", word1[col - 1]));
+      row--;
+      col--;
+    } else if (action[row][col] == Solution::Choice::DELETE) {
+      // fmt::print("{} ", action_print_table[action[row][col]]);
+      action_order.push_back(make_pair("delete", word1[col - 1]));
+      col--;
+    } else if (action[row][col] == Solution::Choice::INSERT) {
+      // fmt::print("{} ", action_print_table[action[row][col]]);
+      action_order.push_back(make_pair("insert", word1[col - 1]));
+      row--;
+    }
+    // fmt::print("{}\n", word1[col]);
+  }
+  if (row == 0 && col != 0) {
+    while (col > 0) {
+      action_order.push_back(make_pair("delete", word1[col - 1]));
+      col--;
+    }
+  } else if (row != 0 && col == 0) {
+    while (row > 0) {
+      action_order.push_back(make_pair("insert", word2[row - 1]));
+      row--;
+    }
+  }
+
+  reverse(action_order.begin(), action_order.end());
+  for (auto& p : action_order) {
+    fmt::print("action: {}, target: {}\n", p.first, p.second);
+  }
+}
 
 int main() {
   string word1 = "fucking", word2 = "funk";
