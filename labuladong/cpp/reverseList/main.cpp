@@ -26,9 +26,9 @@ class Solution {
 
   // method 2
   // `ListNode* &tail_ptr` This is the reference of ListNode ptr.
-  // with this `tail_ptr = head;` can be worked or every time the code 
+  // with this `tail_ptr = head;` can be worked or every time the code
   // use the `tail_ptr` will be a copy of value not reference.
-  ListNode* reverseList1_helper(ListNode* head, ListNode* &tail_ptr) {
+  ListNode* reverseList1_helper(ListNode* head, ListNode*& tail_ptr) {
     if (!head) return nullptr;
     if (!head->next) {
       tail_ptr = head;
@@ -40,12 +40,11 @@ class Solution {
     return head;
   }
 
-  ListNode* reverseList1(ListNode* head){
+  ListNode* reverseList1(ListNode* head) {
     ListNode* tail_ptr = nullptr;
     reverseList1_helper(head, tail_ptr);
     return tail_ptr;
   }
-
 
   // method 3
   ListNode* reverseList2(ListNode* head) {
@@ -53,10 +52,10 @@ class Solution {
     if (!head->next) {
       return head;
     }
-    ListNode *cur = head;
-    ListNode *nex = nullptr;
-    ListNode *pre = nullptr;
-    while (cur->next){
+    ListNode* cur = head;
+    ListNode* nex = nullptr;
+    ListNode* pre = nullptr;
+    while (cur->next) {
       nex = cur->next;
       cur->next = pre;
       pre = cur;
