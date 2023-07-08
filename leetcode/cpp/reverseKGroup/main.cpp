@@ -1,3 +1,8 @@
+/*
+ * @lc app=leetcode.cn id=25 lang=cpp
+ *
+ * [25] K 个一组翻转链表
+ */
 #include <fmt/format.h>
 #include <fmt/ranges.h>
 
@@ -10,6 +15,7 @@
 using namespace std;
 using ListNode = LinkedListNode<int>;
 
+// @lc code=start
 class Solution {
  public:
   ListNode* reverse(ListNode* head, ListNode* target) {
@@ -35,6 +41,7 @@ class Solution {
     return new_head;
   }
 };
+// @lc code=end
 
 int main() {
   vector<int> v = {1, 2, 3, 4, 5};
