@@ -1,3 +1,8 @@
+/*
+ * @lc app=leetcode.cn id=743 lang=cpp
+ *
+ * [743] 网络延迟时间
+ */
 // Note: Dijkstra cpp implementation.
 #include <fmt/format.h>
 #include <fmt/ranges.h>
@@ -11,6 +16,24 @@
 
 using namespace std;
 
+void print_path(vector<int> &prev, int target) {
+  if (!prev.size()) return;
+  vector<int> path{};
+  int cur = target;
+  while (prev[cur] != -1) {
+    path.push_back(cur);
+    cur = prev[cur];
+  }
+  path.push_back(cur);
+  while (path.size()) {
+    fmt::print("{}", path.back());
+    if (path.size() != 1) fmt::print(" -> ");
+    path.pop_back();
+  }
+  fmt::print("\n");
+}
+
+// @lc code=start
 class Solution {
  public:
   vector<vector<int>> graph;
@@ -33,32 +56,15 @@ class Solution {
     }
   }
 
-  void print_path(vector<int> &prev, int target) {
-    if (!prev.size()) return;
-    vector<int> path{};
-    int cur = target;
-    while (prev[cur] != -1) {
-      path.push_back(cur);
-      cur = prev[cur];
-    }
-    path.push_back(cur);
-    while (path.size()) {
-      fmt::print("{}", path.back());
-      if (path.size() != 1) fmt::print(" -> ");
-      path.pop_back();
-    }
-    fmt::print("\n");
-  }
-
   int networkDelayTime(vector<vector<int>> &times, int n, int k) {
     // setup Graph
     graph.assign(n + 1, vector<int>(n + 1, -1));
     for (vector<int> &x : times) {
       if (x[0] < 1 || x[0] > n) {
-        fmt::print("Error!");
+        // fmt::print("Error!");
         return -1;
       } else if (x[1] < 1 || x[1] > n) {
-        fmt::print("Error!");
+        // fmt::print("Error!");
         return -1;
       } else {
         graph.at(x[0]).at(x[1]) = x[2];
@@ -92,9 +98,9 @@ class Solution {
       }
       depth++;
     }
-    fmt::print("{}\n", cost);
-    fmt::print("{}\n", prev);
-    print_path(prev, 3);
+    // fmt::print("{}\n", cost);
+    // fmt::print("{}\n", prev);
+    // print_path(prev, 3);
     for (int j = 1; j < prev.size(); j++) {
       if (j != k && prev[j] == -1) return -1;
     }
@@ -105,6 +111,7 @@ class Solution {
     return max_val;
   }
 };
+// @lc code=end
 
 int main() {
   // vector<vector<int>> times = {{1, 2, 1}};
