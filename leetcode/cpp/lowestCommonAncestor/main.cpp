@@ -37,15 +37,11 @@ class Solution {
     if (root == q) return q;
 
     TreeNode *lca_l = nullptr, *lca_r = nullptr;
-    if (root->left)
-      lca_l = lowestCommonAncestor(root->left, p, q);
-    if (root->right)
-      lca_r = lowestCommonAncestor(root->right, p, q);
+    if (root->left) lca_l = lowestCommonAncestor(root->left, p, q);
+    if (root->right) lca_r = lowestCommonAncestor(root->right, p, q);
 
-    if (lca_l == nullptr)
-      return lca_r;
-    if (lca_r == nullptr)
-      return lca_l;
+    if (lca_l == nullptr) return lca_r;
+    if (lca_r == nullptr) return lca_l;
     if (lca_r == nullptr && lca_l == nullptr) return nullptr;
     return root;
   }

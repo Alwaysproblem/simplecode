@@ -25,15 +25,16 @@ class Solution {
     for (int i = 0; i < left - 1; i++) {
       pre = pre->next;
     }
-    ListNode *cur = pre->next;
-    ListNode *next = nullptr;
-    for (int i = 0; i < right - left; i++){
+    ListNode* cur = pre->next;
+    ListNode* next = nullptr;
+    for (int i = 0; i < right - left; i++) {
       next = cur->next;
       cur->next = next->next;
-      next->next = pre->next; // ! here, from second iteration the `cur` != `pre->next`.
+      next->next =
+          pre->next;  // ! here, from second iteration the `cur` != `pre->next`.
       pre->next = next;
     }
-    ListNode *ret = dummyNode->next;
+    ListNode* ret = dummyNode->next;
     delete dummyNode;
     return ret;
   }

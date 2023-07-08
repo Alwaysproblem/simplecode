@@ -71,10 +71,11 @@ class Solution {
 
 void print_solution(const string word1, const string word2,
                     vector<vector<int>>& action) {
-  unordered_map<int, string> action_print_table{{Solution::Choice::INSERT, "INSERT"},
-                                                {Solution::Choice::REPLACE, "REPLACE"},
-                                                {Solution::Choice::DELETE, "DELETE"},
-                                                {Solution::Choice::SKIP, "SKIP"}};
+  unordered_map<int, string> action_print_table{
+      {Solution::Choice::INSERT, "INSERT"},
+      {Solution::Choice::REPLACE, "REPLACE"},
+      {Solution::Choice::DELETE, "DELETE"},
+      {Solution::Choice::SKIP, "SKIP"}};
   fmt::print("from {} to {}: \n", word1, word2);
   int row = word2.size();
   int col = word1.size();

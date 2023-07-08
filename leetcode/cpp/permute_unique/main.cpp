@@ -3,10 +3,10 @@
  *
  * [47] 全排列 II
  */
+#include <algorithm>
 #include <iostream>
 #include <unordered_map>
 #include <vector>
-#include <algorithm>
 
 using namespace std;
 

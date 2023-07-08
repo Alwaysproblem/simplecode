@@ -25,26 +25,25 @@ class Solution {
     dp[0][pat[0]] = 1;
     int X = 0;
     for (int j = 1; j < M; j++) {
-      for (int c = 0; c < all_char_len; c++)
-        dp[j][c] = dp[X][c];
+      for (int c = 0; c < all_char_len; c++) dp[j][c] = dp[X][c];
       dp[j][pat.at(j)] = j + 1;
       X = dp[X][pat.at(j)];
     }
     // fmt::print("{}\n", dp);
   }
 
-  int search(const string &txt){
+  int search(const string &txt) {
     int N = txt.size();
     int M = pat.size();
     int j = 0;
-    for (int i = 0; i < N;i++ ){
+    for (int i = 0; i < N; i++) {
       j = dp[j][txt.at(i)];
       if (j == M) return i - M + 1;
     }
     return -1;
   }
 
-  int strStr(string &haystack, string &needle) { 
+  int strStr(string &haystack, string &needle) {
     KMP(needle);
     return search(haystack);
   }

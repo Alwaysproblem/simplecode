@@ -9,8 +9,8 @@
 #include <iostream>
 #include <queue>
 #include <string>
-#include <unordered_set>
 #include <unordered_map>
+#include <unordered_set>
 #include <vector>
 
 #include "common_types/TreeNode/BinaryTreeNode.h"
@@ -32,7 +32,7 @@ class Solution {
     // if not choose root
     int max_val = 0;
     max_val = max(max_val, backtrack(root->left) + backtrack(root->right));
-    
+
     // if choose root;
     int sums = 0;
     if (root->left) {

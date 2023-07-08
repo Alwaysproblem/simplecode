@@ -4,11 +4,11 @@
 #include <algorithm>
 #include <iostream>
 #include <limits>
+#include <queue>
 #include <random>
 #include <sstream>
 #include <string>
 #include <vector>
-#include <queue>
 
 using std::cout;
 using std::queue;
