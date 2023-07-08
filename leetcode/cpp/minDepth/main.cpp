@@ -1,3 +1,8 @@
+/*
+ * @lc app=leetcode.cn id=111 lang=cpp
+ *
+ * [111] 二叉树的最小深度
+ */
 #include <fmt/format.h>
 #include <fmt/ranges.h>
 
@@ -14,6 +19,7 @@ using TreeNode = BinaryTree::BinaryTreeNode<int>;
 using BinaryTree::BuildBinaryTree;
 using BinaryTree::showBinaryTree;
 
+// @lc code=start
 class Solution {
  public:
   int minDepth(TreeNode *root) {
@@ -41,6 +47,7 @@ class Solution {
     return depth;
   }
 };
+// @lc code=end
 
 int main(int argc, char **argv) {
   const int null = BinaryTree::null<int>();
