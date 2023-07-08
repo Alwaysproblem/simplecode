@@ -1,3 +1,8 @@
+/*
+ * @lc app=leetcode.cn id=503 lang=cpp
+ *
+ * [503] 下一个更大元素 II
+ */
 #include <fmt/format.h>
 #include <fmt/ranges.h>
 
@@ -8,6 +13,7 @@
 
 using namespace std;
 
+// @lc code=start
 class Solution {
  public:
   vector<int> nextGreaterElements(vector<int>& nums) {
@@ -21,6 +27,7 @@ class Solution {
     return ans;
   }
 };
+// @lc code=end
 
 int main() {
   vector<int> nums = {1, 2, 3, 4, 3};
