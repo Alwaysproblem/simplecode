@@ -1,3 +1,8 @@
+/*
+ * @lc app=leetcode.cn id=10 lang=cpp
+ *
+ * [10] 正则表达式匹配
+ */
 #include <fmt/format.h>
 #include <fmt/ranges.h>
 
@@ -7,6 +12,7 @@
 
 using namespace std;
 
+// @lc code=start
 class Solution {
  public:
   bool match(const string &s, const string &p, int i, int j) {
@@ -45,10 +51,11 @@ class Solution {
           dp[i][j] = dp[i][j - 2];
       }
     }
-    fmt::print("{}\n", fmt::join(dp.begin(), dp.end(), "\n"));
+    // fmt::print("{}\n", fmt::join(dp.begin(), dp.end(), "\n"));
     return dp.back().back();
   }
 };
+// @lc code=end
 
 int main() {
   string s = "aa", p = "a*";
