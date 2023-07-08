@@ -1,3 +1,8 @@
+/*
+ * @lc app=leetcode.cn id=438 lang=cpp
+ *
+ * [438] 找到字符串中所有字母异位词
+ */
 #include <fmt/format.h>
 #include <fmt/ranges.h>
 
@@ -7,6 +12,7 @@
 
 using namespace std;
 
+// @lc code=start
 class Solution {
  public:
   vector<int> findAnagrams(string s, string p) {
@@ -27,7 +33,7 @@ class Solution {
         if (need[c] == window[c]) valid++;
       }
 
-      fmt::print("({}, {})\n", left, right);
+      // fmt::print("({}, {})\n", left, right);
 
       while (left < right && right - left == p.size()) {
         if (valid == need.size()) {
@@ -46,6 +52,7 @@ class Solution {
     return starts;
   }
 };
+// @lc code=end
 
 int main() {
   Solution sol;
