@@ -1,3 +1,8 @@
+/*
+ * @lc app=leetcode.cn id=518 lang=cpp
+ *
+ * [518] 零钱兑换 II
+ */
 #include <fmt/format.h>
 #include <fmt/ranges.h>
 
@@ -7,6 +12,7 @@
 
 using namespace std;
 
+// @lc code=start
 class Solution {
  public:
   int change(int amount, vector<int>& coins) {
@@ -28,10 +34,11 @@ class Solution {
           dp.at(a).at(j) = dp.at(a).at(j - 1);
       }
     }
-    fmt::print("{}", dp);
+    // fmt::print("{}", dp);
     return dp.at(amount).at(coins.size());
   }
 };
+// @lc code=end
 
 int main() {
   Solution s;
