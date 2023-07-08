@@ -1,3 +1,8 @@
+/*
+ * @lc app=leetcode.cn id=19 lang=cpp
+ *
+ * [19] 完全二叉树的节点个数
+ */
 #include <fmt/format.h>
 #include <fmt/ranges.h>
 
@@ -10,6 +15,7 @@
 using namespace std;
 using ListNode = LinkedListNode<int>;
 
+// @lc code=start
 class Solution {
  public:
   ListNode* getKthFromEnd(ListNode* head, int k) {
@@ -28,6 +34,7 @@ class Solution {
     return slow->next;
   }
 };
+// @lc code=end
 
 int main() {
   Solution s;
