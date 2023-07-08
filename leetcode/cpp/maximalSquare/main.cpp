@@ -1,7 +1,7 @@
 /*
  * @lc app=leetcode.cn id=221 lang=cpp
  *
- * [221] 完全二叉树的节点个数
+ * [221] 最大正方形
  */
 #include <fmt/format.h>
 #include <fmt/ranges.h>
