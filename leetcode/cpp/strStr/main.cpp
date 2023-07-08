@@ -1,3 +1,8 @@
+/*
+ * @lc app=leetcode.cn id=28 lang=cpp
+ *
+ * [28] 找出字符串中第一个匹配项的下标
+ */
 #include <fmt/format.h>
 #include <fmt/ranges.h>
 
@@ -7,6 +12,7 @@
 
 using namespace std;
 
+// @lc code=start
 class Solution {
  public:
   string pat{};
@@ -43,6 +49,7 @@ class Solution {
     return search(haystack);
   }
 };
+// @lc code=end
 
 int main() {
   string haystack = "leetcode", needle = "leet";
