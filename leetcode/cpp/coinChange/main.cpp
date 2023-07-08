@@ -1,3 +1,9 @@
+/*
+ * @lc app=leetcode.cn id=322 lang=cpp
+ *
+ * [322] 零钱兑换
+ */
+
 #include <fmt/format.h>
 #include <fmt/ranges.h>
 
@@ -7,6 +13,7 @@
 
 using namespace std;
 
+// @lc code=start
 class Solution {
  public:
   int INF = 1e9;
@@ -24,6 +31,7 @@ class Solution {
     return dp.at(amount) == INF ? -1 : dp.at(amount);
   }
 };
+// @lc code=end
 
 int main() {
   Solution s;
