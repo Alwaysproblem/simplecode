@@ -1,3 +1,8 @@
+/*
+ * @lc app=leetcode.cn id=516 lang=cpp
+ *
+ * [516] 最长回文子序列
+ */
 #include <fmt/format.h>
 #include <fmt/ranges.h>
 
@@ -7,6 +12,7 @@
 
 using namespace std;
 
+// @lc code=start
 class Solution {
  public:
   int longestPalindromeSubseq(string s) {
@@ -24,10 +30,11 @@ class Solution {
           dp[start][end] = max(dp[start + 1][end], dp[start][end - 1]);
       }
     }
-    fmt::print("{}\n", fmt::join(dp.begin(), dp.end(), "\n"));
+    // fmt::print("{}\n", fmt::join(dp.begin(), dp.end(), "\n"));
     return dp.front().back();
   }
 };
+// @lc code=end
 
 int main() {
   string s = "bbbab";
