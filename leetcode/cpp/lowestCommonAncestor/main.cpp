@@ -1,3 +1,8 @@
+/*
+ * @lc app=leetcode.cn id=236 lang=cpp
+ *
+ * [236] 二叉树的最近公共祖先
+ */
 #include <fmt/format.h>
 #include <fmt/ranges.h>
 
@@ -23,6 +28,7 @@ TreeNode *findNode(TreeNode *root, int val) {
   return l != nullptr ? l : r;
 }
 
+// @lc code=start
 class Solution {
  public:
   TreeNode *lowestCommonAncestor(TreeNode *root, TreeNode *p, TreeNode *q) {
@@ -44,6 +50,7 @@ class Solution {
     return root;
   }
 };
+// @lc code=end
 
 int main() {
   const int null = BinaryTree::null<int>();
