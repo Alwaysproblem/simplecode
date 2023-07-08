@@ -1,3 +1,8 @@
+/*
+ * @lc app=leetcode.cn id=372 lang=cpp
+ *
+ * [372] 超级次方
+ */
 #include <fmt/format.h>
 #include <fmt/ranges.h>
 
@@ -7,6 +12,7 @@
 
 using namespace std;
 
+// @lc code=start
 class Solution {
  public:
   const int base = 1337;
@@ -36,6 +42,7 @@ class Solution {
     return (m1 * m2) % base;
   }
 };
+// @lc code=end
 
 int main() {
   int a = 2147483647;
