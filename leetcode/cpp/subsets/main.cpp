@@ -1,3 +1,8 @@
+/*
+ * @lc app=leetcode.cn id=78 lang=cpp
+ *
+ * [78] 子集
+ */
 #include <fmt/ranges.h>
 
 #include <algorithm>
@@ -7,6 +12,7 @@
 
 using namespace std;
 
+// @lc code=start
 class Solution {
  public:
   vector<vector<int>> res{};
@@ -45,6 +51,7 @@ class Solution {
     }
   }
 };
+// @lc code=end
 
 int main() {
   Solution s;
