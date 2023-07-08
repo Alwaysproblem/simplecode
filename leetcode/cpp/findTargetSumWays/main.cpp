@@ -1,3 +1,8 @@
+/*
+ * @lc app=leetcode.cn id=494 lang=cpp
+ *
+ * [494] 目标和
+ */
 #include <fmt/format.h>
 #include <fmt/ranges.h>
 
@@ -7,6 +12,7 @@
 
 using namespace std;
 
+// @lc code=start
 class Solution {
  public:
   /*
@@ -32,7 +38,7 @@ class Solution {
           dp[i][j] = dp[i - 1][j];
       }
     }
-    fmt::print("{}\n", fmt::join(dp.begin(), dp.end(), "\n"));
+    // fmt::print("{}\n", fmt::join(dp.begin(), dp.end(), "\n"));
     return dp.back().back();
   }
 
@@ -45,6 +51,7 @@ class Solution {
     return pack(nums, (total_sum - target) / 2);
   }
 };
+// @lc code=end
 
 int main() {
   vector<int> nums = {100, 100};
