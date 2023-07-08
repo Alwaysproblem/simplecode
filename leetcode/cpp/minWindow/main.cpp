@@ -1,3 +1,8 @@
+/*
+ * @lc app=leetcode.cn id=76 lang=cpp
+ *
+ * [76] 最小覆盖子串
+ */
 #include <fmt/format.h>
 #include <fmt/ranges.h>
 
@@ -7,6 +12,7 @@
 
 using namespace std;
 
+// @lc code=start
 class Solution {
  public:
   string minWindow(string s, string t) {
@@ -29,7 +35,7 @@ class Solution {
         if (window[c] == need[c]) valid++;
       }
 
-      fmt::print("({}, {})\n", left, right);
+      // fmt::print("({}, {})\n", left, right);
 
       while (valid == need.size()) {
         if (len > right - left) {
@@ -45,10 +51,11 @@ class Solution {
         }
       }
     }
-    fmt::print("len: {} start: {}\n", len, start);
+    // fmt::print("len: {} start: {}\n", len, start);
     return len == INTMAX ? "" : s.substr(start, len);
   }
 };
+// @lc code=end
 
 int main() {
   Solution sol;
