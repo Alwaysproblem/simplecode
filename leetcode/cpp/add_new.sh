@@ -1,6 +1,6 @@
 #!/bin/bash
 
-_template=${2:-"temp"}
+_template=${2:-"template"}
 
 if [[ -d $1 ]]; then
   echo "The $1 already exsist."
