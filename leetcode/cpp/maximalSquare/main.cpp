@@ -1,3 +1,8 @@
+/*
+ * @lc app=leetcode.cn id=221 lang=cpp
+ *
+ * [221] 完全二叉树的节点个数
+ */
 #include <fmt/format.h>
 #include <fmt/ranges.h>
 
@@ -7,6 +12,7 @@
 
 using namespace std;
 
+// @lc code=start
 class Solution {
  public:
   int maximalSquare(vector<vector<char>>& matrix) {
@@ -39,10 +45,11 @@ class Solution {
       }
     }
 
-    fmt::print("{}\n", fmt::join(dp.begin(), dp.end(), "\n"));
+    // fmt::print("{}\n", fmt::join(dp.begin(), dp.end(), "\n"));
     return max_value * max_value;
   }
 };
+// @lc code=end
 
 int main() {
   std::vector<vector<char>> matrix = {{
