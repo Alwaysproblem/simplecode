@@ -16,5 +16,3 @@ else
 fi
 
 echo "add_subdirectory($1)" >> CMakeLists.txt
-
-
