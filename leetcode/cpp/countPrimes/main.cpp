@@ -1,3 +1,8 @@
+/*
+ * @lc app=leetcode.cn id=204 lang=cpp
+ *
+ * [204] 计数质数
+ */
 #include <fmt/format.h>
 #include <fmt/ranges.h>
 
@@ -7,6 +12,7 @@
 
 using namespace std;
 
+// @lc code=start
 class Solution {
  public:
   int countPrimes(int n) {
@@ -19,13 +25,14 @@ class Solution {
         }
       }
     }
-    fmt::print("{}\n", isPrime);
+    // fmt::print("{}\n", isPrime);
     for (int i = 2; i < n; i++) {
       if (isPrime[i]) res += 1;
     }
     return res;
   }
 };
+// @lc code=end
 
 int main() {
   int n = 2;
