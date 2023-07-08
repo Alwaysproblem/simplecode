@@ -1,3 +1,8 @@
+/*
+ * @lc app=leetcode.cn id=567 lang=cpp
+ *
+ * [567] 字符串的排列
+ */
 #include <fmt/format.h>
 #include <fmt/ranges.h>
 
@@ -7,6 +12,7 @@
 
 using namespace std;
 
+// @lc code=start
 class Solution {
  public:
   bool checkInclusion(string s1, string s2) {
@@ -28,7 +34,7 @@ class Solution {
         if (need[c] == window[c]) valid ++;
       }
 
-      fmt::print("({}, {})", left, right);
+      // fmt::print("({}, {})", left, right);
 
       while (right - left >= s1.size()){
         if (valid == need.size()) return true;
@@ -44,10 +50,11 @@ class Solution {
     return false;
   }
 };
+// @lc code=end
 
 int main() {
   Solution sol;
-  string s = "abb", t = "eidbabooo";
+  string s = "ab", t = "eidboaoo";
   bool v = sol.checkInclusion(s, t);
   fmt::print("{}\n", v);
   return 0;
