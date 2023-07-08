@@ -1,3 +1,8 @@
+/*
+ * @lc app=leetcode.cn id=700 lang=cpp
+ *
+ * [700] 二叉搜索树中的搜索
+ */
 #include <fmt/format.h>
 #include <fmt/ranges.h>
 
@@ -14,6 +19,7 @@ using TreeNode = BinaryTree::BinaryTreeNode<int>;
 using BinaryTree::BuildBinaryTree;
 using BinaryTree::showBinaryTree;
 
+// @lc code=start
 class Solution {
  public:
   TreeNode* searchBST(TreeNode* root, int val) {
@@ -24,6 +30,7 @@ class Solution {
     return nullptr;
   }
 };
+// @lc code=end
 
 int main() {
   const int null = BinaryTree::null<int>();
