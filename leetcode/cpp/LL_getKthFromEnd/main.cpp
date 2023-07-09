@@ -1,7 +1,7 @@
 /*
  * @lc app=leetcode.cn id=19 lang=cpp
  *
- * [19] 完全二叉树的节点个数
+ * [19] 删除链表的倒数第 N 个结点
  */
 #include <fmt/format.h>
 #include <fmt/ranges.h>
@@ -18,7 +18,7 @@ using ListNode = LinkedListNode<int>;
 // @lc code=start
 class Solution {
  public:
-  ListNode* getKthFromEnd(ListNode* head, int k) {
+  ListNode* removeNthFromEnd(ListNode* head, int k) {
     if (!head) return nullptr;
     if (!k) return nullptr;
     ListNode *slow = head, *fast = head;
@@ -27,22 +27,33 @@ class Solution {
       fast = fast->next;
       count++;
     }
-    if (!fast) return head;
+    if (!fast) {
+      if (count == k) {
+        ListNode* del = head;
+        head = head->next;
+        delete del;
+        return head;
+      }
+      return head;
+    };
 
     for (; fast->next != nullptr; slow = slow->next, fast = fast->next)
       ;
-    return slow->next;
+    ListNode* del = slow->next;
+    slow->next = slow->next->next;
+    delete del;
+    return head;
   }
 };
 // @lc code=end
 
 int main() {
   Solution s;
-  vector<int> v = {1, 2, 3, 4, 5};
+  vector<int> v = {1};
   ListNode* head = BuildLinkedlist<int>(v);
   showLinkedList<int>(head);
-  ListNode* k = s.getKthFromEnd(head, 2);
+  ListNode* k = s.removeNthFromEnd(head, 1);
   showLinkedList<int>(k);
-  DestroyLinkedlist<int>(head);
+  DestroyLinkedlist<int>(k);
   return 0;
 }
