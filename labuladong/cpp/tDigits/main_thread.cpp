@@ -7,6 +7,8 @@
 #include <random>
 #include <vector>
 #include <algorithm>
+#include <thread>
+#include <atomic>
 
 // using namespace std;
 
@@ -15,6 +17,7 @@ class Bin {
   double avg;
   int size;
 
+  virtual void aa() {} ;
   Bin(double _avg, int _size = 1) : avg(_avg), size(_size) {}
 
   // Override the '+' operator to implement merging two bins
@@ -46,8 +49,9 @@ class TDigest {
  public:
   std::vector<Bin> bins;
   int delta;
+  std::atomic_flag lock = ATOMIC_FLAG_INIT;
 
-  TDigest(std::vector<Bin> _bins = {}, int _delta = 10)
+  TDigest(const std::vector<Bin>& _bins = {}, int _delta = 10)
       : bins(_bins), delta(_delta) {
     if (!_bins.empty()) {
       merge_to_bins(_bins);
@@ -67,12 +71,20 @@ class TDigest {
   // Add one element by converting it to a single-element t-digest then
   // concatenating with this one.
   void append(double value) {
+    while (lock.test_and_set(std::memory_order_acquire));
     merge_to_bins({Bin(value)});
     self_compress();
+    lock.clear(std::memory_order_release);
   }
 
-  double get_quantile(double qid) const {
+  double get_quantile(double qid) {
+    double res = double(NAN);
+    while (lock.test_and_set(std::memory_order_acquire));
     auto n = get_elements_count();
+    if (n == 0){
+      lock.clear(std::memory_order_release);
+      return double(NAN);
+    }
     auto idx = qid * n;
 
     auto max_idx = bins[0].size / 2.0;
@@ -88,12 +100,13 @@ class TDigest {
       auto interval_length = (b.size + b_next.size) / 2.0;
       if (idx <= max_idx + interval_length) {
         auto k = (idx - max_idx) / interval_length;
+        lock.clear(std::memory_order_release);
         return b.avg * (1 - k) + b_next.avg * k;
       }
 
       max_idx += interval_length;
     }
-
+    lock.clear(std::memory_order_release);
     return bins.back().avg;
   }
 
@@ -218,6 +231,32 @@ class TDigest {
   }
 };
 
+void producer(TDigest& tdigest, const std::vector<double>& data) {
+  std::vector<float> times;
+  for (const auto& x : data) {
+    auto start_time = std::chrono::high_resolution_clock::now();
+    tdigest.append(x);
+    auto end_time = std::chrono::high_resolution_clock::now();
+    // std::this_thread::sleep_for(std::chrono::microseconds(10));
+    auto elapsed_time = std::chrono::duration_cast<std::chrono::microseconds>(
+        end_time - start_time);
+    times.push_back(elapsed_time.count());
+  }
+  fmt::print("Max Elapsed time: {} microseconds per append\n", *std::max_element(times.begin(), times.end()));
+  fmt::print("Min Elapsed time: {} microseconds per append\n", *std::min_element(times.begin(), times.end()));
+
+  // fmt::print("Elapsed time: {} microseconds per append\n",
+  //            float(elapsed_time.count()) / data.size());
+}
+
+void consumer(TDigest& tdigest, double quantile) {
+  for (int i = 0; i < 10; ++i){
+    tdigest.get_quantile(quantile);
+    fmt::print("Iteration: {}, Quantile: {}\n", i, tdigest.get_quantile(quantile));
+    std::this_thread::sleep_for(std::chrono::seconds(1));
+  }
+}
+
 int main() {
   // Create a random number generator engine
   std::random_device rd;
@@ -232,40 +271,23 @@ int main() {
   // int random_number = dis(gen);
   float random_number = dis(gen);
 //   const long long iters = 10;
-  const long long iters = 10000;
-  const float p = 0.9;
+  const long long iters = 500000;
+  const float p = 0.90;
 
   std::vector<double> data;
   data.reserve(iters);
   for (long long i = 0; i < iters; ++i) {
-    data.push_back(dis(gen));
+    data.push_back(10);
+    // data.push_back(dis(gen));
   }
 
   TDigest tdigest({}, 100);
-  auto start_time = std::chrono::high_resolution_clock::now();
-
-  for (auto d : data) {
-    tdigest.append(d);
-  }
-  auto end_time = std::chrono::high_resolution_clock::now();
-
-  // Print the result
-  fmt::print("P90 number: {}\n", tdigest.get_quantile(p));
-
-  // Calculate the elapsed time
-  auto elapsed_time = std::chrono::duration_cast<std::chrono::microseconds>(
-      end_time - start_time);
-
-  std::sort(data.begin(), data.end());
-  int idx = int(iters * p);
-  fmt::print("correct P90 number: {}\n", data[idx]);
-
-  fmt::print("the related absolute error: {}% \n", std::abs(data[idx] - tdigest.get_quantile(p)) * 100 / data[idx] );
-
-  // Print the result
-  fmt::print("Elapsed time: {} microseconds\n", elapsed_time.count());
-  fmt::print("Elapsed time: {} microseconds per append\n",
-             float(elapsed_time.count()) / iters);
+  // tdigest.append(data[0]);
+  // fmt::print("TDigest quantile: {}\n", tdigest.get_quantile(p));
+  std::thread producer_thread(producer, std::ref(tdigest), std::ref(data));
+  std::thread consumer_thread(consumer, std::ref(tdigest), p);
+  producer_thread.join();
+  consumer_thread.join();
 
   return 0;
 }
