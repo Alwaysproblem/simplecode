@@ -56,6 +56,48 @@ class UnionFind {
 class Solution {
  public:
   // -------------DFS----------------
+  void dfs(vector<vector<char>>& grid, int i, int j,
+           vector<vector<bool>>& visited) {
+    int n = grid.size();
+    int m = grid[0].size();
+
+    if (i < 0 || j < 0 || j >= n || i >= m) return;
+    if (visited[j][i]) return;
+    if (grid[j][i] == '0') return;
+
+    visited[j][i] = true;
+
+    vector<pair<int, int>> actions = {
+        {-1, 0},
+        {0, -1},
+        {1, 0},
+        {0, 1},
+    };
+
+    int x = 0, y = 0;
+    for (auto& p : actions) {
+      x = p.first, y = p.second;
+      dfs(grid, i + x, j + y, visited);
+    }
+  }
+
+  int numIslands(vector<vector<char>>& grid) {
+    int n = grid.size();
+    int m = grid[0].size();
+    vector<vector<bool>> visited(n, vector<bool>(m));
+    int cnt = 0;
+    for (int row = 0; row < n; row++) {
+      for (int col = 0; col < m; col++) {
+        if (!visited[row][col] && grid[row][col] == '1') {
+          dfs(grid, col, row, visited);
+          cnt++;
+        }
+      }
+    }
+
+    // print2D(visited);
+    return cnt;
+  }
 
   // -------------Union Find-----------------
   int get_index(int row, int col, int m) { return col * m + row; }
@@ -163,19 +205,19 @@ class Solution {
 // @lc code=end
 
 int main() {
-  vector<vector<char>> grid = {
-      {'1', '1', '1'}, {'0', '1', '0'}, {'1', '1', '1'}};
+  // vector<vector<char>> grid = {
+  //     {'1', '1', '1'}, {'0', '1', '0'}, {'1', '1', '1'}};
   // vector<vector<char>> grid = {{'1', '1', '0', '0', '0'},
   //                              {'1', '1', '0', '0', '0'},
   //                              {'0', '0', '1', '0', '0'},
   //                              {'0', '0', '0', '1', '1'}};
-  // vector<vector<char>> grid = {{'1', '1', '1', '1', '0'},
-  //                              {'1', '1', '0', '1', '0'},
-  //                              {'1', '1', '0', '0', '0'},
-  //                              {'0', '0', '0', '0', '0'}};
+  vector<vector<char>> grid = {{'1', '1', '1', '1', '0'},
+                               {'1', '1', '0', '1', '0'},
+                               {'1', '1', '0', '0', '0'},
+                               {'0', '0', '0', '0', '0'}};
   print2D(grid);
   Solution sol;
-  auto v = sol.numIslands_with_uf(grid);
+  auto v = sol.numIslands(grid);
   fmt::print("{}\n", v);
   return 0;
 }
