@@ -1,3 +1,8 @@
+/*
+ * @lc app=leetcode.cn id=1143 lang=cpp
+ *
+ * [1143] 最长公共子序列
+ */
 #include <fmt/format.h>
 #include <fmt/ranges.h>
 
@@ -5,8 +10,11 @@
 #include <unordered_map>
 #include <vector>
 
+#include "utils/print_2d.hpp"
+
 using namespace std;
 
+// @lc code=start
 class Solution {
  public:
   int longestCommonSubsequence(string text1, string text2) {
@@ -20,10 +28,11 @@ class Solution {
         }
       }
     }
-    fmt::print("{}\n", fmt::join(dp.begin(), dp.end(), "\n"));
+    // fmt::print("{}\n", fmt::join(dp.begin(), dp.end(), "\n"));
     return dp.back().back();
   }
 };
+// @lc code=end
 
 int main() {
   Solution sol;
