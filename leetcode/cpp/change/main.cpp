@@ -3,6 +3,7 @@
  *
  * [518] 零钱兑换 II
  */
+#include "utils/print_2d.hpp"
 #include <fmt/format.h>
 #include <fmt/ranges.h>
 
@@ -34,7 +35,7 @@ class Solution {
           dp.at(a).at(j) = dp.at(a).at(j - 1);
       }
     }
-    // fmt::print("{}", dp);
+    print2D(dp);
     return dp.at(amount).at(coins.size());
   }
 };
