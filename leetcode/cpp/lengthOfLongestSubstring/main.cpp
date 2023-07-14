@@ -1,7 +1,7 @@
 /*
  * @lc app=leetcode.cn id=3 lang=cpp
  *
- * [3] 完全二叉树的节点个数
+ * [3] 无重复字符的最长子串
  */
 #include <fmt/format.h>
 #include <fmt/ranges.h>

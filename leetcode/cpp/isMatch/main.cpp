@@ -3,6 +3,7 @@
  *
  * [10] 正则表达式匹配
  */
+#include "utils/print_2d.hpp"
 #include <fmt/format.h>
 #include <fmt/ranges.h>
 
@@ -51,7 +52,7 @@ class Solution {
           dp[i][j] = dp[i][j - 2];
       }
     }
-    // fmt::print("{}\n", fmt::join(dp.begin(), dp.end(), "\n"));
+    print2D(dp);
     return dp.back().back();
   }
 };
