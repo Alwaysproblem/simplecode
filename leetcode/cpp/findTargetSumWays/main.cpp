@@ -3,6 +3,7 @@
  *
  * [494] 目标和
  */
+#include "utils/print_2d.hpp"
 #include <fmt/format.h>
 #include <fmt/ranges.h>
 
@@ -38,6 +39,7 @@ class Solution {
           dp[i][j] = dp[i - 1][j];
       }
     }
+    // print2D(dp);
     // fmt::print("{}\n", fmt::join(dp.begin(), dp.end(), "\n"));
     return dp.back().back();
   }
