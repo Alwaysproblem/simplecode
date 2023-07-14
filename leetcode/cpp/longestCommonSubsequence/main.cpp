@@ -28,6 +28,7 @@ class Solution {
         }
       }
     }
+    // print2D(dp);
     // fmt::print("{}\n", fmt::join(dp.begin(), dp.end(), "\n"));
     return dp.back().back();
   }
