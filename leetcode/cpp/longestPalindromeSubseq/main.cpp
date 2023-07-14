@@ -10,6 +10,8 @@
 #include <unordered_map>
 #include <vector>
 
+#include "utils/print_2d.hpp"
+
 using namespace std;
 
 // @lc code=start
@@ -30,6 +32,7 @@ class Solution {
           dp[start][end] = max(dp[start + 1][end], dp[start][end - 1]);
       }
     }
+    print2D(dp);
     // fmt::print("{}\n", fmt::join(dp.begin(), dp.end(), "\n"));
     return dp.front().back();
   }
