@@ -3,6 +3,7 @@
  *
  * [416] 分割等和子集
  */
+#include "utils/print_2d.hpp"
 #include <fmt/format.h>
 #include <fmt/ranges.h>
 
@@ -36,7 +37,7 @@ class Solution {
           dp[i][j] = dp[i - 1][j];
       }
     }
-    // fmt::print("{}\n", fmt::join(dp.begin(), dp.end(), "\n"));
+    // print2D(dp);
     return dp.back().back();
   }
 };
