@@ -69,7 +69,7 @@ class Solution {
     buildGraph(graph, numCourses, prerequisites);
 
     for (int i = 0; i < numCourses; i++) {
-      hasCycle_dfs(graph, i, visited, onPath, has_cycle);
+      if (!visited[i]) hasCycle_dfs(graph, i, visited, onPath, has_cycle);
     }
 
     return !has_cycle;
