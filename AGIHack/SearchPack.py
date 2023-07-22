@@ -89,6 +89,9 @@ class Queue(object):
     def __contains__(self, item):
         return item in self.data
 
+    def __len__(self):
+        return len(self.data)
+
 
 #%%
 import bisect
@@ -145,6 +148,9 @@ class PriorityQueue(object):
         for i, (_, item) in enumerate(self.data):
             if item == key:
                 self.data.pop(i)
+
+    def __len__(self):
+        return len(self.data)
 
 
 # %%
@@ -470,24 +476,18 @@ class DepthFirstSearch(Search):
 
 class Dijkstra(Search):
 
-    def __init__(self, g, src, dest, priority_queue=True):
+    def __init__(self, g, src, dest):
         # TODO setting up a table with the node.index
         super().__init__(g, src, dest)
         self.pathTable = [
             Node(i, cost=inf, state=self.graph.mapVertices[i].state)
             for i in range(self.graph.numV)
         ]
-        self.queue = Queue() if not priority_queue else PriorityQueue(
-            key=lambda x: self.pathTable[x].cost)
-        self.priority_queue = priority_queue
-        # self.unvisited = set()
+        self.queue = Queue()
 
     def relax(self, parent: int, child: int, weight):
-        if self.pathTable[parent].cost + weight < self.pathTable[child].cost:
-            self.pathTable[child].cost = self.pathTable[parent].cost + weight
-            self.pathTable[child].prev = self.pathTable[parent]
-            if self.priority_queue is False:
-                self.queue.Enqueue(child)
+        self.pathTable[child].cost = self.pathTable[parent].cost + weight
+        self.pathTable[child].prev = self.pathTable[parent]
 
     def extend(self, nodeIdx: int):
         if self.graph.mode == 'Alist':
@@ -510,8 +510,9 @@ class Dijkstra(Search):
             cur_indx = self.queue.Dequeue()
             self.visited.add(cur_indx)
             for n_, weight in self.extend(cur_indx):
-                self.relax(cur_indx, n_, weight)
-                if n_ not in self.visited and self.priority_queue:
+                if (self.pathTable[cur_indx].cost + weight
+                        < self.pathTable[n_].cost):
+                    self.relax(cur_indx, n_, weight)
                     self.queue.Enqueue(n_)
 
         self.dest = self.pathTable[self.dest]
@@ -612,7 +613,7 @@ if __name__ == "__main__":
     ufc.findPath()
     ufc.displayPath()
 
-    Djik = Dijkstra(m, src, dest, priority_queue=True)
+    Djik = Dijkstra(m, src, dest)
     Djik.search()
     Djik.findPath()
     Djik.displayPath()
