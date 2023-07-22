@@ -48,12 +48,9 @@ class Solution {
   }
 
   void relax(vector<int> &cost, vector<int> &prev, int parent, int child,
-             int weight, queue<int> &q) {
-    if (cost[parent] + weight < cost[child]) {
-      cost[child] = cost[parent] + weight;
-      prev[child] = parent;
-      q.emplace(child);
-    }
+             int weight) {
+    cost[child] = cost[parent] + weight;
+    prev[child] = parent;
   }
 
   int networkDelayTime(vector<vector<int>> &times, int n, int k) {
@@ -92,8 +89,10 @@ class Solution {
         for (vector<int> &nxt : adjacent(cur)) {
           nxt_node = nxt[0];
           nxt_weight = nxt[1];
-          // if (!visited[nxt_node]) q.emplace(nxt_node);
-          relax(cost, prev, cur, nxt_node, nxt_weight, q);
+          if (cost[cur] + nxt_weight < cost[nxt_node]) {
+            relax(cost, prev, cur, nxt_node, nxt_weight);
+            q.emplace(nxt_node);
+          }
         }
       }
       depth++;
