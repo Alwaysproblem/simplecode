@@ -8,7 +8,9 @@
 #include <fmt/ranges.h>
 
 #include <iostream>
+#include <queue>
 #include <unordered_map>
+#include <unordered_set>
 #include <vector>
 
 #include "utils/print_2d.hpp"
@@ -58,9 +60,7 @@ class Solution {
     onPath[s] = false;
   }
 
-  bool hasCycle_bfs() { return false; }
-
-  bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
+  bool canFinish_DFS(int numCourses, vector<vector<int>>& prerequisites) {
     vector<vector<int>> graph{};
     vector<bool> visited(numCourses, false);
     vector<bool> onPath(numCourses, false);
@@ -73,6 +73,55 @@ class Solution {
     }
 
     return !has_cycle;
+  }
+
+  bool hasCycle_bfs(vector<vector<int>>& graph) {
+    vector<int> inDegree(graph.size(), 0);
+    for (auto& neighbors : graph) {
+      for (int neighbor : neighbors) {
+        inDegree[neighbor]++;
+      }
+    }
+
+    queue<int> q;
+    unordered_set<int> visited;
+    for (int i = 0; i < inDegree.size(); i++) {
+      if (inDegree[i] == 0) {
+        q.push(i);
+        visited.insert(i);
+      }
+    }
+
+    int count = 0;
+    while (!q.empty()) {
+      int node = q.front();
+      q.pop();
+      count++;
+      for (int neighbor : graph[node]) {
+        if (!visited.count(neighbor)) {
+          inDegree[neighbor]--;
+          if (inDegree[neighbor] == 0) {
+            q.push(neighbor);
+            visited.insert(neighbor);
+          }
+        }
+      }
+    }
+    return count == graph.size();
+  }
+
+  bool canFinish_BFS(int numCourses, vector<vector<int>>& prerequisites) {
+    vector<vector<int>> graph{};
+    buildGraph(graph, numCourses, prerequisites);
+    return hasCycle_bfs(graph);
+  }
+
+  bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
+    const string mode = "BFS";
+    if (mode == "DFS")
+      return canFinish_DFS(numCourses, prerequisites);
+    else
+      return canFinish_BFS(numCourses, prerequisites);
   }
 };
 
