@@ -8,7 +8,9 @@
 #include <fmt/ranges.h>
 
 #include <iostream>
+#include <queue>
 #include <unordered_map>
+#include <unordered_set>
 #include <vector>
 
 #include "utils/print_2d.hpp"
@@ -28,8 +30,9 @@ class Solution {
       graph[from].push_back(to);
     }
   }
-  void hasCycle_dfs(vector<vector<int>>& graph, int s, vector<bool>& visited,
-                    vector<bool>& onPath, bool& has_cycle, vector<int>& res) {
+  void topology_order_dfs(vector<vector<int>>& graph, int s,
+                          vector<bool>& visited, vector<bool>& onPath,
+                          bool& has_cycle, vector<int>& res) {
     if (onPath[s]) {
       // 发现环
       has_cycle = true;
@@ -49,7 +52,7 @@ class Solution {
 
     // 递归访问相邻节点
     for (int node : graph[s]) {
-      hasCycle_dfs(graph, node, visited, onPath, has_cycle, res);
+      topology_order_dfs(graph, node, visited, onPath, has_cycle, res);
     }
 
     // 当前节点访问结束,移出路径
@@ -57,7 +60,8 @@ class Solution {
     res.push_back(s);
   }
 
-  vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
+  vector<int> findOrder_DFS(int numCourses,
+                            vector<vector<int>>& prerequisites) {
     vector<vector<int>> graph{};
     vector<bool> visited(numCourses, false);
     vector<bool> onPath(numCourses, false);
@@ -68,7 +72,7 @@ class Solution {
     // print2D(graph);
     for (int i = 0; i < numCourses && !has_cycle; i++) {
       if (!visited[i]) {
-        hasCycle_dfs(graph, i, visited, onPath, has_cycle, res);
+        topology_order_dfs(graph, i, visited, onPath, has_cycle, res);
       }
     }
 
@@ -78,6 +82,59 @@ class Solution {
 
     reverse(res.begin(), res.end());
     return res;
+  }
+
+  vector<int> topology_order_bfs(vector<vector<int>>& graph) {
+    vector<int> in_degree(graph.size(), 0);
+    for (auto& neighbors : graph) {
+      for (int neighbor : neighbors) {
+        in_degree[neighbor]++;
+      }
+    }
+
+    queue<int> q;
+    unordered_set<int> visited;
+    for (int i = 0; i < in_degree.size(); i++) {
+      if (in_degree[i] == 0) {
+        q.push(i);
+        visited.insert(i);
+      }
+    }
+
+    vector<int> res;
+    while (!q.empty()) {
+      int node = q.front();
+      q.pop();
+      res.push_back(node);
+      for (int neighbor : graph[node]) {
+        in_degree[neighbor]--;
+        if (in_degree[neighbor] == 0) {
+          q.push(neighbor);
+          visited.insert(neighbor);
+        }
+      }
+    }
+
+    if (res.size() != graph.size()) {
+      return {};
+    }
+
+    return res;
+  }
+
+  vector<int> findOrder_BFS(int numCourses,
+                            vector<vector<int>>& prerequisites) {
+    vector<vector<int>> graph{};
+    buildGraph(graph, numCourses, prerequisites);
+    return topology_order_bfs(graph);
+  }
+
+  vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {
+    const string mode = "BFS";
+    if (mode == "DFS")
+      return findOrder_DFS(numCourses, prerequisites);
+    else
+      return findOrder_BFS(numCourses, prerequisites);
   }
 };
 // @lc code=end
