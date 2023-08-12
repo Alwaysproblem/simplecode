@@ -31,8 +31,11 @@ class Solution {
   int rob(vector<int>& nums) {
     int n = nums.size();
     if (n == 1) return nums[0];
+    // choose all.
     int s1 = robRange(nums, 1, n - 1);
+    // choose all but the last one since this is loop.
     int s2 = robRange(nums, 1, n - 2) + nums[n - 1];
+    // choose all but the first one.
     int s3 = robRange(nums, 2, n - 1) + nums[0];
     // fmt::print("{}, {}, {}\n", s1, s2, s3);
     return max(max(s1, s2), s3);
