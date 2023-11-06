@@ -7,6 +7,7 @@
 #include <fmt/format.h>
 #include <fmt/ranges.h>
 
+#include <limits>
 #include <iostream>
 #include <unordered_map>
 #include <vector>
@@ -16,7 +17,7 @@ using namespace std;
 // @lc code=start
 class Solution {
  public:
-  int INF = 1e9;
+  int INF = std::numeric_limits<int>::max();
   int dp_min = INF;
   int coinChange(vector<int>& coins, int amount) {
     vector<int> dp(amount + 1, INF);
