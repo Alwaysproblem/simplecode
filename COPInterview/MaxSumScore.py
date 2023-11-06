@@ -6,7 +6,7 @@ import random
 import re
 import sys
 
-#%%[marckdown]
+#%%[markdown]
 # description:
 # 小Q在假期的时候去探险，这个密室可以看成是 n*m 的小格子， 小Q最开始可以选择任意一个格子进入
 # 此后的每一步 只能在  ,(x + 1, y - 1), (x + 1, y + 1), (x + 1, y) 中选择. 每个格子都有数字
