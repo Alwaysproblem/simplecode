@@ -1,0 +1,45 @@
+{
+  "editor.tokenColorCustomizations": {
+    "[*Dark*]": {
+      "comments": {
+        "fontStyle": "italic"
+      },
+      "textMateRules": [
+        {
+          "scope": "meta.function-call.generic.python",
+          "settings": {
+            "fontStyle": "italic"
+          }
+        },
+        {
+          "scope": "variable.parameter.function-call.python",
+          "settings": {
+            "fontStyle": "italic underline"
+          }
+        }
+      ]
+    }
+  },
+  "files.associations": {
+    "*.py": "python",
+    "*.mmd": "mermaid",
+    "*.dockfile": "dockerfile",
+    ".style.yapf": "ini",
+    "*.inc": "cpp",
+    "*.tcc": "cpp",
+    "deque": "cpp",
+    "vector": "cpp",
+    "unordered_map": "cpp",
+    "__hash_table": "cpp",
+    "__node_handle": "cpp",
+    "functional": "cpp",
+    "unordered_set": "cpp",
+    "queue": "cpp"
+  },
+  "python.formatting.provider": "yapf",
+  "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
+  // "cmake.debugConfig": {
+  //     "cwd": "${workspaceFolder}/src",
+  // },
+  "cmake.cmakePath": "/Users/jarvis/opt/anaconda3/envs/cpp-simplecode/bin/cmake",
+}
