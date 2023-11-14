@@ -27,9 +27,7 @@ class Solution {
     return *max_element(dp.begin(), dp.end());
   }
   int lengthOfLIS_nlogn(vector<int>& nums) {
-    // vector<int> top(nums.size());
-    vector<vector<int>> top(nums.size(), vector<int>(nums.size(), 123456));
-    // top.reserve(nums.size());
+    vector<vector<int>> top(nums.size(), vector<int>());
     int piles = 0;
     for (int i = 0; i < nums.size(); i++) {
       int poker = nums[i];
@@ -37,11 +35,11 @@ class Solution {
       int left = 0, right = piles;
       while (right > 0 && left < right) {
         int mid = left + (right - left) / 2;
-        if (top[mid][0] == poker) {
+        if (top[mid].back() == poker) {
           right = mid;
-        } else if (top[mid][0] > poker) {
+        } else if (top[mid].back() > poker) {
           right = mid;
-        } else if (top[mid][0] < poker) {
+        } else if (top[mid].back() < poker) {
           left = mid + 1;
         }
       }
@@ -49,10 +47,8 @@ class Solution {
       if (left == piles) piles++;
       // top[left] = poker;
       top[left].push_back(poker);
-      push_heap(top[left].begin(), top[left].end(),
-                [](int x, int y) { return x > y; });
     }
-    // fmt::print("{}", top);
+    // fmt::print("{}\n", top);
     return piles;
   }
 };
