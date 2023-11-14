@@ -26,6 +26,13 @@ class Solution {
     for (int i = n; i >= 0; i--) {
       for (int j = i + 1; j < n + 2; j++) {
         for (int k = i + 1; k < j; k++) {
+          // i OOO k OOO j
+          // i {dp[i][k]} k {dp[k][j]} j
+          // if we got dp[i][k] and dp[k][j]
+          // then all balloons between i and k have been burst
+          // as well as those between k and j.
+          // so the maximum coins we can get is the sum of dp[i][k], dp[k][j]
+          // and scores[i] * scores[k] * scores[j]
           dp[i][j] = max(dp[i][j], dp[i][k] + dp[k][j] +
                                        scores[i] * scores[k] * scores[j]);
         }
