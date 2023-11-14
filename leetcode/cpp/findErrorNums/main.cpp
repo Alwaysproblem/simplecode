@@ -16,6 +16,18 @@ using namespace std;
 class Solution {
  public:
   vector<int> findErrorNums(vector<int>& nums) {
+    // 1 2 4 2
+    // 0 1 2 3
+    // in normal, the nums is respond to index
+    // if the index is duplicate, the value is negative
+    // if the index is missing, the value is positive
+    // for example:
+    // for `4`, it will change the sign of `nums[3]` to negative
+    // when it comes to `2` again, it will find the duplicate element,
+    // and will change the sign of `nums[1]` to negative, but `nums[1]` is
+    // already negative. So we find the duplicate element is 1(idx) + 1.
+    // Similarly, if there is missing element, we find it by checking the
+    // positive element in nums.
     int n = nums.size();
     int dup = -1, idx = 0;
     for (int i = 0; i < n; i++) {
@@ -40,7 +52,7 @@ class Solution {
 // @lc code=end
 
 int main() {
-  vector<int> nums = {1, 2, 4, 4, 6, 6};
+  vector<int> nums = {1, 2, 4, 2};
   // vector<int> nums = {1, 2, 4, 4, 7, 6}; this will cause malloc error it is
   // new things for debug! you can try it.
   Solution sol;
