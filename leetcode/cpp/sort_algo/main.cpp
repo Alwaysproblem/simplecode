@@ -143,12 +143,32 @@ class Solution {
       heapify(nums, heap_size, largest);  // heapify the affected sub-tree
     }
   }
+
+  vector<int> count_sort(vector<int>& num) {
+    vector<int> nums(num);
+    int max_num = *max_element(nums.begin(), nums.end());
+    vector<int> count(max_num + 1, 0);
+
+    for (int num : nums) {
+      count[num]++;
+    }
+
+    int index = 0;
+    for (int i = 0; i <= max_num; i++) {
+      while (count[i] > 0) {
+        nums[index++] = i;
+        count[i]--;
+      }
+    }
+    return nums;
+  }
 };
 
 int main() {
   vector<int> nums = {5, 7, 8, 1, 6, 2, 10, 78, 34, 9};
   Solution sol;
-  auto v = sol.bubble_sort(nums);
+  vector<int> v;
+  v = sol.bubble_sort(nums);
   fmt::print("bubble_sort: \t{}\n", v);
   v = sol.insertion_sort(nums);
   fmt::print("insertion_sort: {}\n", v);
@@ -158,5 +178,7 @@ int main() {
   fmt::print("merge_sort: \t{}\n", v);
   v = sol.heap_sort(nums);
   fmt::print("heap_sort: \t{}\n", v);
+  v = sol.count_sort(nums);
+  fmt::print("count_sort: \t{}\n", v);
   return 0;
 }
