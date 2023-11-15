@@ -1,1 +1,2 @@
 add_subdirectory(PrintinOrder)
+add_subdirectory(PrintAlternately)
