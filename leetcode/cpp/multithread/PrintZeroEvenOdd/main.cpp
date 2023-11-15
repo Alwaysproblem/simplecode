@@ -17,7 +17,7 @@
 #include <vector>
 
 using namespace std;
-
+// https://zhuanlan.zhihu.com/p/532340603
 // @lc code=start
 class ZeroEvenOdd {
  private:
