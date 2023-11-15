@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.10.0)
 project(simplecode VERSION 0.1.0)
 
 find_package(fmt CONFIG REQUIRED)
+find_package(Threads REQUIRED)
 
 # set(CMAKE_CXX_STANDARD c++17)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
