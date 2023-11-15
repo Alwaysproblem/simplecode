@@ -4,11 +4,11 @@ _target="all"
 _build_dir="manual_build"
 _debug=""
 
-function print_popconda_helper_msg(){
+function print_helper_msg(){
 cat <<"EOF"
 usage:
     for example:
-        $ build_and_run -t 2_sum -- 3 4
+        $ bash build_and_run.sh -t 2_sum -- 3 4
 
     -h, --help: print helpful message
 
@@ -31,10 +31,10 @@ function parse_args_from_console() {
             -g | --debug)           shift
                                     _debug="True"
                                     ;;
-            -h | --help)            print_popconda_helper_msg
+            -h | --help)            print_helper_msg
                                     exit 0
                                     ;;
-            *)                      print_popconda_helper_msg
+            *)                      print_helper_msg
                                     exit 0
                                     ;;
         esac

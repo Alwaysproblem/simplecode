@@ -15,6 +15,7 @@ include(CPack)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR})
 
+add_subdirectory(multithread)
 add_subdirectory(2_sum)
 add_subdirectory(permutation)
 add_subdirectory(permute_unique)
