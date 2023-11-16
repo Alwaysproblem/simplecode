@@ -1,5 +1,5 @@
-#ifndef PRINT_2D_HPP
-#define PRINT_2D_HPP
+#ifndef DEBUG_PRINT_HPP
+#define DEBUG_PRINT_HPP
 
 #include <fmt/format.h>
 #include <fmt/ranges.h>

@@ -13,7 +13,7 @@
 #include <unordered_set>
 #include <vector>
 
-#include "utils/print_2d.hpp"
+#include "utils/debug_print.hpp"
 
 using namespace std;
 

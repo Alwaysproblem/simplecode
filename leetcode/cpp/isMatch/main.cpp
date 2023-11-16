@@ -3,7 +3,7 @@
  *
  * [10] 正则表达式匹配
  */
-#include "utils/print_2d.hpp"
+#include "utils/debug_print.hpp"
 #include <fmt/format.h>
 #include <fmt/ranges.h>
 

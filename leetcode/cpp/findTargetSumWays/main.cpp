@@ -3,7 +3,7 @@
  *
  * [494] 目标和
  */
-#include "utils/print_2d.hpp"
+#include "utils/debug_print.hpp"
 #include <fmt/format.h>
 #include <fmt/ranges.h>
 

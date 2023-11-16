@@ -3,7 +3,7 @@
  *
  * [518] 零钱兑换 II
  */
-#include "utils/print_2d.hpp"
+#include "utils/debug_print.hpp"
 #include <fmt/format.h>
 #include <fmt/ranges.h>
 
