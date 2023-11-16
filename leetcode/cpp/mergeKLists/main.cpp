@@ -13,6 +13,7 @@
 #include <vector>
 
 #include "common_types/LinkedList/LinkedList.h"
+#include "utils/debug_print.hpp"
 
 using namespace std;
 using ListNode = LinkedListNode<int>;
@@ -55,8 +56,8 @@ class Solution {
 // @lc code=end
 
 int main() {
-  vector<vector<int>> inp = {{}};
-  // vector<vector<int>> inp = {{1, 4, 5}, {1, 3, 4}, {2, 6}};
+  // vector<vector<int>> inp = {{}};
+  vector<vector<int>> inp = {{1, 4, 5}, {1, 3, 4}, {2, 6}};
   vector<ListNode*> lists = {};
   for (auto& i : inp) {
     lists.emplace_back(BuildLinkedlist<int>(i));
