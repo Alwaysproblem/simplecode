@@ -7,6 +7,7 @@ from tqdm import tqdm
 from tqdm.contrib.concurrent import process_map
 import multiprocessing
 import time
+import argparse
 
 
 def get_description_from_leetcode(title_slug):
@@ -157,14 +158,44 @@ def header():
   return "# LeetCode 学习笔记\n"
 
 
-if __name__ == "__main__":
+def main():
+  parser = argparse.ArgumentParser()
+  parser.add_argument(
+      "-p",
+      "--preview",
+      type=str,
+      action="store",
+      help="preview the note for a specific problem"
+  )
+  args = parser.parse_args()
+  if args.preview:
+    print(populate_note_for_(args.preview))
+    return
   with open("tools/.noteignore", "r", encoding='utf-8') as f:
     ignore_files = f.readlines()
-    ignore_files = [l.strip() for l in ignore_files if not l.startswith("#") and l.strip() != ""]
-  src_dir = set(i.strip('/') for i in set(glob.glob("*/")) - set(ignore_files)) - set(ignore_files)
+    ignore_files = [
+        l.strip() for l in ignore_files
+        if not l.startswith("#") and l.strip() != ""
+    ]
+  src_dir = set(i.strip('/') for i in set(glob.glob("*/")) - set(ignore_files)
+                ) - set(ignore_files)
   note_str = [header()]
-  num_processes = multiprocessing.cpu_count()
-  note_str += [populate_note_for_(src_file) for src_file in tqdm(src_dir, desc="Processing files", unit="file", colour='green')]
-  # num_processes += process_map(populate_note_for_, src_dir, max_workers=num_processes, desc="Processing files", unit="file", colour='green')
+  note_str += [
+      populate_note_for_(src_file) for src_file in
+      tqdm(src_dir, desc="Processing files", unit="file", colour='green')
+  ]
+  # num_processes = multiprocessing.cpu_count()
+  # num_processes += process_map(
+  #     populate_note_for_,
+  #     src_dir,
+  #     max_workers=num_processes,
+  #     desc="Processing files",
+  #     unit="file",
+  #     colour='green'
+  # )
   with open("NOTE.md", "w", encoding='utf-8') as f:
     print("\n".join(note_str), file=f)
+
+
+if __name__ == "__main__":
+  main()
