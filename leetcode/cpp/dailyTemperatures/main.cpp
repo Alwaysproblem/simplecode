@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=739 lang=cpp
  *
  * [739] 每日温度
+ * title: daily-temperatures
  */
 #include <fmt/format.h>
 #include <fmt/ranges.h>

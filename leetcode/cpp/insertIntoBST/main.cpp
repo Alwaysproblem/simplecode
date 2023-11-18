@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=701 lang=cpp
  *
  * [701] 二叉搜索树中的插入操作
+ * title: insert-into-a-binary-search-tree
  */
 #include <fmt/format.h>
 #include <fmt/ranges.h>

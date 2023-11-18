@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=236 lang=cpp
  *
  * [236] 二叉树的最近公共祖先
+ * title: lowest-common-ancestor-of-a-binary-tree
  */
 #include <fmt/format.h>
 #include <fmt/ranges.h>

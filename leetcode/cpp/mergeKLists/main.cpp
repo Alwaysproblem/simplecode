@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=23 lang=cpp
  *
  * [23] 合并 K 个升序链表
+ * title: merge-k-sorted-lists
  */
 
 #include <fmt/format.h>

@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=990 lang=cpp
  *
  * [990] 等式方程的可满足性
+ * title: satisfiability-of-equality-equations
  */
 
 #include <fmt/format.h>

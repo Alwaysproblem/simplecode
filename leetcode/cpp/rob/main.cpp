@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=198 lang=cpp
  *
  * [198] 打家劫舍
+ * title: house-robber
  */
 #include <fmt/format.h>
 #include <fmt/ranges.h>

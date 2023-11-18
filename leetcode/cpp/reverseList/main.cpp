@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=206 lang=cpp
  *
  * [206] 反转链表
+ * title: reverse-linked-list
  */
 #include <fmt/format.h>
 #include <fmt/ranges.h>

@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=130 lang=cpp
  *
  * [130] 被围绕的区域
+ * title: surrounded-regions
  */
 
 #include <fmt/format.h>

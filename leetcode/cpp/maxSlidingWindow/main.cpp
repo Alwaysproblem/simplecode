@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=239 lang=cpp
  *
  * [239] 滑动窗口最大值
+ * title: sliding-window-maximum
  */
 #include <fmt/format.h>
 #include <fmt/ranges.h>

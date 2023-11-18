@@ -2,3 +2,4 @@ build
 vscode_build
 .vscode
 manual_build
+.leetcode_session

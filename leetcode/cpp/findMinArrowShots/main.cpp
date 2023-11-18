@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=452 lang=cpp
  *
  * [452] 用最少数量的箭引爆气球
+ * title: minimum-number-of-arrows-to-burst-balloons
  */
 
 #include <fmt/format.h>

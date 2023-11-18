@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=207 lang=cpp
  *
  * [207] 课程表
+ * title: course-schedule
  */
 
 #include <fmt/format.h>

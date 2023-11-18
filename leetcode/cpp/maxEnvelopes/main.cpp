@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=354 lang=cpp
  *
  * [354] 俄罗斯套娃信封问题
+ * title: russian-doll-envelopes
  */
 #include <fmt/format.h>
 #include <fmt/ranges.h>

@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=315 lang=cpp
  *
  * [315] 计算右侧小于当前元素的个数
+ * title: count-of-smaller-numbers-after-self
  */
 
 #include <fmt/format.h>

@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=382 lang=cpp
  *
  * [382] 链表随机节点
+ * title: linked-list-random-node
  */
 #include <fmt/format.h>
 #include <fmt/ranges.h>

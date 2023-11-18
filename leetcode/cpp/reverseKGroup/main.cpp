@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=25 lang=cpp
  *
  * [25] K 个一组翻转链表
+ * title: reverse-nodes-in-k-group
  */
 #include <fmt/format.h>
 #include <fmt/ranges.h>

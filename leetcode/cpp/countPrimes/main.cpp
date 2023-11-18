@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=204 lang=cpp
  *
  * [204] 计数质数
+ * title: count-primes
  */
 #include <fmt/format.h>
 #include <fmt/ranges.h>

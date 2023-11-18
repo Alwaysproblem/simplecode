@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=125 lang=cpp
  *
  * [125] 验证回文串
+ * title: valid-palindrome
  */
 #include <fmt/format.h>
 #include <fmt/ranges.h>

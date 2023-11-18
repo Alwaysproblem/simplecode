@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=300 lang=cpp
  *
  * [300] 最长递增子序列
+ * title: longest-increasing-subsequence
  */
 #include <fmt/format.h>
 #include <fmt/ranges.h>

@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=416 lang=cpp
  *
  * [416] 分割等和子集
+ * title: partition-equal-subset-sum
  */
 #include "utils/debug_print.hpp"
 #include <fmt/format.h>

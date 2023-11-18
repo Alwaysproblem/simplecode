@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=1143 lang=cpp
  *
  * [1143] 最长公共子序列
+ * title: longest-common-subsequence
  */
 #include <fmt/format.h>
 #include <fmt/ranges.h>

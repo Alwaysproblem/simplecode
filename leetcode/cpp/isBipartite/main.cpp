@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=785 lang=cpp
  *
  * [785] 判断二分图
+ * title: is-graph-bipartite
  */
 
 #include <fmt/format.h>

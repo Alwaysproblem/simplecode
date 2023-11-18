@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=312 lang=cpp
  *
  * [312] 你可以获得的最大硬币数目
+ * title: burst-balloons
  */
 #include <fmt/format.h>
 #include <fmt/ranges.h>

@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=78 lang=cpp
  *
  * [78] 子集
+ * title: subsets
  */
 #include <fmt/ranges.h>
 

@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=743 lang=cpp
  *
  * [743] 网络延迟时间
+ * title: network-delay-time
  */
 // Note: Dijkstra cpp implementation.
 #include <fmt/format.h>

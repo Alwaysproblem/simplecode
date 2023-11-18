@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=372 lang=cpp
  *
  * [372] 超级次方
+ * title: super-pow
  */
 #include <fmt/format.h>
 #include <fmt/ranges.h>

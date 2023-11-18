@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=* lang=cpp
  *
  * [*] ******
+ * title: ******
  */
 
 #include <fmt/format.h>

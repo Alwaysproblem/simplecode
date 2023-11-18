@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=704 lang=cpp
  *
  * [704] 二分查找
+ * title: binary-search
  */
 #include <fmt/format.h>
 #include <fmt/ranges.h>

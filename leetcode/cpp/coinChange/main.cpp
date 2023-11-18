@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=322 lang=cpp
  *
  * [322] 零钱兑换
+ * title: coin-change
  */
 
 #include <fmt/format.h>

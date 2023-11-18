@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=752 lang=cpp
  *
  * [752] 打开转盘锁
+ * title: open-the-lock
  */
 #include <fmt/format.h>
 #include <fmt/ranges.h>

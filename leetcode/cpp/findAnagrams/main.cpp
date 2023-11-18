@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=438 lang=cpp
  *
  * [438] 找到字符串中所有字母异位词
+ * title: find-all-anagrams-in-a-string
  */
 #include <fmt/format.h>
 #include <fmt/ranges.h>

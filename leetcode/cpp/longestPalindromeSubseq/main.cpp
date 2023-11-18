@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=516 lang=cpp
  *
  * [516] 最长回文子序列
+ * title: longest-palindromic-subsequence
  */
 #include <fmt/format.h>
 #include <fmt/ranges.h>

@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=518 lang=cpp
  *
  * [518] 零钱兑换 II
+ * title: coin-change-ii
  */
 #include "utils/debug_print.hpp"
 #include <fmt/format.h>

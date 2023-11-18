@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=567 lang=cpp
  *
  * [567] 字符串的排列
+ * title: permutation-in-string
  */
 #include <fmt/format.h>
 #include <fmt/ranges.h>

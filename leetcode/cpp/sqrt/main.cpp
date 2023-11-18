@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=69 lang=cpp
  *
  * [69] x 的平方根
+ * title: sqrtx
  */
 
 #include <fmt/format.h>

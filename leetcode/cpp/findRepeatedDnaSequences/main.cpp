@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=187 lang=cpp
  *
  * [187] 重复的DNA序列
+ * title: repeated-dna-sequences
  */
 #include <fmt/format.h>
 #include <fmt/ranges.h>

@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=72 lang=cpp
  *
  * [72] 编辑距离
+ * title: edit-distance
  */
 #include <fmt/format.h>
 #include <fmt/ranges.h>

@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=200 lang=cpp
  *
  * [200] 岛屿数量
+ * title: number-of-islands
  */
 
 #include <fmt/format.h>

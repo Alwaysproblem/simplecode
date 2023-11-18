@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=45 lang=cpp
  *
  * [45] 跳跃游戏 II
+ * title: jump-game-ii
  */
 
 #include <fmt/format.h>

@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=53 lang=cpp
  *
  * [53] 最大子数组和
+ * title: maximum-subarray
  */
 #include <fmt/format.h>
 #include <fmt/ranges.h>

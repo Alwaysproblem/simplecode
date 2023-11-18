@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=47 lang=cpp
  *
  * [47] 全排列 II
+ * title: permutations-ii
  */
 #include <algorithm>
 #include <iostream>

@@ -2,7 +2,9 @@
  * @lc app=leetcode.cn id=76 lang=cpp
  *
  * [76] 最小覆盖子串
+ * title: minimum-window-substring
  */
+
 #include <fmt/format.h>
 #include <fmt/ranges.h>
 

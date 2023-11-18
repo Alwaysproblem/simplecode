@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=230 lang=cpp
  *
  * [230] 二叉搜索树中第K小的元素
+ * title: kth-smallest-element-in-a-bst
  */
 
 #include <fmt/format.h>

@@ -2,7 +2,9 @@
  * @lc app=leetcode.cn id=111 lang=cpp
  *
  * [111] 二叉树的最小深度
+ * title: minimum-depth-of-binary-tree
  */
+
 #include <fmt/format.h>
 #include <fmt/ranges.h>
 

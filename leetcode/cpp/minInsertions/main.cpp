@@ -2,7 +2,9 @@
  * @lc app=leetcode.cn id=1312 lang=cpp
  *
  * [1312] 让字符串成为回文串的最少插入次数
+ * title: minimum-insertion-steps-to-make-a-string-palindrome
  */
+
 #include <fmt/format.h>
 #include <fmt/ranges.h>
 

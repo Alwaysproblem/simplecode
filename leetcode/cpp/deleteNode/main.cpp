@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=450 lang=cpp
  *
  * [450] 删除二叉搜索树中的节点
+ * title: delete-node-in-a-bst
  */
 #include <fmt/format.h>
 #include <fmt/ranges.h>

@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=297 lang=cpp
  *
  * [297] 二叉树的序列化与反序列化
+ * title: serialize-and-deserialize-binary-tree
  */
 #include <fmt/format.h>
 #include <fmt/ranges.h>

@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=221 lang=cpp
  *
  * [221] 最大正方形
+ * title: maximal-square
  */
 #include <fmt/format.h>
 #include <fmt/ranges.h>

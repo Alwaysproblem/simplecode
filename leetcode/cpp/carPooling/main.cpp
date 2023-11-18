@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=1094 lang=cpp
  *
  * [1094] 拼车
+ * title: car-pooling
  */
 #include <fmt/format.h>
 #include <fmt/ranges.h>

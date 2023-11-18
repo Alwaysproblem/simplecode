@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=887 lang=cpp
  *
  * [887] 鸡蛋掉落
+ * title: super-egg-drop
  */
 #include <fmt/format.h>
 #include <fmt/ranges.h>

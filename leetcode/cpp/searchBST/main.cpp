@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=700 lang=cpp
  *
  * [700] 二叉搜索树中的搜索
+ * title: search-in-a-binary-search-tree
  */
 #include <fmt/format.h>
 #include <fmt/ranges.h>

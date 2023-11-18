@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=172 lang=cpp
  *
  * [172] 完全二叉树的节点个数
+ * title: count-complete-tree-nodes
  */
 #include <fmt/format.h>
 #include <fmt/ranges.h>

@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=20 lang=cpp
  *
  * [20] 有效的括号
+ * title: valid-parentheses
  */
 
 #include <fmt/format.h>

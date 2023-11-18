@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=98 lang=cpp
  *
  * [98] 验证二叉搜索树
+ * title: validate-binary-search-tree
  */
 #include <fmt/format.h>
 #include <fmt/ranges.h>

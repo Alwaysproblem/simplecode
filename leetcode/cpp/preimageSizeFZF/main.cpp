@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=793 lang=cpp
  *
  * [793] 阶乘函数后 K 个零
+ * title: preimage-size-of-factorial-zeroes-function
  */
 #include <fmt/format.h>
 #include <fmt/ranges.h>

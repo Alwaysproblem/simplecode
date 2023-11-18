@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=34 lang=cpp
  *
  * [34] 在排序数组中查找元素的第一个和最后一个位置
+ * title: find-first-and-last-position-of-element-in-sorted-array
  */
 #include <fmt/format.h>
 #include <fmt/ranges.h>

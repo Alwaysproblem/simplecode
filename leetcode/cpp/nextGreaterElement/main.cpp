@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=503 lang=cpp
  *
  * [503] 下一个更大元素 II
+ * title: next-greater-element-ii
  */
 #include <fmt/format.h>
 #include <fmt/ranges.h>

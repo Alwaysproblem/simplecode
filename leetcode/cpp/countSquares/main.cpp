@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=1277 lang=cpp
  *
  * [1277] 统计全为 1 的正方形子矩阵
+ * title: count-square-submatrices-with-all-ones
  */
 
 #include <fmt/format.h>

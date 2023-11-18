@@ -2,6 +2,7 @@
  * @lc app=leetcode.cn id=1541 lang=cpp
  *
  * [1541] 平衡括号字符串的最少插入次数
+ * title: minimum-insertions-to-balance-a-parentheses-string
  */
 
 #include <fmt/format.h>
