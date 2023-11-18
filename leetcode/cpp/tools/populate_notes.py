@@ -121,12 +121,16 @@ def get_description_from_leetcode(title_slug):
   problem = api_instance.graphql_post(body=graphql_request)
   if problem.data.question is None:
     raise ValueError(f"{title_slug} not found")
-  # print(problem.data.question.translated_content)
-  problem_description = markdownify.markdownify(
-      problem.data.question.translated_content,
-      strip=["ul", "p"],
-      strong_em_symbol=""
-  )
+  if problem.data.question.translated_content is None:
+    raise ValueError(f"{title_slug} does not have the Chinese translation")
+  # print(problem.data.question)
+  problem_description = markdownify.markdownify((
+      problem.data.question.translated_content
+      if problem.data.question.translated_content else
+      problem.data.question.content
+  ),
+                                                strip=["ul", "p"],
+                                                strong_em_symbol="")
 
   return f"## {problem.data.question.translated_title}\n\n{problem_description}"
 
