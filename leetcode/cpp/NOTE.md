@@ -7097,3 +7097,118 @@ class Solution {
   }
 };
 ```
+
+-------------
+
+## 三个无重叠子数组的最大和
+
+给你一个整数数组 `nums` 和一个整数 `k` ，找出三个长度为 `k` 、互不重叠、且全部数字和（`3 * k` 项）最大的子数组，并返回这三个子数组。
+以下标的数组形式返回结果，数组中的每一项分别指示每个子数组的起始位置（下标从 0 开始）。如果有多个结果，返回字典序最小的一个。
+
+示例 1：
+
+```
+
+输入：nums = [1,2,1,2,6,7,5,1], k = 2
+输出：[0,3,5]
+解释：子数组 [1, 2], [2, 6], [7, 5] 对应的起始下标为 [0, 3, 5]。
+也可以取 [2, 1], 但是结果 [1, 3, 5] 在字典序上更大。
+
+```
+
+示例 2：
+
+```
+
+输入：nums = [1,2,1,2,1,2,1,2,1], k = 2
+输出：[0,2,4]
+
+```
+
+提示：
+
+* `1 <= nums.length <= 2 * 104`
+* `1 <= nums[i] < 216`
+* `1 <= k <= floor(nums.length / 3)`
+
+```cpp
+/*
+ * we take the window size is 3 * k and slide through the all nums.
+ * since there is no overlaps among those subarray.
+ *
+ *
+ * 1     2     1     2     6     7     5     1
+ * [  1  ]
+ *      [  2  ]
+ *            [  3  ]
+ *
+ * 1     2     1     2     6     7     5     1
+ *       [  1  ]
+ *            [  2  ]
+ *                  [  3  ]
+ *
+ * 1     2     1     2     6     7     5     1
+ *             [  1  ]
+ *                   [  2  ]
+ *                         [  3  ]
+ *
+ * ----------------------------------------------
+ *
+ * 1     2     1     2     6     7     5     1
+ *             [  1  ]
+ *                   [  2  ]
+ *                         [  3  ]
+ *             a     b     c     i
+ *
+ * a = i - 3k + 1
+ * b = i - 2k + 1
+ * c = i -  k + 1
+ *
+ * so, the sum will be:
+ *
+ * sum1 += num[b];
+ * sum2 += num[c];
+ * sum3 += num[i];
+ *
+ * max_sum1 is the max sum of subarray 1.
+ * max_sum2 is the max sum of subarray 1 and 2.
+ * max_sum3 is the max sum of subarray 1 and 2 and 3.
+ *
+ */
+class Solution {
+ public:
+  vector<int> maxSumOfThreeSubarrays(vector<int>& nums, int k) {
+    vector<int> ans{};
+    int sum_1 = 0, sum_2 = 0, sum_3 = 0;
+    int max_sum_1 = 0, max_sum_2 = 0, max_sum_3 = 0;
+    int max_sum_1_sidx = 0, max_sum_2_sidx = 0, max_sum_12_sidx = 0, max_sum_3_sidx = 0;
+    for (int i = 2 * k; i < nums.size(); i++) {
+      sum_1 += nums[i - 2 * k];
+      sum_2 += nums[i - k];
+      sum_3 += nums[i];
+      if (i >= 3 * k - 1) {
+        if (sum_1 > max_sum_1) {
+          max_sum_1 = sum_1;
+          max_sum_1_sidx = i - 2 * k - (k - 1);
+        }
+        if (max_sum_1 + sum_2 > max_sum_2) {
+          max_sum_2 = max_sum_1 + sum_2;
+          // NB: need to save the first window idx.
+          max_sum_12_sidx = max_sum_1_sidx;
+          max_sum_2_sidx = i - k - (k - 1);
+        }
+        if (max_sum_2 + sum_3 > max_sum_3) {
+          max_sum_3 = max_sum_2 + sum_3;
+          max_sum_3_sidx = i - (k - 1);
+          // use the saved first window idx to get correct ans.
+          ans= {max_sum_12_sidx, max_sum_2_sidx, max_sum_3_sidx};
+        }
+        sum_1 -= nums[i - 2 * k - (k - 1)];
+        sum_2 -= nums[i - k - (k - 1)];
+        sum_3 -= nums[i - (k - 1)];
+      }
+    }
+    return ans;
+  }
+};
+```
