@@ -5,6 +5,9 @@
  * title: two-sum
  */
 
+#include <fmt/format.h>
+#include <fmt/ranges.h>
+
 #include <iostream>
 #include <unordered_map>
 #include <vector>
@@ -39,8 +42,6 @@ int main() {
   Solution s;
   vector<int> v{1, 6, 3, 2, 5};
   vector<int> result = s.twoSum(v, 11);
-  for (int i : result) {
-    cout << i << endl;
-  }
+  fmt::print("{}\n", result);
   return 0;
 }
