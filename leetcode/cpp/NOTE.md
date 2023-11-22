@@ -5523,9 +5523,9 @@ class Solution {
 一个正确的答案是 [5,4,6,2,null,null,7], 如下图所示。
 另一个正确答案是 [5,2,6,null,4,null,7]。
 
-![](https://assets.leetcode.com/uploads/2020/09/04/del_node_supp.jpg)
-
 ```
+
+![](https://assets.leetcode.com/uploads/2020/09/04/del_node_supp.jpg)
 
 示例 2:
 
