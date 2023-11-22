@@ -1,8 +1,8 @@
 /*
  * @lc app=leetcode.cn id=172 lang=cpp
  *
- * [172] 完全二叉树的节点个数
- * title: count-complete-tree-nodes
+ * [172] 阶乘后的零
+ * title: factorial-trailing-zeroes
  */
 #include <fmt/format.h>
 #include <fmt/ranges.h>
