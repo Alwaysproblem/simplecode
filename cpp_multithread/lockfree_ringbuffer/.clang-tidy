@@ -1,0 +1,40 @@
+---
+Checks: |
+  -misc-unused-parameters,
+  -misc-non-private-member-variables-in-classes,
+  -misc-unconventional-assign-operator,
+  -clang-analyzer-optin.cplusplus.UninitializedObject,
+  -clang-analyzer-*osx*,
+  -clang-diagnostic-mismatched-tags,
+
+# Notes on disabled checks:
+#
+#   - misc-unused-parameters
+#     We have a lot of unused parameters in Poplar. This check can be re-enabled
+#     if we ever decide to do something about them.
+#
+#   - misc-non-private-member-variables-in-classes
+#     Every public struct/class member variable trips this.
+#
+#   - misc-unconventional-assign-operator
+#     There are a few cases where the operator returns *this correctly but
+#     via a separate function which clang-tidy doesn't understand.
+#
+#   - clang-analyzer-optin.cplusplus.UninitializedObject
+#     Every boost::optional that's constructed with boost::none trips this check.
+#
+#   - clang-analyzer-*osx*
+#     We're not using any OS X APIs.
+#
+#   - clang-diagnostic-mismatched-tags
+#     Only matters for Microsoft's ABI.
+#
+# Notes on checks that have not been enabled:
+#
+#   - performance-*,
+#     This greatly slows down clang-tidy (by a factor of x4.5 in my tests).
+#
+
+WarningsAsErrors:     ''
+HeaderFilterRegex:    ''
+FormatStyle:          none
